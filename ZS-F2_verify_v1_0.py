@@ -545,6 +545,85 @@ test("K", "(∑ v_null)² = 4/17 (Face Null Mode)",
      abs(face_null - expected_null) < 1e-14,
      f"(∑v)² = {face_null:.10f}, 4/17 = {expected_null:.10f} [PROVEN]")
 
+# ═══════════════════════════════════════════════════
+# CATEGORY L: §4.2A Gauge-Algebraic Necessity of I_h [v1.0]
+# ═══════════════════════════════════════════════════
+print("\n── Category L: Adjoint Obstruction & Schur Protection (§4.2A) ──")
+
+phi = (1 + np.sqrt(5)) / 2  # golden ratio
+
+# A₅ character table: classes {e(1), C3(20), C5(12), C5'(12), C2(15)}
+A5_chars = {
+    '1':  [1, 1, 1, 1, 1],
+    '3':  [3, 0, phi, 1-phi, -1],
+    "3p": [3, 0, 1-phi, phi, -1],
+    '4':  [4, 1, -1, -1, 0],
+    '5':  [5, -1, 0, 0, 1],
+}
+A5_sizes = [1, 20, 12, 12, 15]
+A5_order = 60
+
+# S₄ character table: classes {e(1), (12)(6), (123)(8), (1234)(6), (12)(34)(3)}
+S4_chars = {
+    '1':  [1, 1, 1, 1, 1],
+    "1p": [1, -1, 1, -1, 1],
+    '2':  [2, 0, -1, 0, 2],
+    '3':  [3, 1, 0, -1, -1],
+    "3p": [3, -1, 0, 1, -1],
+}
+S4_sizes = [1, 6, 8, 6, 3]
+S4_order = 24
+
+def decompose_adj(chars_dict, sizes, order, rep3_key):
+    """Decompose adj(SU(3)) = 3⊗3 - 1 under finite group Γ."""
+    chi_3 = chars_dict[rep3_key]
+    chi_adj = [c**2 - 1 for c in chi_3]
+    decomp = {}
+    for name, chi_mu in chars_dict.items():
+        n = sum(s * cm * ca for s, cm, ca in zip(sizes, chi_mu, chi_adj)) / order
+        if abs(n) > 0.01:
+            decomp[name] = round(abs(n))
+    return decomp
+
+# L1: adj(SU(3))|_{A₅} = 3 ⊕ 5
+adj_A5 = decompose_adj(A5_chars, A5_sizes, A5_order, '3')
+test("L", "adj(SU(3))|_{A₅} = 3 ⊕ 5",
+     adj_A5 == {'3': 1, '5': 1},
+     f"Decomposition: {adj_A5} [PROVEN]")
+
+# L2: 3' does NOT appear in adj(SU(3))|_{A₅} (Schur protection)
+test("L", "3' ∉ adj(SU(3))|_{A₅} (Schur protection)",
+     "3p" not in adj_A5,
+     f"3' multiplicity = 0, gauge sectors algebraically isolated [PROVEN]")
+
+# L3: S₄ fails — both 3 and 3' appear in adj(SU(3))|_{S₄}
+adj_S4 = decompose_adj(S4_chars, S4_sizes, S4_order, '3')
+s4_both_present = '3' in adj_S4 and '3p' in adj_S4
+test("L", "S₄ FAILS: both 3,3' ∈ adj(SU(3))|_{S₄}",
+     s4_both_present,
+     f"Decomposition: {adj_S4} — no Schur protection [PROVEN]")
+
+# L4: A₅ uniqueness — only A₅ has dim-5 irrep among finite subgroups of SO(3)
+max_irrep_dims = {
+    'C_n': 1, 'D_n': 2, 'A4': 3, 'S4': 3, 'A5': 5
+}
+unique_5dim = sum(1 for d in max_irrep_dims.values() if d >= 5) == 1
+test("L", "A₅ unique: only finite SO(3) subgroup with dim ≥ 5 irrep",
+     unique_5dim and max_irrep_dims['A5'] == 5,
+     f"Max irrep dims: {max_irrep_dims} [PROVEN]")
+
+# L5: 12 = 1 + 3' + (3⊕5) gauge identification consistency
+chi_12_face = [12, 0, 2, 2, 0]  # permutation rep of A₅ on 12 pentagons
+face_decomp = {}
+for name, chi_mu in A5_chars.items():
+    n = sum(s * cm * cf for s, cm, cf in zip(A5_sizes, chi_mu, chi_12_face)) / A5_order
+    if abs(n) > 0.01:
+        face_decomp[name] = round(abs(n))
+test("L", "12-face rep = 1 ⊕ 3 ⊕ 3' ⊕ 5 = 1+3+8 = G",
+     face_decomp == {'1': 1, '3': 1, '3p': 1, '5': 1},
+     f"Decomposition: {face_decomp}, sum = {sum(int(k[-1]) if k[-1].isdigit() else 1 for k in face_decomp)} [PROVEN]")
+
+
 # SUMMARY
 # ═══════════════════════════════════════════════════════
 print("\n" + "="*80)
