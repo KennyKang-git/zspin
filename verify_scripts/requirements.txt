@@ -1,0 +1,10 @@
+# Z-Spin Cosmology Verification Suite — Dependencies
+# Install: pip install -r requirements.txt
+
+numpy>=1.21
+scipy>=1.7
+mpmath>=1.3
+
+# Optional: needed only for ZS-QC, ZS-QH, ZS-QS (Quantum Computing papers)
+# These scripts read .docx files for cross-reference checks
+python-docx>=0.8.11
