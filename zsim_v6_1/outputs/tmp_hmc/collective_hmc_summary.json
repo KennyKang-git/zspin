@@ -1,0 +1,23 @@
+{
+  "accept_rate": 1.0,
+  "final_amplitude": -0.4043296596592737,
+  "final_observables": {
+    "avg_half_trace": 0.9193663173139132,
+    "avg_plaquette": 1.0000000000000002,
+    "link_action_proxy": 5.1605556919095505,
+    "max_plaquette": 1.0000000000000004,
+    "max_unitarity_defect": 3.1429601650859287e-16,
+    "min_plaquette": 1.0000000000000004,
+    "num_plaquettes": 48.0,
+    "wilson_action_proxy": -2.1316282072803006e-14
+  },
+  "num_edges": 64,
+  "num_plaquettes": 48,
+  "num_sites": 35,
+  "potential_mean": -11.780367695099084,
+  "shape": [
+    2,
+    2,
+    2
+  ]
+}

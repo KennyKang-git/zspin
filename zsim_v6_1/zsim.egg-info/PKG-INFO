@@ -1,0 +1,112 @@
+Metadata-Version: 2.4
+Name: zsim
+Version: 6.0.0
+Summary: Z-Sim v6.0 — Cosmology + Production Lattice Gauge Theory
+Author: Kenny Kang, Jenny Park, Kenny Park
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+Requires-Dist: numpy>=1.26
+Requires-Dist: scipy>=1.12
+Requires-Dist: pyyaml>=6.0
+Requires-Dist: matplotlib>=3.8
+
+# Z-Sim v3.1
+
+Lightweight, theory-native forward simulation scaffold for Z-Spin Cosmology.
+
+Core structural commitments:
+- Q = 11
+- (X, Z, Y) = (3, 2, 6)
+- no direct X-Y path
+- Z-mediated transfer only
+- effective X↔Y transfer rank <= 2
+
+## Install
+
+```bash
+python -m pip install -r requirements.txt
+```
+
+## Fast start
+
+```bash
+python scripts/quickstart.py background
+python scripts/quickstart.py compare
+python scripts/quickstart.py scan
+python scripts/quickstart.py report
+```
+
+These use `configs/quickstart.yaml` and write outputs under `outputs/`.
+
+## Direct CLI
+
+Background:
+```bash
+python -m zsim.apps.run_background --config configs/base.yaml --output-dir outputs/smoke --no-plots --N-end -17.8
+```
+
+Baseline comparison:
+```bash
+python -m zsim.apps.compare_baselines --config configs/base.yaml --output-dir outputs/compare_baselines --no-plots --N-end -17.8
+```
+
+Scan example:
+```bash
+python -m zsim.apps.run_scan --config configs/base.yaml --output-dir outputs/run_scan_demo --vary gamma_xz gamma_zy --factors 0.0,1.0,2.0 --N-end -17.8
+```
+
+Report from an existing output directory:
+```bash
+python -m zsim.apps.report_results --source-dir outputs/smoke --output-dir outputs/smoke/report
+```
+
+## Tests
+
+```bash
+pytest -q
+```
+
+## Starter pack contents
+
+- `configs/base.yaml` — full working base configuration
+- `configs/quickstart.yaml` — short run starter config
+- `scripts/quickstart.py` — one-command starter launcher
+- `docs/QUICKSTART.md` — copy/paste quickstart guide
+- `docs/STAGE_STATUS.md` — current implementation status
+
+
+## Stage 20 refactor
+
+Stage 20 introduced a shared run-artifact pipeline (`zsim.io.pipeline`) and shared CLI formatting helpers (`zsim.apps.common`). Background, compare, scan, and report entry points now share a more consistent execution/serialization path.
+
+
+Index report example:
+```bash
+python -m zsim.apps.report_results --source-dir outputs --output-dir outputs/report_index --index
+```
+
+
+## Closure experiment matrix
+
+```bash
+python -m zsim.apps.run_closure_matrix --config configs/quickstart.yaml --output-dir outputs/closure_matrix_demo --phase-source-modes full_state,currents_only --mediation-modes raw_contrast,normalized_contrast --epsilon-source-modes zero --h-closure-modes sqrt_sum --N-end -17.8 --no-plots
+```
+
+
+## v3.7 Scaffold Additions
+
+This scaffold adds `zsim.quantum` and `zsim.lgt` as internal subpackages for exact polyhedral spectra and reduced SU(2) lattice experiments. See `docs/QUANTUM_LGT_STAGE1.md`.
+
+
+## v3.8 Stage-7
+- overlap-aware valley family scan
+- Wilson-weighted comparison harness
+- phase-scrambled negative control
+
+
+## Stage-11
+
+Stage-11 adds a broader larger-shape grid, stricter sign-kernel diagnostics, and a closure-ledger stress test via `zsim.apps.su2_mbp_stage11_stress_validate`.
+
+
+Latest quantum/LGT increment: stage-12 closure-calibration report with broader larger-shape coverage and explicit calibration rows.

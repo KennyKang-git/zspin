@@ -1,0 +1,27 @@
+# ═══════════════════════════════════════════════════════════════
+# Z-Spin — "Missing Slot" Hypothesis (38/121)
+# Ω_b = 6/121, Ω_cdm = 32/121 (= 33 - 1 "mediation slot")
+# Ω_m = 38/121 = 0.3140
+# ═══════════════════════════════════════════════════════════════
+# STATUS: HYPOTHESIS — requires theoretical derivation
+# This is an OBSERVATION-level test, NOT a claim
+
+likelihood:
+  planck_2018_highl_plik.TTTEEE_lite:
+
+theory:
+  camb:
+
+params:
+  H0: 67.36
+  ombh2: 0.02250
+  omch2: 0.12000
+  ns: 0.9674
+  As: 2.1e-9
+  tau: 0.054
+  A_planck: 1.0
+
+sampler:
+  evaluate:
+
+output: zspin_38_121_output
