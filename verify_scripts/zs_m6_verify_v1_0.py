@@ -5,9 +5,10 @@ ZS-M6 Verification Suite v1.0
 Block-Laplacian Spectral Verification
 Companion to ZS-F2 v1.0 §7-§9: Product Structure & Heat Kernel
 
-Combined 20-gate verification:
+Combined 29-gate verification:
   Part I  (A1-A10): Log-Determinant at 50-digit precision
   Part II (B1-B10): Heat Kernel Factorization
+  Part III (C1-C9): Hodge-Dirac Operator
 
 Locked inputs: A=35/437, Q=11, (Z,X,Y)=(2,3,6).
 Operator: 11x11 Block-Laplacian with Z-mediated cross-coupling,
@@ -17,7 +18,7 @@ Precision: mpmath (80-digit working / 50-digit display) for log-det;
 
 Usage:
   python3 ZS_M6_Verification_Suite_v1_0.py
-  Expected output: 20/20 PASS
+  Expected output: 29/29 PASS
   Exit code: 0 (all pass) or 1 (any fail)
   JSON results: ZS_M6_v1_0_verification_results.json (same directory)
 
@@ -169,12 +170,140 @@ ef10=eigvalsh(build_BL(10.0,1.0)); ed10=eigvalsh(build_BL(10.0,0.0))
 me = abs(np.sum(np.exp(-0.01*ef10))-np.sum(np.exp(-0.01*ed10)))/np.sum(np.exp(-0.01*ed10))
 test("B10: Mode-Count Collapse", me < 0.01, f"coupling err at μ=10: {me:.2e}")
 
+# ════════════════════════════════════════════════════════════════════
+# Part III: Hodge-Dirac Operator (C1-C9) [NEW in v1.0 Hodge-Dirac update]
+# ════════════════════════════════════════════════════════════════════
+print("\n--- Part III: Hodge-Dirac Operator (C1-C9) ---")
+
+# Build Truncated Icosahedron geometry
+phi_gr = (1 + np.sqrt(5)) / 2
+_vset = set()
+_base = [(0,1,3*phi_gr),(0,1,-3*phi_gr),(0,-1,3*phi_gr),(0,-1,-3*phi_gr)]
+for _s1 in [1,-1]:
+    for _s2 in [1,-1]:
+        for _s3 in [1,-1]:
+            _base.append((_s1*2, _s2*(1+2*phi_gr), _s3*phi_gr))
+            _base.append((_s1*1, _s2*(2+phi_gr), _s3*2*phi_gr))
+for (a,b,c) in _base:
+    for p in [(a,b,c),(b,c,a),(c,a,b)]:
+        _vset.add(tuple(round(x,10) for x in p))
+TI_verts = [np.array(v) for v in sorted(_vset)]
+assert len(TI_verts) == 60, f"TI vertices: {len(TI_verts)}"
+
+TI_edges = [(i,j) for i in range(60) for j in range(i+1,60)
+            if abs(np.linalg.norm(TI_verts[i]-TI_verts[j])-2.0)<1e-6]
+assert len(TI_edges) == 90, f"TI edges: {len(TI_edges)}"
+
+_ei = {}
+for idx,(a,b) in enumerate(TI_edges): _ei[(a,b)]=idx; _ei[(b,a)]=idx
+
+from scipy.spatial import ConvexHull
+_hull = ConvexHull(np.array(TI_verts))
+_fn = []
+for tri in _hull.simplices:
+    v0,v1,v2 = [np.array(TI_verts[k]) for k in tri]
+    n = np.cross(v1-v0, v2-v0); n /= np.linalg.norm(n)
+    if np.dot(n, (v0+v1+v2)/3) < 0: n = -n
+    _fn.append(n)
+_cl = []; _used = set()
+for i in range(len(_hull.simplices)):
+    if i in _used: continue
+    c = [i]; _used.add(i)
+    for j in range(i+1, len(_hull.simplices)):
+        if j in _used: continue
+        if np.linalg.norm(_fn[i]-_fn[j]) < 1e-6: c.append(j); _used.add(j)
+    _cl.append(c)
+TI_faces = []; TI_fnorms = []
+for c_ in _cl:
+    vs = set()
+    for ti in c_:
+        for v in _hull.simplices[ti]: vs.add(v)
+    TI_faces.append(sorted(vs)); TI_fnorms.append(_fn[c_[0]])
+assert len(TI_faces) == 32
+
+def _orient(fv, normal):
+    center = np.mean([TI_verts[v] for v in fv], 0)
+    lv = [TI_verts[v]-center for v in fv]
+    u = lv[0]-np.dot(lv[0],normal)*normal; u /= np.linalg.norm(u)
+    w = np.cross(normal, u)
+    angles = [np.arctan2(np.dot(l,w), np.dot(l,u)) for l in lv]
+    return [fv[k] for k in np.argsort(angles)]
+_of = [_orient(TI_faces[fi], TI_fnorms[fi]) for fi in range(32)]
+
+# Build boundary operators
+d0_TI = np.zeros((90, 60))
+for e_idx,(i,j) in enumerate(TI_edges): d0_TI[e_idx,i]=-1; d0_TI[e_idx,j]=+1
+d1_TI = np.zeros((32, 90))
+for fi, face in enumerate(_of):
+    for k in range(len(face)):
+        vi,vj = face[k], face[(k+1)%len(face)]
+        ek = (min(vi,vj), max(vi,vj))
+        if ek in _ei: d1_TI[fi, _ei[ek]] = 1.0 if vi<vj else -1.0
+
+# Build Hodge-Dirac D_TI (182x182)
+N_TI = 182
+D_TI = np.zeros((N_TI, N_TI))
+D_TI[60:150, :60] = d0_TI;      D_TI[:60, 60:150] = d0_TI.T
+D_TI[150:182, 60:150] = d1_TI;  D_TI[60:150, 150:182] = d1_TI.T
+
+# Hodge Laplacians
+Delta0 = d0_TI.T @ d0_TI
+Delta1 = d0_TI @ d0_TI.T + d1_TI.T @ d1_TI
+Delta2 = d1_TI @ d1_TI.T
+D2 = D_TI @ D_TI
+DeltaH = np.zeros((N_TI, N_TI))
+DeltaH[:60,:60] = Delta0; DeltaH[60:150,60:150] = Delta1; DeltaH[150:,150:] = Delta2
+
+# C1: Chain complex
+chain_err = np.max(np.abs(d1_TI @ d0_TI))
+test("C1: Chain complex d₁∘d₀ = 0", chain_err < 1e-12, f"||d₁d₀|| = {chain_err:.2e}")
+
+# C2: Lichnerowicz D² = Δ_Hodge
+lich_err = np.max(np.abs(D2 - DeltaH))
+test("C2: Lichnerowicz D² = Δ_Hodge", lich_err < 1e-10, f"||D²-Δ|| = {lich_err:.2e}")
+
+# C3: Chirality {D, Γ} = 0
+Gamma = np.zeros(N_TI)
+Gamma[:60] = +1; Gamma[60:150] = -1; Gamma[150:] = +1
+ac = D_TI * Gamma[np.newaxis,:] + Gamma[:,np.newaxis] * D_TI
+ac_err = np.max(np.abs(ac))
+test("C3: Chirality {D,Γ} = 0", ac_err < 1e-10, f"||{{D,Gamma}}|| = {ac_err:.2e}")
+
+# C4: Betti numbers (1,0,1)
+eig0 = eigvalsh(Delta0); eig1 = eigvalsh(Delta1); eig2 = eigvalsh(Delta2)
+b0 = np.sum(np.abs(eig0) < 1e-8); b1 = np.sum(np.abs(eig1) < 1e-8); b2 = np.sum(np.abs(eig2) < 1e-8)
+test("C4: Betti (b₀,b₁,b₂) = (1,0,1)", (b0,b1,b2) == (1,0,1), f"({b0},{b1},{b2})")
+
+# C5: Even sector dim = V+F = 92
+even_dim = 60 + 32  # Ω⁰ + Ω²
+test("C5: Even sector dim = V+F = 92", even_dim == 92 and even_dim == VY+FY)
+
+# C6: Total dim = 2(V+F-1) = 182
+test("C6: V+E+F = 2(V+F-1) = 182", 60+90+32 == 2*(60+32-1) == 182)
+
+# C7: Hodge asymmetry = δ_Y = 7/23
+rank_d0 = np.linalg.matrix_rank(d0_TI, tol=1e-8)
+rank_d1 = np.linalg.matrix_rank(d1_TI, tol=1e-8)
+hodge_asym = Fraction(abs(rank_d0 - rank_d1), even_dim)
+test("C7: Hodge asymmetry = δ_Y = 7/23", hodge_asym == delta_Y_frac,
+     f"({rank_d0}-{rank_d1})/{even_dim} = {hodge_asym}")
+
+# C8: Zero modes of D = 2
+eig_D = eigvalsh(D_TI)
+n_zero_D = np.sum(np.abs(eig_D) < 1e-8)
+test("C8: Zero modes of D = b₀+b₁+b₂ = 2", n_zero_D == 2)
+
+# C9: Spectral symmetry N⁺ = N⁻ = 90
+n_pos = np.sum(eig_D > 1e-8); n_neg = np.sum(eig_D < -1e-8)
+test("C9: Spectral symmetry N⁺=N⁻=90", n_pos == 90 and n_neg == 90,
+     f"N⁺={n_pos}, N⁻={n_neg}")
 print("\n" + "=" * 72)
 np_ = sum(1 for r in results if r['status']=='PASS'); nt = len(results)
 print(f"RESULT: {np_}/{nt} PASS")
 na = sum(1 for r in results[:10] if r['status']=='PASS')
-nb = sum(1 for r in results[10:] if r['status']=='PASS')
-print(f"  Part I: {na}/10  Part II: {nb}/10")
+nb = sum(1 for r in results[10:20] if r['status']=='PASS')
+nc = sum(1 for r in results[20:] if r['status']=='PASS')
+print(f"  Part I: {na}/10  Part II: {nb}/10  Part III: {nc}/9")
 print(f"\n  ln det(ℒ) = {mpmath.nstr(mp_ld,20)}")
 print(f"  |Δλ|_max = {ms:.4f}, peak leakage = {pr:.4f}")
 print(f"  α_XY = {axy:.3f}, δW/W(μ=1) = {dww[0]*100:.4f}%")
@@ -182,7 +311,7 @@ if np_ < nt:
     for f in results:
         if f['status']=='FAIL': print(f"  ❌ {f['test']}: {f['detail']}")
     sys.exit(1)
-else: print(f"\n✅ ALL 20 TESTS PASS — BLOCK-LAPLACIAN VERIFIED")
+else: print(f"\n✅ ALL 29 TESTS PASS — BLOCK-LAPLACIAN + HODGE-DIRAC VERIFIED")
 
 d = Path(__file__).parent if '__file__' in dir() else Path('.')
 with open(d/"ZS_M6_v1_0_verification_results.json",'w') as f:

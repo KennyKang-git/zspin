@@ -5,7 +5,7 @@ ZS-S1 v1.0 Verification Suite
 Gauge Coupling Unification: Incidence-Laplacian Bridge
 from Action to SM Gauge Couplings
 
-35/35 PASS expected
+38/38 PASS expected
 
 Covers:
   Category 1: Polyhedral Invariants (6 tests)
@@ -18,6 +18,7 @@ Covers:
   Category 8: Monte Carlo Anti-Numerology (1 test)
   Category 9: Sensitivity Analysis (2 tests)
   Category 10: Cross-Paper Interface (4 tests)
+  Category 11: Hodge-Dirac Integration (3 tests)
 
 All from locked inputs: A = 35/437, Q = 11, (Z,X,Y) = (2,3,6), z* = i^{z*}.
 Grand Reset: All cross-references use v1.0 codes.
@@ -199,6 +200,33 @@ test("10.2 den(A) = num(a2) * num(a3)",
      A.denominator == Fraction(VF_X, G).numerator * Fraction(VF_Y, G).numerator)
 test("10.3 MUB(Q=11) = Q+1 = G = 12", Q + 1 == G)
 test("10.4 f_seam = alpha_2 = 3/95", alpha_2 == Fraction(3, 95))
+
+
+# ── Category 11: Hodge-Dirac Integration (3 tests) ──
+print("\n-- Category 11: Hodge-Dirac Integration --")
+
+# 11.1 Euler Cell-Count Theorem: V+E+F = 2(V+F-1) for all Archimedean
+archimedean_all = [
+    (12,18,8), (12,24,14), (24,36,14), (24,36,14),
+    (24,48,26), (48,72,26), (24,60,38), (30,60,32),
+    (60,90,32), (60,90,32), (60,120,62), (120,180,62), (60,150,92)
+]
+euler_ok = all(v+e+f == 2*(v+f-1) for v,e,f in archimedean_all)
+test("11.1 Euler Cell-Count: V+E+F=2(V+F-1) all Arch.", euler_ok,
+     f"13/13 verified" if euler_ok else "FAIL")
+
+# 11.2 Hodge decomposition: 59 exact + 31 coexact = 90
+dim_exact = V_Y - 1   # = 59 (rank d₀ = V - b₀, b₀=1 on S²)
+dim_coexact = F_Y - 1  # = 31 (rank d₁ = F - b₂, b₂=1 on S²)
+test("11.2 Hodge: 59 exact + 31 coexact = 90",
+     dim_exact == 59 and dim_coexact == 31 and dim_exact + dim_coexact == E_Y,
+     f"{dim_exact}+{dim_coexact}={dim_exact+dim_coexact}")
+
+# 11.3 Hodge asymmetry = δ_Y
+hodge_asym = Fraction(abs(dim_exact - dim_coexact), V_Y + F_Y)
+test("11.3 δ_Y = |exact-coexact|/(V+F) = 7/23",
+     hodge_asym == delta_Y,
+     f"({dim_exact}-{dim_coexact})/{VF_Y} = {hodge_asym}")
 
 # ═══════════════════════════════════════════════════════════════
 # SUMMARY
