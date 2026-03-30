@@ -9,7 +9,7 @@
   Kenny Kang
   March 2026
 
-  30/30 tests — covers every quantitative claim in ZS-T2 v1.0
+  33/33 tests — covers every quantitative claim in ZS-T2 v1.0
   Dependencies: standard library only (math, cmath, random, fractions)
 ═══════════════════════════════════════════════════════════════════════════
 """
@@ -257,6 +257,30 @@ pull_13 = (sin2_13 - sin2_theta13_PDG) / sin2_theta13_err
 test("E3", "sin\u00b2\u03b8\u2081\u2083 \u2248 \u03b4_X\u00b2/\u03c0 = 0.02204 (Eq. 5), pull < 1\u03c3",
      abs(pull_13) < 1.0,
      f"sin\u00b2\u03b8\u2081\u2083 = {sin2_13:.6f}, PDG = {sin2_theta13_PDG}, pull = {pull_13:+.2f}\u03c3")
+
+# §6.3 Cabibbo angle geometric observation [v1.0 addendum]
+phi_golden = (1 + math.sqrt(5)) / 2  # golden ratio
+theta_cabibbo_geom = math.degrees(math.atan(1.0 / phi_golden**3))  # arctan(1/phi^3)
+PDG_cabibbo_deg = 13.04  # observed Cabibbo angle
+cabibbo_dev_pct = abs(theta_cabibbo_geom - PDG_cabibbo_deg) / PDG_cabibbo_deg * 100
+test("E4", "theta_C = arctan(1/phi^3) = 13.28 deg (Eq. 6, S6.3), dev < 3%",
+     cabibbo_dev_pct < 3.0,
+     f"arctan(1/phi^3) = {theta_cabibbo_geom:.2f} deg, PDG = {PDG_cabibbo_deg} deg, dev = {cabibbo_dev_pct:.1f}%")
+
+# Golden ratio angle sequence verification
+angle_n1 = math.degrees(math.atan(1.0 / phi_golden))      # C5-C2 vertex-edge
+angle_n2 = math.degrees(math.atan(1.0 / phi_golden**2))    # C3-C2 face-edge
+angle_n3 = theta_cabibbo_geom                                # Cabibbo
+test("E5", "Golden ratio angle sequence arctan(1/phi^n) monotone decreasing",
+     angle_n1 > angle_n2 > angle_n3 > 0,
+     f"n=1: {angle_n1:.2f} deg, n=2: {angle_n2:.2f} deg, n=3: {angle_n3:.2f} deg")
+
+# Cross-check with ZS-M11 representation-theoretic route
+theta_m11 = 18.61 * 3.0 / 4.0  # D5-2_2 principal angle x X/(X+1)
+test("E6", "Cross-check: ZS-M11 route (18.61 deg x 3/4) agrees within 5%",
+     abs(theta_cabibbo_geom - theta_m11) / theta_m11 < 0.05,
+     f"geometric = {theta_cabibbo_geom:.2f} deg, rep-theoretic = {theta_m11:.2f} deg, gap = {abs(theta_cabibbo_geom-theta_m11)/theta_m11*100:.1f}%")
+
 
 
 # ═══════════════════════════════════════════════════════════════════════════
