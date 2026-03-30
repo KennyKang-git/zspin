@@ -1,0 +1,80 @@
+{
+  "predicted_by_zspin": {
+    "H0_local_over_H0_CMB": {
+      "value": 1.08339,
+      "formula": "exp(A) = exp(35/437)",
+      "source": "ZS-U1 \u00a73.1",
+      "status": "DERIVED"
+    },
+    "omega_m_eff": {
+      "value": 0.29076,
+      "formula": "38/121 = Omega_m_face/(1+A)",
+      "source": "ZS-U1 \u00a73.3",
+      "status": "DERIVED"
+    },
+    "w0": {
+      "value": -1.0,
+      "formula": "exactly -1 at attractor",
+      "source": "ZS-U1 \u00a73.2",
+      "status": "DERIVED"
+    },
+    "wa": {
+      "value": 0.0,
+      "formula": "exactly 0 at attractor",
+      "source": "ZS-U1 \u00a73.2",
+      "status": "DERIVED"
+    },
+    "G_eff_over_G": {
+      "value": 0.925847,
+      "formula": "1/(1+A) = 437/472",
+      "source": "ZS-F1",
+      "status": "DERIVED"
+    },
+    "c_T_over_c": {
+      "value": 1.0,
+      "formula": "exactly 1 (G5=0 in Horndeski, structural)",
+      "source": "ZS-A2 \u00a72.3",
+      "status": "STRUCTURAL"
+    },
+    "n_s_N60": {
+      "value": 0.9667,
+      "formula": "1 - 2/N* for N*=60",
+      "source": "ZS-U1 \u00a72",
+      "status": "DERIVED"
+    },
+    "r_tensor": {
+      "value": 0.0089,
+      "formula": "16 epsilon_V from canonical slow-roll",
+      "source": "ZS-U1",
+      "status": "DERIVED"
+    }
+  },
+  "sampled_by_cobaya": {
+    "A_s": {
+      "prior": {
+        "min": 1e-10,
+        "max": 5e-09
+      },
+      "ref": {
+        "dist": "norm",
+        "loc": 2.1e-09,
+        "scale": 3e-11
+      },
+      "latex": "A_s",
+      "note": "Scalar amplitude \u2014 NOT derived from A=35/437"
+    },
+    "tau_reio": {
+      "prior": {
+        "min": 0.01,
+        "max": 0.15
+      },
+      "ref": {
+        "dist": "norm",
+        "loc": 0.054,
+        "scale": 0.007
+      },
+      "latex": "\\tau_{reio}",
+      "note": "Reionization optical depth \u2014 NOT derived"
+    }
+  }
+}

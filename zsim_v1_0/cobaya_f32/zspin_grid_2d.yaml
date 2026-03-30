@@ -1,0 +1,95 @@
+# ═══════════════════════════════════════════════════════════════════
+# Z-Spin Cosmology — Cobaya 2D Grid Scan (Quick Preliminary)
+# Gate F32-12 Step 1: Grid scan over (A_s, tau)
+# ═══════════════════════════════════════════════════════════════════
+#
+# v1.0 update: H0_CMB = 67.36 from Tier-0.5 CMB distance prior test
+#   (chi^2 = 1.327, Paper 21 v2.3.0 §4)
+#
+# STRATEGY (Paper 21 v2.3.0):
+#   m_ε ≈ 1.34 M_P → ε-field frozen → standard CAMB (unmodified)
+#   Z-Spin = LCDM with shifted Ω_m, different H0
+#
+# Z-Spin PREDICTS (all locked, NOT sampled):
+#   Ω_m^eff = 38/(121(1+A)) = 0.2908  [v1.0: face counting; was 39/121 = 0.2984]
+#   ω_b h² = 0.02250 (bare),  ω_cdm h² = 0.12074
+#   H0_CMB = 67.36 km/s/Mpc (from Tier-0.5)
+#   H0_local = exp(A) × H0_CMB = 72.98 km/s/Mpc
+#   n_s = 0.9674 (Paper 18, canonical inflation)
+#   r = 0.0089, w₀ = −1, wₐ = 0
+#
+# Cobaya SAMPLES (NOT predicted by Z-Spin):
+#   A_s (scalar amplitude)
+#   τ_reio (reionization optical depth)
+#
+# RUN: cobaya-run cobaya_f32/zspin_grid_2d.yaml
+# ═══════════════════════════════════════════════════════════════════
+
+likelihood:
+  # Gaussian CMB compressed distance priors (Planck 2018)
+  # This is the simplest test — no full Planck data download needed
+  planck_2018_highl_plik.TTTEEE_lite:
+  planck_2018_lowl.TT:
+
+theory:
+  camb:
+    extra_args:
+      # Z-Spin locked parameters
+      num_massive_neutrinos: 1
+      mnu: 0.06
+      nnu: 3.046
+
+params:
+  # ═══ FIXED (Z-Spin locked) ═══
+  H0: 67.36                  # Tier-0.5 optimized
+  ombh2: 0.02250            # (6/121) × h² [BARE, no G_eff — Tier-0.9 validated]
+  omch2: 0.12000            # 32/121 × h² [FACE, truncated icosahedron]
+  ns: 0.9674                 # Paper 18 canonical inflation
+
+  # ═══ SAMPLED (Cobaya explores these) ═══
+  logA:
+    prior:
+      min: 2.6
+      max: 3.5
+    ref:
+      dist: norm
+      loc: 3.044
+      scale: 0.02
+    proposal: 0.005
+    latex: \log(10^{10} A_s)
+    drop: true
+
+  As:
+    value: "lambda logA: 1e-10*np.exp(logA)"
+    latex: A_s
+
+  tau:
+    prior:
+      min: 0.01
+      max: 0.12
+    ref:
+      dist: norm
+      loc: 0.054
+      scale: 0.01
+    proposal: 0.003
+    latex: \tau_\mathrm{reio}
+
+  # ═══ DERIVED (monitored, not sampled) ═══
+  sigma8:
+    latex: \sigma_8
+  s8h5:
+    derived: "lambda sigma8, H0: sigma8*(H0*1e-2)**(-0.5)"
+    latex: \sigma_8/h^{0.5}
+  S8:
+    derived: "lambda sigma8, omegam: sigma8*(omegam/0.3)**0.5"
+    latex: S_8
+  omegam:
+    latex: \Omega_m
+  age:
+    latex: '{\rm{Age}}/\mathrm{Gyr}'
+
+sampler:
+  grid:
+    oversample: 5
+
+output: zspin_grid_2d_output

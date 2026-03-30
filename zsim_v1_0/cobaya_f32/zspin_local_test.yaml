@@ -1,0 +1,72 @@
+# ═══════════════════════════════════════════════════════════════════
+# Z-Spin Cosmology — CAMB-only Local Test (no Planck data needed)
+# Pre-flight check before full Cobaya MCMC
+# ═══════════════════════════════════════════════════════════════════
+#
+# This uses only the Planck lite likelihood (bundled with cobaya)
+# and a Gaussian prior on tau from Planck lowE.
+#
+# Much faster than full Planck — good for debugging and validation.
+#
+# RUN: cobaya-run cobaya_f32/zspin_local_test.yaml
+# ═══════════════════════════════════════════════════════════════════
+
+likelihood:
+  planck_2018_highl_plik.TTTEEE_lite:
+  # Simple Gaussian prior on tau (replaces lowl.EE)
+  tau_prior:
+    external: "lambda tau: -0.5*((tau - 0.054)/0.007)**2"
+
+theory:
+  camb:
+    extra_args:
+      num_massive_neutrinos: 1
+      mnu: 0.06
+      nnu: 3.046
+
+params:
+  # Z-Spin locked
+  H0: 67.36
+  ombh2: 0.02250
+  omch2: 0.12000
+  ns: 0.9674
+
+  # Sampled
+  logA:
+    prior:
+      min: 2.6
+      max: 3.5
+    ref: 3.044
+    proposal: 0.005
+    latex: \log(10^{10} A_s)
+    drop: true
+
+  As:
+    value: "lambda logA: 1e-10*np.exp(logA)"
+    latex: A_s
+
+  tau:
+    prior:
+      min: 0.01
+      max: 0.12
+    ref: 0.054
+    proposal: 0.003
+    latex: \tau_\mathrm{reio}
+
+  # Derived
+  sigma8:
+    latex: \sigma_8
+  S8:
+    derived: "lambda sigma8, omegam: sigma8*(omegam/0.3)**0.5"
+    latex: S_8
+  omegam:
+    latex: \Omega_m
+
+sampler:
+  mcmc:
+    burn_in: 0.3
+    max_tries: 1000
+    Rminus1_stop: 0.05
+    Rminus1_cl_stop: 0.3
+
+output: zspin_local_test_output

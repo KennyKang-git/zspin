@@ -1,0 +1,44 @@
+# ═══════════════════════════════════════════════════════════
+# Z-Spin — Cobaya 2D Grid Scan (Preliminary)
+# Gate F32-12 Step 1: Quick grid before full MCMC
+# ═══════════════════════════════════════════════════════════
+
+likelihood:
+  planck_2018_lowl.TT:
+  planck_2018_lowl.EE:
+  planck_2018_highl_plik.TTTEEE:
+
+theory:
+  classy:
+    extra_args:
+      H0: 72.98
+      omega_b: 0.02237
+      omega_cdm: 0.1186
+      n_s: 0.9667
+      w0_fld: -1.0
+      wa_fld: 0.0
+      N_ncdm: 1
+      m_ncdm: 0.06
+      N_ur: 2.0328
+
+params:
+  logA:
+    prior:
+      min: 2.8
+      max: 3.3
+    ref: 3.044
+  tau_reio:
+    prior:
+      min: 0.02
+      max: 0.10
+    ref: 0.054
+  A_s:
+    value: "lambda logA: 1e-10*np.exp(logA)"
+  H0:
+    value: 72.98
+
+sampler:
+  grid:
+    oversample: 5
+
+output: zspin_grid_scan

@@ -1,0 +1,45 @@
+model:
+  A: 35/437
+  dims:
+    X: 3
+    Z: 2
+    Y: 6
+  enforce_zero_xy: true
+  enforce_rank2_xy: true
+
+closure:
+  wx: 0.0
+  wz: -1.0
+  wy: 0.3333333333333333
+  gamma_xz: 0.1
+  gamma_zy: 0.1
+  alpha_xz: 1.0
+  alpha_zy: 1.0
+  phase_mode: bounded_sine
+  epsilon_potential: quartic
+
+initial:
+  N0: -18.0
+  a0: 1.522997974e-8
+  h0: 1.0
+  epsilon0: 1.0
+  pi_epsilon0: 0.0
+  rho_x0: 0.30
+  rho_z0: 0.02
+  rho_y0: 0.68
+  phi_z0: 0.0
+  sigma_struct0: 0.0
+
+solver:
+  method: RK45
+  rtol: 1e-8
+  atol: 1e-10
+  N_end: -17.8
+  max_step: 0.05
+  projection_every: 1
+
+outputs:
+  save_state_csv: true
+  save_observables_csv: true
+  save_diagnostics_json: true
+  make_plots: false
