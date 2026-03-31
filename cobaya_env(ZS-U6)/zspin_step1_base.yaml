@@ -1,0 +1,170 @@
+# ==============================================================================
+# Z-Spin Cosmology — Cobaya MCMC Configuration
+# Step 1: BASE MCMC (C_ℓ Preservation Test)
+# ==============================================================================
+#
+# Purpose:  T_cmb^eff = 2.6735 K (fixed), N_ur = 2.0328 (no Z-sector).
+#           Standard 6 ΛCDM parameters sampled.
+#           C_ℓ preservation theorem guarantees Δχ² ≈ 0 vs standard Planck.
+#           Tests whether Z-Spin parameter mapping is consistent with data.
+#
+# Runtime:  24–48 hours (4 chains recommended)
+#
+# Reference: ZS-U6 v1.0 §10.3, The Book A-III.4
+# Author:    Kenny Kang (Z-Spin Collaboration)
+# Date:      March 2026
+#
+# Physical test: Ω_m^eff = Ω_m^CLASS/(1+A) vs 0.2908 (face counting)
+#
+# Expected MCMC best-fit values (Table 7, ZS-U6):
+#   ω_b     ≈ 0.02071  [= ω_b^Planck/(1+A)]
+#   ω_cdm   ≈ 0.11110  [= ω_c^Planck/(1+A)]
+#   H₀      ≈ 64.81    [= H₀^Planck/√(1+A)]
+#   Ω_m^CLASS ≈ 0.3153  [preserved]
+#   Ω_m^eff   ≈ 0.2919  [= Ω_m^CLASS/(1+A)]
+# ==============================================================================
+
+likelihood:
+  # Planck 2018 full likelihood (TT + TE + EE + lensing)
+  planck_2018_highl_plik.TTTEEE_lite:
+    # For definitive Gate F32-12: replace with planck_2018_highl_plik.TTTEEE
+    null: null
+  planck_2018_lowl.TT:
+    null: null
+  planck_2018_lowl.EE:
+    null: null
+  planck_2018_lensing.clik:
+    null: null
+
+theory:
+  classy:
+    extra_args:
+      # Z-Spin parameter mapping: T_cmb scaled by (1+A)^(-1/4)
+      T_cmb: 2.6735
+      # Neutrino sector: Planck baseline (NO Z-sector dark radiation)
+      N_ur: 2.0328
+      N_ncdm: 1
+      m_ncdm: 0.06
+      # Standard CLASS settings
+      lensing: yes
+      output: tCl,pCl,lCl
+      l_max_scalars: 2508
+      non_linear: hmcode
+
+params:
+  # ===== SAMPLED PARAMETERS (standard 6 ΛCDM) =====
+  
+  # Baryon density
+  omega_b:
+    prior:
+      min: 0.017
+      max: 0.025
+    ref:
+      dist: norm
+      loc: 0.020711
+      scale: 0.0003
+    proposal: 0.0003
+    latex: \omega_b
+  
+  # CDM density
+  omega_cdm:
+    prior:
+      min: 0.09
+      max: 0.14
+    ref:
+      dist: norm
+      loc: 0.111102
+      scale: 0.002
+    proposal: 0.002
+    latex: \omega_{cdm}
+  
+  # Angular scale of sound horizon
+  cosmomc_theta:
+    prior:
+      min: 0.0103
+      max: 0.0105
+    ref:
+      dist: norm
+      loc: 0.0104092
+      scale: 0.00003
+    proposal: 0.00003
+    latex: \theta_{MC}
+  
+  # Primordial amplitude
+  logA:
+    prior:
+      min: 2.7
+      max: 3.4
+    ref:
+      dist: norm
+      loc: 3.044
+      scale: 0.015
+    proposal: 0.015
+    latex: \log(10^{10} A_s)
+  
+  # Spectral index
+  ns:
+    prior:
+      min: 0.92
+      max: 1.02
+    ref:
+      dist: norm
+      loc: 0.9674
+      scale: 0.005
+    proposal: 0.005
+    latex: n_s
+  
+  # Optical depth to reionization
+  tau_reio:
+    prior:
+      min: 0.01
+      max: 0.12
+    ref:
+      dist: norm
+      loc: 0.0544
+      scale: 0.008
+    proposal: 0.008
+    latex: \tau_{reio}
+  
+  # ===== DERIVED PARAMETERS =====
+  H0:
+    latex: H_0 \; [\mathrm{km/s/Mpc}]
+  sigma8:
+    latex: \sigma_8
+  Omega_m:
+    latex: \Omega_m
+  # Z-Spin effective matter density: Ω_m^eff = Ω_m^CLASS / (1+A)
+  Omega_m_eff:
+    derived: "lambda Omega_m: Omega_m / 1.080091533181"
+    latex: \Omega_m^{eff}
+  # Z-Spin Level 1 H0: H0^ZS = H0^CLASS / √(1+A)
+  H0_level1:
+    derived: "lambda H0: H0 / 1.080091533181**0.5"
+    latex: H_0^{ZS}
+  # Z-Spin Level 3 H0: H0^local = H0^CLASS × exp(A)/√(1+A)
+  H0_level3:
+    derived: "lambda H0: H0 * 2.718281828459045**0.080091533181 / 1.080091533181**0.5"
+    latex: H_0^{local}
+  # S8 parameter
+  S8:
+    derived: "lambda sigma8, Omega_m: sigma8 * (Omega_m / 0.3)**0.5"
+    latex: S_8
+  # Z-Spin S8 (using Ω_m^eff)
+  S8_zspin:
+    derived: "lambda sigma8, Omega_m: sigma8 * (Omega_m / (0.3 * 1.080091533181))**0.5"
+    latex: S_8^{ZS}
+
+sampler:
+  mcmc:
+    # Convergence criterion: Gelman-Rubin R̂−1 < 0.01 (Gate F32-12c)
+    Rminus1_stop: 0.01
+    Rminus1_cl_stop: 0.2
+    max_tries: 10000
+    burn_in: 0.3
+    learn_proposal: true
+    learn_proposal_Rminus1_max: 30
+    # Oversample fast nuisance parameters
+    oversample_power: 0.4
+    drag: true
+
+output: chains/zspin_step1_base

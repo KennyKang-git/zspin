@@ -1,0 +1,174 @@
+# ==============================================================================
+# Z-Spin Cosmology — Cobaya MCMC Configuration
+# Step 2: FULL MCMC (Z-Sector Dark Radiation Test)
+# ==============================================================================
+#
+# Purpose:  Identical to Step 1 EXCEPT N_ur = 2.19298 (= 2.0328 + 2A).
+#           Any Δχ² between Step 1 and Step 2 is attributable exclusively
+#           to Z-sector dark radiation modes (ΔN_eff = 2A = 0.160).
+#           Expected: ~5% C_ℓ deviation, Δχ² = O(1–10).
+#
+# Runtime:  24–48 hours (4 chains recommended)
+#
+# Reference: ZS-U6 v1.0 §10.3, The Book A-III.4
+# Author:    Kenny Kang (Z-Spin Collaboration)
+# Date:      March 2026
+#
+# Non-Double-Counting Proof (Appendix B, ZS-U6):
+#   Effect 1 (G_eff): handled by T_cmb^eff = 2.6735 K
+#   Effect 2 (Z-sector): handled by N_ur → N_ur + 2A = 2.19298
+#   These are algebraically orthogonal (PROVEN, 0.000% numerical error).
+#
+# Physical predictions:
+#   N_eff = 3.044 + 2A = 3.044 + 0.160 = 3.204 (→ CMB-S4 5.3σ detection)
+#   Δθ_s/θ_s = −0.529% (controlled deviation from C_ℓ preservation)
+# ==============================================================================
+
+likelihood:
+  # Planck 2018 full likelihood (TT + TE + EE + lensing)
+  planck_2018_highl_plik.TTTEEE_lite:
+    # For definitive Gate F32-12: replace with planck_2018_highl_plik.TTTEEE
+    null: null
+  planck_2018_lowl.TT:
+    null: null
+  planck_2018_lowl.EE:
+    null: null
+  planck_2018_lensing.clik:
+    null: null
+
+theory:
+  classy:
+    extra_args:
+      # Z-Spin parameter mapping: T_cmb scaled by (1+A)^(-1/4)
+      T_cmb: 2.6735
+      # Neutrino sector: WITH Z-sector dark radiation
+      # N_ur = 2.0328 + 2A = 2.0328 + 0.160183 = 2.19298
+      N_ur: 2.19298
+      N_ncdm: 1
+      m_ncdm: 0.06
+      # Standard CLASS settings
+      lensing: yes
+      output: tCl,pCl,lCl
+      l_max_scalars: 2508
+      non_linear: hmcode
+
+params:
+  # ===== SAMPLED PARAMETERS (standard 6 ΛCDM) =====
+  
+  # Baryon density
+  omega_b:
+    prior:
+      min: 0.017
+      max: 0.025
+    ref:
+      dist: norm
+      loc: 0.020711
+      scale: 0.0003
+    proposal: 0.0003
+    latex: \omega_b
+  
+  # CDM density
+  omega_cdm:
+    prior:
+      min: 0.09
+      max: 0.14
+    ref:
+      dist: norm
+      loc: 0.111102
+      scale: 0.002
+    proposal: 0.002
+    latex: \omega_{cdm}
+  
+  # Angular scale of sound horizon
+  cosmomc_theta:
+    prior:
+      min: 0.0103
+      max: 0.0105
+    ref:
+      dist: norm
+      loc: 0.0104092
+      scale: 0.00003
+    proposal: 0.00003
+    latex: \theta_{MC}
+  
+  # Primordial amplitude
+  logA:
+    prior:
+      min: 2.7
+      max: 3.4
+    ref:
+      dist: norm
+      loc: 3.044
+      scale: 0.015
+    proposal: 0.015
+    latex: \log(10^{10} A_s)
+  
+  # Spectral index
+  ns:
+    prior:
+      min: 0.92
+      max: 1.02
+    ref:
+      dist: norm
+      loc: 0.9674
+      scale: 0.005
+    proposal: 0.005
+    latex: n_s
+  
+  # Optical depth to reionization
+  tau_reio:
+    prior:
+      min: 0.01
+      max: 0.12
+    ref:
+      dist: norm
+      loc: 0.0544
+      scale: 0.008
+    proposal: 0.008
+    latex: \tau_{reio}
+  
+  # ===== DERIVED PARAMETERS =====
+  H0:
+    latex: H_0 \; [\mathrm{km/s/Mpc}]
+  sigma8:
+    latex: \sigma_8
+  Omega_m:
+    latex: \Omega_m
+  # Z-Spin effective matter density
+  Omega_m_eff:
+    derived: "lambda Omega_m: Omega_m / 1.080091533181"
+    latex: \Omega_m^{eff}
+  # Z-Spin Level 1 H0
+  H0_level1:
+    derived: "lambda H0: H0 / 1.080091533181**0.5"
+    latex: H_0^{ZS}
+  # Z-Spin Level 3 H0 (local, with holonomy)
+  H0_level3:
+    derived: "lambda H0: H0 * 2.718281828459045**0.080091533181 / 1.080091533181**0.5"
+    latex: H_0^{local}
+  # S8 parameter (standard)
+  S8:
+    derived: "lambda sigma8, Omega_m: sigma8 * (Omega_m / 0.3)**0.5"
+    latex: S_8
+  # Z-Spin S8 (using Ω_m^eff)
+  S8_zspin:
+    derived: "lambda sigma8, Omega_m: sigma8 * (Omega_m / (0.3 * 1.080091533181))**0.5"
+    latex: S_8^{ZS}
+  # Effective N_eff (for CMB-S4 comparison)
+  N_eff_total:
+    derived: "lambda: 3.044 + 0.160183"
+    latex: N_{eff}^{total}
+
+sampler:
+  mcmc:
+    # Convergence criterion: Gelman-Rubin R̂−1 < 0.01 (Gate F32-12c)
+    Rminus1_stop: 0.01
+    Rminus1_cl_stop: 0.2
+    max_tries: 10000
+    burn_in: 0.3
+    learn_proposal: true
+    learn_proposal_Rminus1_max: 30
+    oversample_power: 0.4
+    drag: true
+
+output: chains/zspin_step2_full

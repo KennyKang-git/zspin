@@ -1,0 +1,116 @@
+# ==============================================================================
+# Z-Spin Cosmology — Cobaya MCMC Configuration
+# Step 0: EVALUATE MODE (Single-Shot Likelihood Evaluation)
+# ==============================================================================
+#
+# Purpose:  All 6 ΛCDM parameters FIXED at Z-Spin predicted values.
+#           No sampling. CLASS runs once. Output: χ²_fixed.
+#           Definitive defense against "fitting" criticism.
+#
+# Runtime:  ~30 seconds
+#
+# Reference: ZS-U6 v1.0 §10.3, The Book A-III.4
+# Author:    Kenny Kang (Z-Spin Collaboration)
+# Date:      March 2026
+#
+# Key constants:
+#   A = 35/437 = 0.080091533181
+#   1+A = 472/437 = 1.080091533181
+#   T_cmb^eff = 2.72548 × (1+A)^(-1/4) = 2.6735 K
+#   N_ur = 2.0328 (Planck baseline, no Z-sector)
+#   Face counting: Ω_cdm = 32/121, Ω_b = 6/121, Ω_m = 38/121
+#
+# Gate F32-12 sub-gates (all must PASS):
+#   F32-12a: Ω_m^CLASS/(1+A) vs 0.2908       [3σ threshold]
+#   F32-12b: H₀^CLASS/√(1+A) vs 64.81        [3σ threshold]
+#   F32-12c: Gelman-Rubin R̂−1 < 0.01         [Convergence]
+#   F32-12d: Best-fit χ²/N_dof < 1.1          [Goodness]
+#   F32-12e: σ₈ posterior vs 0.777             [3σ threshold]
+# ==============================================================================
+
+likelihood:
+  # Planck 2018 full likelihood (TT + TE + EE + lensing)
+  planck_2018_highl_plik.TTTEEE_lite:
+    # Using plik_lite for initial validation
+    # For full Gate F32-12: replace with planck_2018_highl_plik.TTTEEE
+    null: null
+  planck_2018_lowl.TT:
+    null: null
+  planck_2018_lowl.EE:
+    null: null
+  planck_2018_lensing.clik:
+    null: null
+
+theory:
+  classy:
+    extra_args:
+      # Z-Spin parameter mapping: T_cmb scaled by (1+A)^(-1/4)
+      T_cmb: 2.6735
+      # Neutrino sector: Planck baseline (no Z-sector dark radiation)
+      N_ur: 2.0328
+      N_ncdm: 1
+      m_ncdm: 0.06
+      # Standard CLASS settings
+      lensing: yes
+      output: tCl,pCl,lCl
+      l_max_scalars: 2508
+      non_linear: hmcode
+
+params:
+  # ===== ALL PARAMETERS FIXED (Zero Free Parameters) =====
+  
+  # Baryon density: ω_b^Planck / (1+A)
+  omega_b:
+    value: 0.020711
+    latex: \omega_b
+  
+  # CDM density: ω_cdm^Planck / (1+A) [face counting: 32/121]
+  omega_cdm:
+    value: 0.111102
+    latex: \omega_{cdm}
+  
+  # Angular scale of sound horizon (preserved by C_ℓ theorem)
+  cosmomc_theta:
+    value: 0.0104092
+    latex: \theta_{MC}
+  
+  # Primordial amplitude (Planck 2018 best-fit)
+  logA:
+    value: 3.044
+    latex: \log(10^{10} A_s)
+  
+  # Spectral index (Z-Spin locked: 1 - n_s = A × x*)
+  ns:
+    value: 0.9674
+    latex: n_s
+  
+  # Optical depth to reionization (Planck 2018 best-fit)
+  tau_reio:
+    value: 0.0544
+    latex: \tau_{reio}
+  
+  # ===== DERIVED PARAMETERS (tracked, not sampled) =====
+  H0:
+    latex: H_0 \; [\mathrm{km/s/Mpc}]
+  sigma8:
+    latex: \sigma_8
+  Omega_m:
+    latex: \Omega_m
+  # Z-Spin effective matter density
+  Omega_m_eff:
+    derived: "lambda Omega_m: Omega_m / 1.080091533181"
+    latex: \Omega_m^{eff}
+  # Z-Spin Level 1 H0
+  H0_level1:
+    derived: "lambda H0: H0 / 1.080091533181**0.5"
+    latex: H_0^{ZS}
+  # S8 parameter
+  S8:
+    derived: "lambda sigma8, Omega_m: sigma8 * (Omega_m / 0.3)**0.5"
+    latex: S_8
+
+sampler:
+  evaluate:
+    null: null
+
+output: chains/zspin_step0_evaluate
