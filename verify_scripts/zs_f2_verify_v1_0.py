@@ -647,7 +647,7 @@ test("M", "Truncation-Dual: F(TI) = F(ico) + F(dod) = 20 + 12 = 32",
 # M2: Baryon consistency: F(cube) = XZ = 6
 test("M", "Baryon consistency: F(cube) = X × Z = 6",
      F_cube_actual == X * Z and F_cube_actual == 6,
-     f"F(cube) = {F_cube_actual}, X×Z = {X*Z} [CONSISTENT]")
+     f"F(cube) = {F_cube_actual}, X×Z = {X*Z} [CONSISTENT — A1 DERIVED (ZS-F5 Theorem B3.1)]")
 
 # M3: CDM face counting: Ω_cdm = F(TI)/Q² = 32/121
 omega_cdm_face = F_TI / Q**2
@@ -661,7 +661,7 @@ XQ = X * Q
 z2_gauge_modes = 1  # dim(Z)/2 = 1 Z₂-odd gauge mode
 test("M", "Z₂ cross-check: XQ − 1 = F(TI) = 32",
      XQ - z2_gauge_modes == F_TI,
-     f"XQ = {XQ}, XQ−1 = {XQ - z2_gauge_modes}, F(TI) = {F_TI} [DERIVED-CONDITIONAL cross-check]")
+     f"XQ = {XQ}, XQ−1 = {XQ - z2_gauge_modes}, F(TI) = {F_TI} [DERIVED cross-check (A1 resolved, ZS-F5 §6.5)]")
 
 # M5: Total matter: Ω_m = (F(cube) + F(TI))/Q² = 38/121 = 0.3140
 omega_m_face = (F_cube_actual + F_TI) / Q**2

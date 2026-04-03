@@ -231,9 +231,9 @@ test("F1: Ω_m^bare = X(Q+Z)/Q² = 3×13/121 = 39/121",
      f"Ω_m^bare = {X}×({Q}+{Z})/{Q}² = {X*(Q+Z)}/{Q**2} = {Omega_m_bare:.6f}")
 
 Omega_b_bare = X * Z / Q**2
-test("F2: Ω_b^bare = XZ/Q² = 6/121 [DERIVED under A1]",
+test("F2: Ω_b^bare = XZ/Q² = 6/121 [DERIVED]",
      abs(Omega_b_bare - 6/121) < 1e-15 and X*Z == Y,
-     f"Ω_b^bare = {X}×{Z}/{Q}² = {X*Z}/{Q**2} = {Omega_b_bare:.6f}")
+     f"Ω_b^bare = {X}×{Z}/{Q}² = {X*Z}/{Q**2} = {Omega_b_bare:.6f} (A1 resolved: Theorem B3.1, §6.5)")
 
 Omega_cdm_bare = Omega_m_bare - Omega_b_bare
 test("F3: Ω_cdm^bare = Ω_m − Ω_b = 33/121",
@@ -301,7 +301,8 @@ print(f"\n  --- FACE COUNTING NOTE ---")
 print(f"    Slot counting:  Ω_cdm = 33/121 (this paper)")
 print(f"    Face counting:  Ω_cdm = 32/121 (ZS-A5 v1.0, OBSERVATION)")
 print(f"    Cobaya MCMC:    Δχ² = 3.9 (face) vs 226 (slot)")
-print(f"    Derivation:     Pending ZS-F2 v1.0 §11")
+print(f"    Derivation:     ZS-F2 v1.0 §11 (Boundary Mode Theorem)")
+print(f"    B3 Status:      RESOLVED — A1 DERIVED via Theorem B3.1 (Lorentz algebra route)")
 
 if n_pass < n_total:
     fails = [r for r in results if r['status'] == 'FAIL']
