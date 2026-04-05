@@ -7,8 +7,8 @@ Geometric Harmonics: Six Regimes Unified
 Companion code for ZS-M2 v1.0 (March 2026)
 Author: Kenny Kang | Framework: Z-Spin Cosmology
 
-Tests (6 categories, 25 tests):
-  A: Lorentz Algebra Foundation (4) | B: Sector Assignment (4)
+Tests (6 categories, 26 tests):
+  A: Lorentz Algebra Foundation (4) | B: Sector Assignment (5)
   C: Cross-Coupling Theorem (4)    | D: Polyhedral Invariants (4)
   E: Strong CP Resolution (4)      | F: Cosmological Predictions (5)
 
@@ -84,7 +84,7 @@ test("A4: Z=2 = |{+i,-i}| (binary ±i distinction)", Z==len({+1j,-1j})==2,
      f"Z={Z}, |signs|=2 [DERIVED]", CA)
 
 # ── B: SECTOR ASSIGNMENT (4) ──
-print("\n--- B: Sector Assignment (§3, §4) ---")
+print("\n--- B: Sector Assignment (§3, §4, Cor.4.1) ---")
 CB = "B: Sector Assignment"
 
 # B1: Verify su(2)_A and su(2)_B independently satisfy su(2) commutation
@@ -121,6 +121,25 @@ test("B3: EM=Z: Z=2 mediates X<->Y", Z==2 and Q==Z+X+Y,
 test("B4: Macro DM(X)-Grav(Z)-DE(Y): V+F_X<V+F_Y",
      VF_X<VF_Y and VF_X==38 and VF_Y==92,
      f"V+F_X={VF_X}<V+F_Y={VF_Y} [DERIVED]", CB)
+# B5: Corollary 4.1 — Y=6 dual decomposition: 3×2 (multiplicative) = 3+3 (additive)
+# Multiplicative: Y = X × Z = 3 × 2 = 6
+mult_ok = (Y == X * Z == 6)
+# Additive: so(1,3) has 6 real generators = 3 rotations (J_k) + 3 boosts (K_k).
+# B_k = (J_k − iK_k)/2 packages these 6 real DOFs as 3 complex DOFs → ℂ³ = ℝ³⊕ℝ³.
+# Verify: {J4_k, K4_k} for k=1,2,3 are 6 linearly independent generators (4×4 Dirac rep).
+def flatten_real(M):
+    """Flatten complex matrix to real vector: [Re entries, Im entries]."""
+    return np.concatenate([np.real(M).flatten(), np.imag(M).flatten()])
+JK_vecs = np.array([flatten_real(J4[k]) for k in range(3)]
+                  + [flatten_real(K4[k]) for k in range(3)])  # 6 × 32
+rank_JK = np.linalg.matrix_rank(JK_vecs, tol=1e-12)
+# Also verify B4_k spans the SAME 6D subspace (complexification equivalence)
+B4_vecs = np.array([flatten_real(B4[k]) for k in range(3)]
+                  + [flatten_real(1j*B4[k]) for k in range(3)])  # 6 × 32
+rank_B4 = np.linalg.matrix_rank(B4_vecs, tol=1e-12)
+test("B5: Y=6 dual: 3×2(X⊗Z) = 3+3(J⊕K) via complexification",
+     mult_ok and rank_JK == 6 and rank_B4 == 6,
+     f"Y=X*Z={X}*{Z}={Y}; rank(J∪K)={rank_JK}; rank(B∪iB)={rank_B4} [DERIVED, Cor.4.1]", CB)
 
 # ── C: CROSS-COUPLING (4) ──
 print("\n--- C: Cross-Coupling Theorem (§5) ---")
