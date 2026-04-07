@@ -5,7 +5,22 @@ ZS-M11 Verification Suite
 Icosahedral Yukawa Completion: Full VEV Manifold, Quartic Potential,
 and CKM from Pentagon-Hexagon Duality
 
-24 tests + 4 addendum | Zero Free Parameters
+24 tests + 4 §6.2 addendum (T25–T28) + 3 §9.5 April 2026 update (T29–T31)
+= 31 tests total | Zero Free Parameters
+
+April 2026 update (first + second batch):
+  T29 = paper §9.5.4 paper-T25 (Singlet ν_R Yukawa Vanishing,
+        dim Hom_I(1, 3⊗5⊗X) = (0,1,1,1,1) by character orthogonality)
+  T30 = paper §9.5.5 paper-T26 (Lepton-Channel Character Lift,
+        dim V₊ = 23, dim V₋ = 22, L ⊂ V₊ by integer enumeration)
+  T31 = paper §9.5.6 paper-T27 (ρ₂-Sector Golden-Ratio Spectral
+        Quantization on TI lattice: spec contains {4-φ, 5-φ, 3+φ, 4+φ})
+
+Note on numbering: paper §9.5 references these as T25–T27 in its own
+reset count (24 v1.0 + 1 first-batch + 2 second-batch). The script's
+T25–T28 slots are already occupied by the §6.2 Cabibbo addendum, so
+the §9.5 tests are appended as T29–T31. The paper-side mapping is
+recorded in each test name for cross-reference traceability.
 """
 import numpy as np
 from scipy.optimize import minimize
@@ -392,6 +407,151 @@ p4_orig = P4_raw(p4_test_v)
 p4_max_var = max(abs(P4_raw(g5 @ p4_test_v) - p4_orig) for g5 in group_5[:20])
 check("T28: Reynolds P₄ I-invariant", p4_max_var < 1e-12,
       f"max |P₄(gv) - P₄(v)| = {p4_max_var:.2e}")
+
+# ═══════════════════════════════════════════
+# §9.5 LEPTON CHANNEL: CHARACTER LIFT AND GOLDEN RATIO QUANTIZATION
+# (April 2026 update — first batch §9.5.1–9.5.4 + second batch §9.5.5–9.5.6)
+# Paper-side test labels: T25 (§9.5.4), T26 (§9.5.5), T27 (§9.5.6)
+# Script-side labels: T29, T30, T31 (T25–T28 occupied by §6.2 addendum)
+# ═══════════════════════════════════════════
+print("\n§9.5: Lepton Character Lift + Golden Ratio Quantization (April 2026)")
+
+# --- T29 (paper §9.5.4 / paper-T25): Singlet ν_R Yukawa Vanishing ---
+# Direct character orthogonality on the I ≅ A₅ character table.
+# Class structure: e(1), 2-fold(15), 3-fold(20), 5-fold(12), 5'-fold(12).
+# Compute ⟨χ_1, χ_3 · χ_5 · χ_X⟩ for X ∈ {1, 3, 3', 4, 5}.
+# Expected: (0, 1, 1, 1, 1) — only the trivial irrep 1 forbids the Yukawa.
+class_sizes_A5 = [1, 15, 20, 12, 12]
+chi_A5 = {
+    '1':  [1,  1,  1,  1,    1   ],
+    '3':  [3, -1,  0,  phi,  1-phi],
+    "3'": [3, -1,  0,  1-phi, phi ],
+    '4':  [4,  0,  1, -1,   -1   ],
+    '5':  [5,  1, -1,  0,    0   ],
+}
+def mult_trivial_in_3_5_X(chi_X):
+    s = sum(class_sizes_A5[k] * chi_A5['3'][k] * chi_A5['5'][k] * chi_X[k]
+            for k in range(5))
+    return s / 60.0
+
+mults_9_5_4 = tuple(int(round(mult_trivial_in_3_5_X(chi_A5[X])))
+                    for X in ['1', '3', "3'", '4', '5'])
+expected_9_5_4 = (0, 1, 1, 1, 1)
+check("T29 (paper §9.5.4 / T25): dim Hom_I(1, 3⊗5⊗X) = (0,1,1,1,1)",
+      mults_9_5_4 == expected_9_5_4,
+      f"got {mults_9_5_4}: trivial irrep '1' uniquely vanishes")
+
+# --- T30 (paper §9.5.5 / paper-T26): Lepton-Channel Character Lift ---
+# Direct integer-arithmetic enumeration of σ-eigenvalue multiplicities on
+# V = 3 ⊗ 5 ⊗ 3', where σ ∈ I is a 2-fold element.
+# χ_3(σ) = -1, χ_5(σ) = +1, χ_3'(σ) = -1.
+# Eigenvalues of ρ_X(σ) are ±1 with m_+ - m_- = trace, m_+ + m_- = dim.
+# Expected: dim V_+ = 23, dim V_- = 22, total = 45 = 3·5·3, L ⊂ V_+.
+def eigval_mults_pm(trace, dim_rep):
+    m_minus = (dim_rep - trace) // 2
+    m_plus = dim_rep - m_minus
+    return int(m_plus), int(m_minus)
+
+m3_p,  m3_m  = eigval_mults_pm(-1, 3)   # ρ_3(σ): (1, 2)
+m5_p,  m5_m  = eigval_mults_pm(+1, 5)   # ρ_5(σ): (3, 2)
+m3p_p, m3p_m = eigval_mults_pm(-1, 3)   # ρ_3'(σ): (1, 2)
+
+dim_V_plus = 0
+dim_V_minus = 0
+for s3 in (+1, -1):
+    for s5 in (+1, -1):
+        for s3p in (+1, -1):
+            mult = ((m3_p  if s3  == +1 else m3_m ) *
+                    (m5_p  if s5  == +1 else m5_m ) *
+                    (m3p_p if s3p == +1 else m3p_m))
+            if s3 * s5 * s3p == +1:
+                dim_V_plus += mult
+            else:
+                dim_V_minus += mult
+
+# Lepton channel L: ρ_2 ⊗ ρ_1 ⊗ ρ_2 under D_5 ⊂ I
+# (ZS-M10 v1.0 §3.1 Table 2, norm² = 1/5).
+# Reflection parity: χ_{ρ_2}(s) · χ_{ρ_1}(s) · χ_{ρ_2}(s) = (-1)·(+1)·(-1) = +1
+# Hence L ⊂ V_+, and ⟨L | δT⟩ = 0 for any δT ∈ V_- by self-adjoint
+# eigenspace orthogonality (the Lepton-Channel Character Lift).
+L_parity = (-1) * (+1) * (-1)
+
+t30_ok = (dim_V_plus == 23 and dim_V_minus == 22
+          and dim_V_plus + dim_V_minus == 45
+          and L_parity == +1)
+check("T30 (paper §9.5.5 / T26): dim V_+ = 23, dim V_- = 22, L ⊂ V_+",
+      t30_ok,
+      f"V_+={dim_V_plus}, V_-={dim_V_minus}, total={dim_V_plus+dim_V_minus}, "
+      f"L parity={L_parity:+d}")
+
+# --- T31 (paper §9.5.6 / paper-T27): ρ_2-sector golden-ratio quantization ---
+# Build the standard 60-vertex truncated icosahedron (TI) from golden-ratio
+# coordinates, build the graph Laplacian L_Y = D - A, and verify that the
+# four golden-ratio quantized eigenvalues {4-φ, 5-φ, 3+φ, 4+φ} appear in
+# the spectrum of L_Y. Also verify Fiedler eigenvalue matches the
+# ZS-M8 v1.0 §4.2 reference value 0.243402.
+ti_coords = []
+# Type A: cyclic perms of (0, ±1, ±3φ) — 12 vertices
+for perm in [(0, 1, 2), (1, 2, 0), (2, 0, 1)]:
+    for s1 in (+1, -1):
+        for s2 in (+1, -1):
+            v = [0.0, 0.0, 0.0]
+            v[perm[1]] = s1 * 1.0
+            v[perm[2]] = s2 * 3.0 * phi
+            ti_coords.append(v)
+# Type B: cyclic perms of (±1, ±(2+φ), ±2φ) — 24 vertices
+for perm in [(0, 1, 2), (1, 2, 0), (2, 0, 1)]:
+    for s1 in (+1, -1):
+        for s2 in (+1, -1):
+            for s3 in (+1, -1):
+                v = [0.0, 0.0, 0.0]
+                v[perm[0]] = s1 * 1.0
+                v[perm[1]] = s2 * (2.0 + phi)
+                v[perm[2]] = s3 * 2.0 * phi
+                ti_coords.append(v)
+# Type C: cyclic perms of (±2, ±(1+2φ), ±φ) — 24 vertices
+for perm in [(0, 1, 2), (1, 2, 0), (2, 0, 1)]:
+    for s1 in (+1, -1):
+        for s2 in (+1, -1):
+            for s3 in (+1, -1):
+                v = [0.0, 0.0, 0.0]
+                v[perm[0]] = s1 * 2.0
+                v[perm[1]] = s2 * (1.0 + 2.0 * phi)
+                v[perm[2]] = s3 * phi
+                ti_coords.append(v)
+
+ti_coords = np.array(ti_coords)
+n_ti_vert = len(ti_coords)
+
+# Build adjacency (TI edge length is 2 in these coordinates, so |edge|² = 4)
+A_ti = np.zeros((n_ti_vert, n_ti_vert))
+for i in range(n_ti_vert):
+    for j in range(i + 1, n_ti_vert):
+        d2 = np.sum((ti_coords[i] - ti_coords[j]) ** 2)
+        if abs(d2 - 4.0) < 1e-6:
+            A_ti[i, j] = 1.0
+            A_ti[j, i] = 1.0
+
+n_ti_edges = int(A_ti.sum() / 2)
+ti_degrees = A_ti.sum(axis=1)
+L_Y_TI = np.diag(ti_degrees) - A_ti
+eigs_L_Y = np.sort(np.linalg.eigvalsh(L_Y_TI))
+fiedler_TI = eigs_L_Y[1]
+
+# Verify the four golden-ratio quantized eigenvalues are in the spectrum
+golden_targets = [('4-φ', 4 - phi), ('5-φ', 5 - phi),
+                  ('3+φ', 3 + phi), ('4+φ', 4 + phi)]
+golden_present = all(any(abs(e - val) < 1e-8 for e in eigs_L_Y)
+                     for _, val in golden_targets)
+
+t31_ok = (n_ti_vert == 60 and n_ti_edges == 90
+          and int(ti_degrees.min()) == 3 and int(ti_degrees.max()) == 3
+          and abs(fiedler_TI - 0.243402) < 1e-5
+          and golden_present)
+check("T31 (paper §9.5.6 / T27): TI ρ_2 spectrum {4-φ, 5-φ, 3+φ, 4+φ}",
+      t31_ok,
+      f"|V|={n_ti_vert}, |E|={n_ti_edges}, 3-regular, "
+      f"Fiedler={fiedler_TI:.6f} (ZS-M8: 0.243402), all 4 φ-eigvals present")
 
 # ═══════════════════════════════════════════
 print("\n" + "="*60)
