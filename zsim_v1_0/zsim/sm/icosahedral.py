@@ -588,3 +588,243 @@ def build_icosahedral_group() -> IcosahedralGroup:
         yukawa_tensor=T,
         yukawa_unique=unique,
     )
+
+
+# =====================================================================
+# §9.5 — Lepton Channel: Singlet Yukawa Vanishing, Character Lift,
+#        and Golden Ratio Spectral Quantization
+# [ZS-M11 v1.0 §9.5.1–9.5.6, April 2026 first + second batch updates]
+# =====================================================================
+
+# A₅ character table — class structure: e(1), 2-fold(15), 3-fold(20),
+# 5-fold(12), 5'-fold(12). |A₅| = 60.
+_A5_CLASS_SIZES: Final[list[int]] = [1, 15, 20, 12, 12]
+_PHI: Final[float] = (1.0 + math.sqrt(5.0)) / 2.0  # golden ratio
+
+_A5_CHARACTERS: Final[dict[str, list[float]]] = {
+    "1":  [1,  1,  1,  1,            1            ],
+    "3":  [3, -1,  0,  _PHI,         1.0 - _PHI   ],
+    "3'": [3, -1,  0,  1.0 - _PHI,   _PHI         ],
+    "4":  [4,  0,  1, -1,           -1            ],
+    "5":  [5,  1, -1,  0,            0            ],
+}
+
+
+def singlet_yukawa_vanishing() -> dict[str, object]:
+    """Verify dim Hom_I(1, 3⊗5⊗X) = (0, 1, 1, 1, 1) for X ∈ {1, 3, 3', 4, 5}.
+
+    [ZS-M11 v1.0 §9.5.4 Theorem 9.5.1, PROVEN]
+
+    The trivial irrep '1' is uniquely the irrep that forbids the Yukawa
+    coupling 3⊗5⊗X by character orthogonality. This is the structural
+    origin of the singlet ν_R Yukawa vanishing m_{D,1} = 0 (ZS-M11 §9.5.3),
+    realizing the minimal seesaw structure of Frampton–Glashow–Yanagida
+    (2002) directly from icosahedral group theory.
+
+    Returns
+    -------
+    dict with keys:
+      multiplicities : tuple[int, ...]  — (m_1, m_3, m_3', m_4, m_5)
+      expected       : tuple[int, ...]  — (0, 1, 1, 1, 1)
+      pass           : bool             — True iff multiplicities == expected
+      method         : str              — "character orthogonality on A₅"
+    """
+    chi3 = _A5_CHARACTERS["3"]
+    chi5 = _A5_CHARACTERS["5"]
+    mults = []
+    for X in ("1", "3", "3'", "4", "5"):
+        chiX = _A5_CHARACTERS[X]
+        s = sum(_A5_CLASS_SIZES[k] * chi3[k] * chi5[k] * chiX[k] for k in range(5))
+        mults.append(int(round(s / 60.0)))
+    expected = (0, 1, 1, 1, 1)
+    return {
+        "multiplicities": tuple(mults),
+        "expected": expected,
+        "pass": tuple(mults) == expected,
+        "method": "character orthogonality on A₅ (60-element class sum)",
+    }
+
+
+def lepton_character_lift() -> dict[str, object]:
+    """Verify the Lepton-Channel Character Lift on V = 3 ⊗ 5 ⊗ 3'.
+
+    [ZS-M11 v1.0 §9.5.5 Theorem 9.5.5, PROVEN by direct integer enumeration]
+
+    For any 2-fold element σ ∈ I (15-element conjugacy class), decompose
+    V into σ-eigenspaces V = V₊ ⊕ V₋. The result is dim V₊ = 23, dim V₋ = 22.
+    The lepton channel L: ρ₂ ⊗ ρ₁ ⊗ ρ₂ under D₅ ⊂ I (norm² = 1/5,
+    ZS-M10 §3.1 Table 2) has reflection parity (−1)·(+1)·(−1) = +1, hence
+    L ⊂ V₊. Consequently any σ-antisymmetric Yukawa-tensor spurion δT ∈ V₋
+    satisfies P_L(δT) ≡ 0 by self-adjoint eigenspace orthogonality.
+
+    This closes the direct O(A) Yukawa Z₂-breaking spurion channel and
+    forces ε_lepton(LO) = κ² = A/Q (T1-3, F-S2-IO3 closure, see ZS-S2
+    v1.0 §8.1 second-batch update).
+
+    Returns
+    -------
+    dict with keys:
+      dim_V_plus   : int   — multiplicity of σ-eigenvalue +1 (= 23)
+      dim_V_minus  : int   — multiplicity of σ-eigenvalue −1 (= 22)
+      total        : int   — dim V = 45 = 3·5·3
+      L_parity     : int   — +1 (so L ⊂ V₊)
+      pass         : bool  — True iff structure matches Theorem 9.5.5
+    """
+    # χ_3(σ) = -1, χ_5(σ) = +1, χ_3'(σ) = -1 for any 2-fold σ ∈ A₅
+    # ρ_X(σ) eigenvalues are ±1 with m_+ - m_- = trace, m_+ + m_- = dim
+    def _mp_mm(trace: int, dim_rep: int) -> tuple[int, int]:
+        m_minus = (dim_rep - trace) // 2
+        return dim_rep - m_minus, m_minus
+
+    m3p,  m3m  = _mp_mm(-1, 3)   # ρ_3(σ):  (1, 2)
+    m5p,  m5m  = _mp_mm(+1, 5)   # ρ_5(σ):  (3, 2)
+    m3pp, m3pm = _mp_mm(-1, 3)   # ρ_3'(σ): (1, 2)
+
+    dim_Vp = 0
+    dim_Vm = 0
+    for s3 in (+1, -1):
+        for s5 in (+1, -1):
+            for s3p in (+1, -1):
+                mult = ((m3p  if s3  == +1 else m3m ) *
+                        (m5p  if s5  == +1 else m5m ) *
+                        (m3pp if s3p == +1 else m3pm))
+                if s3 * s5 * s3p == +1:
+                    dim_Vp += mult
+                else:
+                    dim_Vm += mult
+
+    L_parity = (-1) * (+1) * (-1)  # ρ_2 ⊗ ρ_1 ⊗ ρ_2 reflection char
+    return {
+        "dim_V_plus":  dim_Vp,
+        "dim_V_minus": dim_Vm,
+        "total":       dim_Vp + dim_Vm,
+        "L_parity":    L_parity,
+        "pass": (dim_Vp == 23 and dim_Vm == 22
+                 and dim_Vp + dim_Vm == 45
+                 and L_parity == +1),
+    }
+
+
+def truncated_icosahedron_vertices() -> Array:
+    """Return the 60 vertex coordinates of the truncated icosahedron (TI).
+
+    [ZS-M8 v1.0 §4.1, ZS-M11 v1.0 §9.5.6]
+
+    Standard golden-ratio coordinates with edge length 2.
+    Three types: even cyclic permutations of (0, ±1, ±3φ),
+    (±1, ±(2+φ), ±2φ), and (±2, ±(1+2φ), ±φ).
+    Yields 12 + 24 + 24 = 60 vertices.
+    """
+    coords = []
+    # Type A: cyclic perms of (0, ±1, ±3φ) — 12 vertices
+    for perm in [(0, 1, 2), (1, 2, 0), (2, 0, 1)]:
+        for s1 in (+1, -1):
+            for s2 in (+1, -1):
+                v = [0.0, 0.0, 0.0]
+                v[perm[1]] = s1 * 1.0
+                v[perm[2]] = s2 * 3.0 * _PHI
+                coords.append(v)
+    # Type B: cyclic perms of (±1, ±(2+φ), ±2φ) — 24 vertices
+    for perm in [(0, 1, 2), (1, 2, 0), (2, 0, 1)]:
+        for s1 in (+1, -1):
+            for s2 in (+1, -1):
+                for s3 in (+1, -1):
+                    v = [0.0, 0.0, 0.0]
+                    v[perm[0]] = s1 * 1.0
+                    v[perm[1]] = s2 * (2.0 + _PHI)
+                    v[perm[2]] = s3 * 2.0 * _PHI
+                    coords.append(v)
+    # Type C: cyclic perms of (±2, ±(1+2φ), ±φ) — 24 vertices
+    for perm in [(0, 1, 2), (1, 2, 0), (2, 0, 1)]:
+        for s1 in (+1, -1):
+            for s2 in (+1, -1):
+                for s3 in (+1, -1):
+                    v = [0.0, 0.0, 0.0]
+                    v[perm[0]] = s1 * 2.0
+                    v[perm[1]] = s2 * (1.0 + 2.0 * _PHI)
+                    v[perm[2]] = s3 * _PHI
+                    coords.append(v)
+    return np.array(coords)
+
+
+def truncated_icosahedron_laplacian() -> tuple[Array, Array]:
+    """Build the graph adjacency and Laplacian L_Y = D - A on the TI.
+
+    Edge length = 2 in standard coordinates → |edge|² = 4.
+    Returns (A, L) where A is 60×60 adjacency, L is 60×60 Laplacian.
+    The graph is 3-regular with 90 edges.
+    """
+    coords = truncated_icosahedron_vertices()
+    n = len(coords)
+    A_mat = np.zeros((n, n))
+    for i in range(n):
+        for j in range(i + 1, n):
+            d2 = float(np.sum((coords[i] - coords[j]) ** 2))
+            if abs(d2 - 4.0) < 1e-6:
+                A_mat[i, j] = 1.0
+                A_mat[j, i] = 1.0
+    deg = A_mat.sum(axis=1)
+    L_mat = np.diag(deg) - A_mat
+    return A_mat, L_mat
+
+
+def tilattice_rho2_spectrum() -> dict[str, object]:
+    """Verify the ρ₂-sector golden-ratio spectral quantization on TI.
+
+    [ZS-M11 v1.0 §9.5.6 Theorem 9.5.6, COMPUTED on the explicit 60-vertex
+     TI lattice]
+
+    Constructs the 60-vertex truncated icosahedron, builds L_Y = D - A,
+    and verifies that the four golden-ratio-quantized eigenvalues
+    {4 - φ, 5 - φ, 3 + φ, 4 + φ} are present in the spectrum, with
+    Fiedler eigenvalue matching ZS-M8 v1.0 §4.2 reference 0.243402.
+
+    The four target eigenvalues are exactly the ρ₂-isotype eigenvalues
+    of L_Y under an explicit D₅ ⊂ I_h embedding (proof in ZS-M11 §9.5.6);
+    here we verify their presence in the full spectrum as a necessary
+    condition.
+
+    Returns
+    -------
+    dict with keys:
+      n_vertices   : int          — 60
+      n_edges      : int          — 90
+      regular_3    : bool         — True if all degrees == 3
+      fiedler      : float        — second-smallest eigenvalue (≈ 0.243402)
+      target_evs   : list[tuple]  — [(name, value, found_in_spectrum), ...]
+      all_present  : bool         — True if all 4 φ-eigenvalues found
+      pass         : bool         — full structural check
+    """
+    A_mat, L_mat = truncated_icosahedron_laplacian()
+    n = L_mat.shape[0]
+    n_edges = int(A_mat.sum() / 2)
+    deg = A_mat.sum(axis=1)
+    eigs = np.sort(np.linalg.eigvalsh(L_mat))
+    fiedler = float(eigs[1])
+
+    targets = [
+        ("4-φ", 4.0 - _PHI),
+        ("5-φ", 5.0 - _PHI),
+        ("3+φ", 3.0 + _PHI),
+        ("4+φ", 4.0 + _PHI),
+    ]
+    target_status = []
+    all_present = True
+    for name, val in targets:
+        found = bool(any(abs(float(e) - val) < 1e-8 for e in eigs))
+        target_status.append((name, val, found))
+        if not found:
+            all_present = False
+
+    return {
+        "n_vertices":  n,
+        "n_edges":     n_edges,
+        "regular_3":   bool(int(deg.min()) == 3 and int(deg.max()) == 3),
+        "fiedler":     fiedler,
+        "target_evs":  target_status,
+        "all_present": all_present,
+        "pass": (n == 60 and n_edges == 90
+                 and int(deg.min()) == 3 and int(deg.max()) == 3
+                 and abs(fiedler - 0.243402) < 1e-5
+                 and all_present),
+    }

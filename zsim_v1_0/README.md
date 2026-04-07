@@ -20,7 +20,7 @@ It turns analytic claims into executable tests, structural kill-switches, and fo
 
 - **Version:** 1.0.0
 - **Python:** ≥ 3.10 (3.11–3.12 recommended)
-- **Tests:** 403 collected (377 pass on clean install; 26 stage-fixture tests require prior outputs)
+- **Tests:** 412 collected (386 pass on clean install; 26 stage-fixture tests require prior outputs)
 - **Status:** Research / validation / preproduction
 
 ## Quick start
@@ -683,7 +683,8 @@ for sep in [0.2, 0.3, 0.4, 0.5, 0.6]:
 | `v6.0` | Production LGT: periodic `T³`, overlap Dirac, gradient flow, caloron, `γ₅` fix |
 | `v6.1` | Face-counting `Ω_m` sync: `39/121 → 38/121`, improved `S₈` alignment |
 | `v7.0` | Standard Model predictions: `sm/` package (gauge couplings, EWSB, Yukawa, CKM) |
-| `v1.0` | **Grand Setup** public release — consolidated from internal v3.1–v7.0 |
+| `v8.0` | April 2026: ZS-S7 (`qcd_spectral`), §9.5 lepton character lift, F-S2-IO3 closure |
+| `v1.0` | **Grand Setup** public release — consolidated from internal v3.1–v8.0 |
 
 See `CHANGELOG.md` for the full history.
 
