@@ -268,28 +268,6 @@ ALPHA_EM_NLO: Final[float] = KAPPA_SQ + C4_NLO * KAPPA_SQ**2        # ≈ 1/137.
 ALPHA_EM_INV_NLO: Final[float] = 1.0 / ALPHA_EM_NLO                 # 137.036
 # CODATA 2022: 1/α = 137.035999, deviation = 1.07 ppm
 
-# ── T1-3: Y-side reciprocal duality of T1-2 ─────────────────────────────
-# [ZS-M11 v1.0 §9.5.5–§9.5.6, ZS-S2 v1.0 §8.1 F-S2-IO3 closure,
-#  Book v1.0 §G.2 T1-3, April 2026 second batch update]
-#
-# The single Block Fiedler eigenvalue λ_2 = 2A/Q (PROVEN, ZS-T1 §9.3)
-# manifests as both:
-#   X-side (T1-2):  1/α_EM ≈ Q/A  (LO propagator scale 1/κ², hence ALPHA_EM_NLO)
-#   Y-side (T1-3):  ε_solar ≈ A/Q (LO vertex coupling scale κ², hence below)
-#
-# At LO, the lepton-channel Yukawa-side spurion ε for the (μ,τ) seam is
-# forced to be the second-order Z-mediated Schur Neumann term (the direct
-# O(A) channel is closed by Theorem 9.5.5 / Lepton-Channel Character Lift).
-# Result: ε_lepton(LO) = κ² = A/Q.
-# Compare to NuFIT 6.0 IO Δm²_21 = 4·ε·m²_atm → ε_obs ≈ 0.0074 (+1.6%).
-EPSILON_LEPTON_LO: Final[float] = KAPPA_SQ                          # = 35/4807
-# [STATUS: DERIVED at LO, conditional on ZS-M9 v1.0 Table 2 ν_R ↔ I-1
-#  assignment (HYPOTHESIS strong, 5 lines of evidence). Same standing as
-#  ZS-M11 v1.0 §9.5.1 m_{D,1} = 0 result. F-S2-IO3 closed within April
-#  2026 release cycle in which it was posed.]
-# (ZS-S7 QCD derivations LAMBDA_QCD_PRED, GLUEBALL_0PP_PRED, BETA0_QCD,
-#  N_FLAVORS_QCD are defined further below, after HIGGS_VEV.)
-
 # SM gauge coupling assertions
 assert abs(ALPHA_S - 11.0 / 93.0) < 1e-15, "α_s != 11/93"
 assert abs(R_GEOM - 48.0 / 91.0) < 1e-15, "R_geom != 48/91"
@@ -340,48 +318,6 @@ HIGGS_MASS_HYPO: Final[float] = HIGGS_VEV / DIM_Z * math.sqrt(1.0 + A_LOCKED / D
 assert D_EFF == 9, "d_eff != 9"
 assert GAMMA_CW_FRAC == Fraction(38, 9), "γ_CW != 38/9"
 assert abs(HIGGS_VEV - 245.93) < 0.1, f"Higgs VEV too far: {HIGGS_VEV:.2f}"
-
-# =====================================================================
-# ZS-S7 -- QCD SPECTRAL PREDICTIONS (v1.0, April 2026, 55-paper release)
-#   The Spinor Mass Gap: Deriving Λ_QCD and the Glueball Mass from
-#   Polyhedral Hodge Spectral Theory.
-#   All derivations are zero-free-parameter, conditional on the
-#   λ_1(Δ_2 on TI) = 1.2428 spectral input (PROVEN in ZS-S7 §3).
-# =====================================================================
-
-# Hodge 2-form Laplacian spectral gap on truncated icosahedron
-# [PROVEN, ZS-S7 v1.0 §3 — imported as a structural input here;
-#  the lattice-side proof is in ZS-S7's own verification suite]
-LAMBDA1_HODGE_TI: Final[float] = 1.2428
-
-# Λ_QCD = v · A / (λ_1 · V_Y)  [ZS-S7 v1.0 §4, DERIVED-CONDITIONAL]
-# Lattice reference: Λ_QCD^MS-bar = 260 ± 20 MeV (FLAG 2024)
-LAMBDA_QCD_PRED_GEV: Final[float] = HIGGS_VEV * A_LOCKED / (LAMBDA1_HODGE_TI * V_TI)
-LAMBDA_QCD_PRED_MEV: Final[float] = LAMBDA_QCD_PRED_GEV * 1000.0    # ≈ 264 MeV
-
-# m(0⁺⁺) glueball mass = v · A / Q  [ZS-S7 v1.0 §5, DERIVED-CONDITIONAL]
-# Topological Cancellation Theorem: glueball mass scale set by single
-# polyhedral invariant v·A/Q. Lattice reference: 1.73 ± 0.05 GeV.
-GLUEBALL_0PP_PRED_GEV: Final[float] = HIGGS_VEV * A_LOCKED / Q_TOTAL  # ≈ 1.791 GeV
-
-# b₀ = (V+F)_Y / G_MUB = 92/12 = 23/3  [ZS-S7 v1.0 §6 / SM exact, PROVEN]
-# This is structurally identical to BETA_COEFF_SU3_FRAC defined above:
-# the SU(3) β-function leading coefficient and the ZS-S7 spinor-sector
-# QCD running constant are the SAME polyhedral invariant.
-BETA0_QCD_FRAC: Final[Fraction] = BETA_COEFF_SU3_FRAC               # 23/3
-BETA0_QCD: Final[float] = float(BETA0_QCD_FRAC)
-
-# n_f = V_Y / G_MUB = 60/12 = 5  [ZS-S7 v1.0 §6, DERIVED]
-N_FLAVORS_QCD: Final[int] = V_TI // G_MUB                            # 5
-
-# ZS-S7 assertions (structural sanity checks)
-assert BETA0_QCD_FRAC == Fraction(23, 3), "ZS-S7 b₀ != 23/3"
-assert N_FLAVORS_QCD == 5, "ZS-S7 n_f != 5"
-assert abs(LAMBDA_QCD_PRED_MEV - 264.0) < 5.0, \
-    f"ZS-S7 Λ_QCD too far from 264 MeV: {LAMBDA_QCD_PRED_MEV:.1f}"
-assert abs(GLUEBALL_0PP_PRED_GEV - 1.791) < 0.01, \
-    f"ZS-S7 m(0⁺⁺) too far from 1.791 GeV: {GLUEBALL_0PP_PRED_GEV:.4f}"
-assert EPSILON_LEPTON_LO == KAPPA_SQ, "T1-3 ε_lepton(LO) must equal KAPPA_SQ"
 
 
 # =====================================================================
@@ -517,11 +453,6 @@ __all__ = [
     "BETA_COEFF_SU2_FRAC", "BETA_COEFF_SU3_FRAC",
     "BETA_COEFF_SU2", "BETA_COEFF_SU3", "BETA_SLOPE_RATIO",
     "KAPPA_SQ", "C4_NLO_FRAC", "C4_NLO", "ALPHA_EM_NLO", "ALPHA_EM_INV_NLO",
-    # T1-3 reciprocal duality (Y-side, ZS-M11 §9.5.5–9.5.6, F-S2-IO3 closure)
-    "EPSILON_LEPTON_LO",
-    # ZS-S7 QCD spectral predictions (April 2026, 55-paper release)
-    "LAMBDA1_HODGE_TI", "LAMBDA_QCD_PRED_GEV", "LAMBDA_QCD_PRED_MEV",
-    "GLUEBALL_0PP_PRED_GEV", "BETA0_QCD_FRAC", "BETA0_QCD", "N_FLAVORS_QCD",
     # EWSB (Tier 1e, v1.0)
     "D_EFF", "GAMMA_CW_FRAC", "GAMMA_CW", "C_M_SPECTRAL",
     "M_PLANCK_GEV", "HIGGS_VEV_EXPONENT", "HIGGS_VEV",

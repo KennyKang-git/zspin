@@ -14,22 +14,6 @@ Two candidate values for c₄:
 This module computes M₀ = Γ_ZY · L_Y⁻¹ · Γ_YZ on the truncated
 icosahedron lattice, providing the explicit numerical NLO coupling.
 
-Upstream PROVEN structural theorem:
-  ZS-T1 v1.0 §9.3 Block Fiedler Mediation Theorem (PROVEN):
-  λ_2 = 2A/Q for the (3,2,6) bipartite block-Laplacian, forcing
-  κ_edge = A/Q. This is what makes the LO term κ² = A/Q.
-
-Reciprocal duality (X-side ↔ Y-side):
-  This module computes the X-SIDE face of the single Block Fiedler
-  eigenvalue λ_2 = 2A/Q, namely the gauge-coupling propagator scale
-  1/α_EM ≈ Q/A (T1-2 in Book v1.0 §G.2). The reciprocal Y-SIDE face
-  is the lepton Yukawa-side spurion ε_solar ≈ A/Q (T1-3, F-S2-IO3
-  closure in ZS-S2 v1.0 §8.1, derived in ZS-M11 v1.0 §9.5.5–9.5.6,
-  PROVEN at LO via Theorem 9.5.5 + Schur Neumann LO of ZS-T2 v1.0
-  §5.3). Both faces use the SAME κ² = A/Q expansion parameter; see
-  EPSILON_LEPTON_LO in zsim/core/constants.py for the Y-side alias
-  and zsim/sm/icosahedral.py for the §9.5.5–9.5.6 helper functions.
-
 [STATUS: HYPOTHESIS — lattice-to-continuum matching not yet proven]
 """
 
