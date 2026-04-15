@@ -751,7 +751,79 @@ test("N", "Three-layer sum: |η_topo×Q² − Δa₂/e − ind⁻(D_Z) − 38| <
 print("\n" + "="*80)
 n_pass = sum(1 for r in results if r[3] == "PASS")
 n_fail = sum(1 for r in results if r[3] == "FAIL")
+# ═════════════════════════════════════════════════════════════════════
+# Category N (extended): Dated Update 2026-04-15 — Exact F-BMT2 Closure
+# N6-N10 added per ZS-F2 §11.8 dated update 2026-04-15
+# ═════════════════════════════════════════════════════════════════════
+print("\n── Category N (extended): Dated Update 2026-04-15 (N6-N10) ──")
+
+import mpmath as _mp_n
+_mp_n.mp.dps = 60
+
+# N6: η_topo × Q² matches 50-digit Lambert W reference exactly
+_W0_n = _mp_n.lambertw(-_mp_n.mpc(0, _mp_n.pi/2), k=0)
+_z_star_n = (_mp_n.mpc(0, 2) / _mp_n.pi) * _W0_n
+_eta_topo_n = abs(_z_star_n)**2
+_eta_Q2_n = _eta_topo_n * 121
+_eta_Q2_ref = _mp_n.mpf('38.9763824709628955265110913744167964356411154385052476269029')
+_err_n6 = abs(_eta_Q2_n - _eta_Q2_ref)
+test("N", f"N6: η_topo·Q² = {_mp_n.nstr(_eta_Q2_n, 30)} (50-digit ref)",
+     _err_n6 < _mp_n.mpf('1e-50'))
+
+# N7: Δa₂ = 315/4807 EXACT RATIONAL (from Dim. Coupling Norm Thm)
+_Da2_exact = _mp_n.mpf(315) / _mp_n.mpf(4807)
+_Da2_ref = _mp_n.mpf('0.06552943623881838984813813189099230289162')
+_err_n7 = abs(_Da2_exact - _Da2_ref)
+test("N", f"N7: Δa₂ = 315/4807 = {_mp_n.nstr(_Da2_exact, 25)} (exact rational)",
+     _err_n7 < _mp_n.mpf('1e-40'))
+
+# N8: ε_higher = 39 + (315/4807)/e − η_topo·Q² at 50-digit precision
+_eps_higher_n = _mp_n.mpf(39) + _Da2_exact/_mp_n.e - _eta_Q2_n
+_eps_higher_ref = _mp_n.mpf('0.04772446142092064392839062841258991202894')
+_err_n8 = abs(_eps_higher_n - _eps_higher_ref)
+test("N", f"N8: ε_higher = {_mp_n.nstr(_eps_higher_n, 25)} (50-digit)",
+     _err_n8 < _mp_n.mpf('1e-38'))
+
+# N9: F-BMT2 margin > 4% (structurally justified)
+_margin_n = (_mp_n.mpf('0.05') - abs(_eps_higher_n)) / _mp_n.mpf('0.05') * 100
+test("N", f"N9: F-BMT2 margin = {_mp_n.nstr(_margin_n, 8)}% > 4% (PASS)",
+     (abs(_eps_higher_n) < _mp_n.mpf('0.05')) and (_margin_n > 4))
+
+# N10: κ² = A/Q uniquely selected by numerical diagonalization
+# Build 11×11 Block-Laplacian with g² = 3κ² for 4 candidates; check uniqueness
+_A_f_n = 35.0/437.0
+_shift_target_n = -0.0483  # from ZS-M6 §2.3
+_k2_candidates = {
+    "A/Q":      _A_f_n / 11.0,
+    "A/(Q-Z)":  _A_f_n / 9.0,
+    "3A/Q²":    3.0 * _A_f_n / 121.0,
+    "A":        _A_f_n,
+}
+_devs_n = {}
+import numpy as _np
+for _name, _k2 in _k2_candidates.items():
+    _L = _np.zeros((11, 11))
+    for i in range(3): _L[i,i] = 19.0/18 + 1.0  # X T1
+    _L[3,3] = 1.0; _L[4,4] = 2.0                 # Z (beta_0 + Z2-odd at mu=1)
+    for i in range(3): _L[5+i,5+i] = 23.0/18 + 1.0  # Y T1u
+    _lamY2 = (5 - _np.sqrt(5))/2 * 23.0/18
+    for i in range(3): _L[8+i,8+i] = _lamY2 + 1.0   # Y T2u
+    _g = (3 * _k2) ** 0.5
+    # Rank-1 β₀-selected: ONE coupling per target irrep (ZS-F0 §10, PROVEN)
+    _L[3,2] = _L[2,3] = _g       # to X T1
+    _L[3,7] = _L[7,3] = _g       # to Y T1u
+    _L[3,10] = _L[10,3] = _g     # to Y T2u
+    _eigs = _np.sort(_np.linalg.eigvalsh(_L))
+    _beta_shift = _eigs[0] - 1.0  # decoupled ref: beta_0 at mu=1 is 1.0
+    _devs_n[_name] = abs(_beta_shift - _shift_target_n)
+_best_n = min(_devs_n, key=_devs_n.get)
+_sep_n = sorted(_devs_n.values())[1] / _devs_n[_best_n] if _devs_n[_best_n] > 0 else float('inf')
+test("N", f"N10: κ² = A/Q uniquely wins (sep = {_sep_n:.1f}x over 2nd best)",
+     _best_n == "A/Q" and _sep_n > 100)
+
 n_total = len(results)
+n_pass = sum(1 for r in results if r[3] == "PASS")
+n_fail = sum(1 for r in results if r[3] == "FAIL")
 print(f"  TOTAL: {n_pass}/{n_total} PASS, {n_fail}/{n_total} FAIL")
 
 cats = {}

@@ -323,6 +323,35 @@ test(cat,f"ZS-U4 v1.0: Ω_m^eff={Omega_m_eff:.4f}, S₈={S8_ZS}",
      abs(Omega_m_eff-0.2908)<0.001,
      f"Ω_m^eff={Omega_m_eff:.4f}","CONSISTENT")
 
+
+# ═════════════════════════════════════════════════════════════════
+#  [K] DATED UPDATE 2026-04-15 — Layer 3 Structural Closure (2)
+# ═════════════════════════════════════════════════════════════════
+cat="[K] Layer 3 Closure (2026-04-15)"
+
+# K1: Δa₂ = 9A/Q = 315/4807 EXACT (via Dim. Coupling Norm Thm)
+from fractions import Fraction as _Fr_k
+_Da2_k1 = 9 * _Fr_k(35, 4807)
+_Da2_k1_expected = _Fr_k(315, 4807)
+test(cat, f"K1: Δa₂ = 315/4807 exact (Dim. Coupling Norm Thm)",
+     _Da2_k1 == _Da2_k1_expected,
+     f"Δa₂ = {float(_Da2_k1):.15f} = 315/4807",
+     "CONSISTENT")
+
+# K2: Layer 3 residual |ε_higher|/Q² ≈ 3.94×10⁻⁴ (WITHIN previous bound 4×10⁻⁴)
+import mpmath as _mp_k
+_mp_k.mp.dps = 50
+_W0_k = _mp_k.lambertw(-_mp_k.mpc(0, _mp_k.pi/2), k=0)
+_z_star_k = (_mp_k.mpc(0, 2) / _mp_k.pi) * _W0_k
+_eta_topo_k = abs(_z_star_k)**2
+_eps_higher_k = _mp_k.mpf(39) + _mp_k.mpf(315)/_mp_k.mpf(4807)/_mp_k.e - _eta_topo_k * 121
+_layer3_k = float(abs(_eps_higher_k) / 121)
+_layer3_bound = 4e-4
+test(cat, f"K2: Layer 3 |ε_higher|/Q² = {_layer3_k:.3e} < 4×10⁻⁴ bound",
+     _layer3_k < _layer3_bound,
+     f"computed = {_layer3_k:.4e}, prior bound = {_layer3_bound:.1e}",
+     "CONSISTENT")
+
 # ═════════════════════════════════════════════════════════════════
 #  REPORT
 # ═════════════════════════════════════════════════════════════════

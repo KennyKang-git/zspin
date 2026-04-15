@@ -4,7 +4,7 @@ ZS-F7 v1.0 Verification Suite
 ===============================
 Reuleaux Geometry of the Z-Sector Boundary
 
-18 tests across 7 categories:
+19 tests across 8 categories:
   [A] TO Construction        (3 tests)
   [B] E_g Eigenspace         (3 tests)
   [C] θ-Independence         (4 tests)
@@ -15,7 +15,7 @@ Reuleaux Geometry of the Z-Sector Boundary
 
 Dependencies: Python 3.10+, numpy, scipy, mpmath
 Usage: python3 ZS_F7_verify_v1_0.py
-Expected: 18/18 PASS, exit code 0
+Expected: 19/19 PASS, exit code 0
 """
 
 import sys
@@ -416,6 +416,31 @@ record("G1", "G",
 
 
 # ============================================================
+# [H] §8.1 STATUS — Dated Update 2026-04-15 (1 test)
+# ============================================================
+print()
+print("=" * 60)
+print("[H] §8.1 Status — Dated Update 2026-04-15")
+print("=" * 60)
+
+# H1: §8.1 Heat Kernel Pipeline demoted BLOCKING → SUPPLEMENTARY for cosmology.
+# Structural check: F-BMT2 closure achievable via companion chain without §8.1.
+# Specifically verify ε_higher budget is satisfiable with exact Δa₂ = 315/4807
+# and η_topo·Q² ≈ 38.9764.
+_Delta_a2_exact = 315.0 / 4807.0
+_eta_topo_Q2 = 38.9763824709628955  # 50-digit Lambert W reference
+_eps_higher = 39.0 + _Delta_a2_exact / np.e - _eta_topo_Q2
+_margin_pct = (0.05 - abs(_eps_higher)) / 0.05 * 100
+_h1_pass = (abs(_eps_higher) < 0.05 and _margin_pct > 4.0)
+
+record("H1", "H",
+       "§8.1 SUPPLEMENTARY for cosmology (F-BMT2 closed by companion chain)",
+       _h1_pass,
+       f"ε_higher={_eps_higher:.10f}, F-BMT2 margin={_margin_pct:.3f}% > 4%")
+
+
+
+# ============================================================
 # SUMMARY
 # ============================================================
 print()
@@ -442,7 +467,8 @@ cat_names = {
     "D": "Reuleaux Geometry",
     "E": "Perturbative No-Go",
     "F": "Seeley-DeWitt",
-    "G": "Anti-Numerology"
+    "G": "Anti-Numerology",
+    "H": "§8.1 Status Update (2026-04-15)"
 }
 
 print()

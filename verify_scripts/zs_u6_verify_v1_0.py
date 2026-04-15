@@ -403,4 +403,29 @@ except OSError:
 with _f as f: json.dump(report,f,indent=2,ensure_ascii=False)
 print(f"\nReport saved: {json_path}")
 print("=" * 70)
+# ═════════════════════════════════════════════════════════════════════
+# [CROSS-REFERENCE] Dated Update 2026-04-15 — F-BMT2 Structural Closure
+# Per ZS-U6 §12 dated update 2026-04-15: NO FU6-XX gate modified.
+# This block is a diagnostic cross-reference only, not a new test.
+# ═════════════════════════════════════════════════════════════════════
+print()
+print("=" * 70)
+print("  CROSS-REFERENCE: Dated Update 2026-04-15")
+print("=" * 70)
+import mpmath as _mp_u6
+_mp_u6.mp.dps = 50
+_W0_u6 = _mp_u6.lambertw(-_mp_u6.mpc(0, _mp_u6.pi/2), k=0)
+_z_star_u6 = (_mp_u6.mpc(0, 2) / _mp_u6.pi) * _W0_u6
+_eta_topo_u6 = abs(_z_star_u6)**2
+_eps_higher_u6 = (_mp_u6.mpf(39) + _mp_u6.mpf(315)/_mp_u6.mpf(4807)/_mp_u6.e
+                  - _eta_topo_u6 * 121)
+_margin_u6 = (_mp_u6.mpf('0.05') - abs(_eps_higher_u6)) / _mp_u6.mpf('0.05') * 100
+print(f"  F-BMT2 structural closure (ZS-F2 §11.8 dated update 2026-04-15):")
+print(f"    Δa₂ = 315/4807 (exact rational, from Dim. Coupling Norm Thm)")
+print(f"    ε_higher = {_mp_u6.nstr(_eps_higher_u6, 15)}")
+print(f"    F-BMT2 margin = {_mp_u6.nstr(_margin_u6, 6)}%  (> 4% required)")
+print(f"  ZS-U6 gates unchanged: FU6-1 through FU6-17 status preserved.")
+print(f"  F32-12 Step 1 PASS (2026-04-11), Step 2 RESOLVED (2026-04-13) — unchanged.")
+print("=" * 70)
+
 sys.exit(0 if n_fail==0 else 1)
