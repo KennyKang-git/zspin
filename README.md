@@ -2,7 +2,7 @@
 
 Welcome to the official repository of \*\*Z-Spin Cosmology\*\* (Version 1.0, March 2026).
 
-This repository contains the complete collection of 65 research papers, the consolidated manuscript, and the computational verification suite for a fundamentally new mathematical and ontological framework. Z-Spin Cosmology unifies macroscopic gravity ($\\Lambda$CDM) and microscopic quantum mechanics (Standard Model) \*\*without introducing a single phenomenological free parameter\*\*.
+This repository contains the complete collection of 66 research papers, the consolidated manuscript, and the computational verification suite for a fundamentally new mathematical and ontological framework. Z-Spin Cosmology unifies macroscopic gravity ($\\Lambda$CDM) and microscopic quantum mechanics (Standard Model) \*\*without introducing a single phenomenological free parameter\*\*.
 
 \#\# 🌌 Overview
 
@@ -21,8 +21,8 @@ Every physical quantity in this framework (e.g., Hubble tension resolution, dark
 
 \#\# 📁 Repository Structure
 
-\* \[\`/papers\`\](./papers/): The 65 official papers (PDF format) and the comprehensive overview book.  
-\* \[\`/verify\_scripts\`\](./verify\_scripts/): The Python suite designed to cross-verify the mathematical consistency, block-Laplacian structures, and algebraic derivations of all 65 papers.  
+\* \[\`/papers\`\](./papers/): The 66 official papers (PDF format) and the comprehensive overview book.  
+\* \[\`/verify\_scripts\`\](./verify\_scripts/): The Python suite designed to cross-verify the mathematical consistency, block-Laplacian structures, and algebraic derivations of all 66 papers.  
 \* \[\`/zsim_v1_0\`\](https://github.com/KennyKang-git/zspin/zsim_v1_0): A zero-free-parameter forward simulator executing Z-Spin dynamics on Regge discrete lattices.
 
 \#\# 🛡️ The "Zero-Free-Parameter" Philosophy
