@@ -1,6 +1,6 @@
-﻿\# Z-Spin Cosmology: Paper Archive (65 Papers)
+﻿\# Z-Spin Cosmology: Paper Archive (66 Papers)
 
-This directory houses the foundational 65 papers of the Z-Spin Cosmology framework (Version 1.0) and the consolidated summary book. Every paper has undergone rigorous cross-consistency checks. The mathematical derivations and spectral topologies presented here can be computationally reproduced using the code provided in the \`verify\_scripts\` directory.
+This directory houses the foundational 66 papers of the Z-Spin Cosmology framework (Version 1.0) and the consolidated summary book. Every paper has undergone rigorous cross-consistency checks. The mathematical derivations and spectral topologies presented here can be computationally reproduced using the code provided in the \`verify\_scripts\` directory.
 
 \#\# 📖 Reading Guide
 
@@ -17,10 +17,10 @@ For physicists, mathematicians, and researchers encountering this framework for 
 
 \#\# 📑 Theme Index
 
-The 65 papers are categorized into 8 core themes. Files follow the naming convention: \`\[Theme Code\]\_\[Sub-number\]\_v1\_0.pdf\`.
+The 66 papers are categorized into 8 core themes. Files follow the naming convention: \`\[Theme Code\]\_\[Sub-number\]\_v1\_0.pdf\`.
 
 \* \*\*01. Foundations \[ZS-F0 \- F8\]:\*\* Ontological bootstrap, derivation of the geometric impedance, and topological uniqueness theorems.  
-\* \*\*02. Mathematical Spine \[ZS-M1 \- M15\]:\*\* The rigorous mathematical proofs underpinning the framework, including the $i$-tetration fixed point and block-Laplacian spectral theorems.  
+\* \*\*02. Mathematical Spine \[ZS-M1 \- M16\]:\*\* The rigorous mathematical proofs underpinning the framework, including the $i$-tetration fixed point and block-Laplacian spectral theorems.  
 \* \*\*03. Standard Model \[ZS-S1 \- S11\]:\*\* Derivation of Standard Model parameters (gauge couplings, neutrino masses, CP violation limits) directly from the Z-Spin action.  
 \* \*\*04. Early Universe \[ZS-U1 \- U10\]:\*\* Slow-roll inflation dynamics, calculation of the baryon asymmetry ($\\eta\_B$), and early universe phase transitions.  
 \* \*\*05. Astrophysics \[ZS-A1 \- A7\]:\*\* Macroscopic phenomena, including flat galactic rotation curves and the Baryonic Tully-Fisher Relation, derived without dark matter particles.  
