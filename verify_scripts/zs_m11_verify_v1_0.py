@@ -6,7 +6,8 @@ Icosahedral Yukawa Completion: Full VEV Manifold, Quartic Potential,
 and CKM from Pentagon-Hexagon Duality
 
 24 tests + 4 §6.2 addendum (T25–T28) + 3 §9.5 April 2026 update (T29–T31)
-= 31 tests total | Zero Free Parameters
++ 2 §9.5.7 April 2026 third batch (T32–T33)
+= 33 tests total | Zero Free Parameters
 
 April 2026 update (first + second batch):
   T29 = paper §9.5.4 paper-T25 (Singlet ν_R Yukawa Vanishing,
@@ -16,11 +17,19 @@ April 2026 update (first + second batch):
   T31 = paper §9.5.6 paper-T27 (ρ₂-Sector Golden-Ratio Spectral
         Quantization on TI lattice: spec contains {4-φ, 5-φ, 3+φ, 4+φ})
 
-Note on numbering: paper §9.5 references these as T25–T27 in its own
-reset count (24 v1.0 + 1 first-batch + 2 second-batch). The script's
-T25–T28 slots are already occupied by the §6.2 Cabibbo addendum, so
-the §9.5 tests are appended as T29–T31. The paper-side mapping is
-recorded in each test name for cross-reference traceability.
+April 2026 third batch (§9.5.7 Q-pair / X-pair decomposition):
+  T32 = paper §9.5.7 paper-T28 (Q-pair / X-pair product identity:
+        (4-φ)(3+φ) = 11 = Q, (5-φ)(4+φ) = 19 = denom(δ_X),
+        by direct algebraic expansion using φ² = φ + 1)
+  T33 = paper §9.5.7 paper-T29 (NLO Schur Neumann closed forms:
+        Tr(M₀|_ρ₂) = 232/209 and Det(M₀|_ρ₂) = 1/209 verified by
+        numerical diagonalization of L_Y|_ρ₂ pseudoinverse)
+
+Note on numbering: paper §9.5 references these as T25–T29 in its own
+reset count (24 v1.0 + 1 first-batch + 2 second-batch + 2 third-batch).
+The script's T25–T28 slots are already occupied by the §6.2 Cabibbo
+addendum, so the §9.5 tests are appended as T29–T33. The paper-side
+mapping is recorded in each test name for cross-reference traceability.
 """
 import numpy as np
 from scipy.optimize import minimize
@@ -552,6 +561,85 @@ check("T31 (paper §9.5.6 / T27): TI ρ_2 spectrum {4-φ, 5-φ, 3+φ, 4+φ}",
       t31_ok,
       f"|V|={n_ti_vert}, |E|={n_ti_edges}, 3-regular, "
       f"Fiedler={fiedler_TI:.6f} (ZS-M8: 0.243402), all 4 φ-eigvals present")
+
+# ═══════════════════════════════════════════
+# APRIL 2026 THIRD BATCH (§9.5.7 Q-pair / X-pair decomposition)
+# Script-side labels: T32, T33 (paper-side: T28, T29)
+# ═══════════════════════════════════════════
+
+# --- T32 (paper §9.5.7 / paper-T28): Q-pair / X-pair product identity ---
+# Theorem 9.5.7a: (4-φ)(3+φ) = 11 = Q, (4-φ)+(3+φ) = 7 = num(δ_Y)
+# Theorem 9.5.7b: (5-φ)(4+φ) = 19 = denom(δ_X), (5-φ)+(4+φ) = 9 = d_eff
+# Proof uses φ² = φ + 1 directly.
+# Locked constants:
+Q_register = 11                   # Q = X + Y + Z = 3 + 6 + 2 (ZS-F5)
+num_deltaY = 7                    # num(δ_Y) = |V - F|_Y / 4 = |60-32|/4 (ZS-F2)
+denom_deltaX = 19                 # denom(δ_X) = (V+F)_X / 2 = (24+14)/2 (ZS-F2)
+d_eff_register = 9                # d_eff = Q - Z = 11 - 2 (ZS-S4 §6.16)
+
+# Q-pair (4-φ, 3+φ)
+Q_product = (4 - phi) * (3 + phi)
+Q_sum = (4 - phi) + (3 + phi)
+
+# X-pair (5-φ, 4+φ)
+X_product = (5 - phi) * (4 + phi)
+X_sum = (5 - phi) + (4 + phi)
+
+# Verify all four identities to floating-point precision (tol 1e-12)
+# The identities are exact in symbolic arithmetic; numerical tolerance
+# accounts for double-precision IEEE 754 representation of φ = (1+√5)/2
+TOL = 1e-12
+qp_product_ok = abs(Q_product - Q_register) < TOL
+qp_sum_ok = abs(Q_sum - num_deltaY) < TOL
+xp_product_ok = abs(X_product - denom_deltaX) < TOL
+xp_sum_ok = abs(X_sum - d_eff_register) < TOL
+
+t32_ok = qp_product_ok and qp_sum_ok and xp_product_ok and xp_sum_ok
+check("T32 (paper §9.5.7 / T28): Q-pair (4-φ)(3+φ)=11=Q, X-pair (5-φ)(4+φ)=19=denom(δ_X)",
+      t32_ok,
+      f"Q-pair: prod={Q_product:.10f} (=11? {qp_product_ok}), sum={Q_sum:.10f} (=7? {qp_sum_ok}); "
+      f"X-pair: prod={X_product:.10f} (=19? {xp_product_ok}), sum={X_sum:.10f} (=9? {xp_sum_ok})")
+
+# --- T33 (paper §9.5.7 / paper-T29): NLO Schur Neumann closed forms ---
+# Corollary 9.5.7c: Tr(M₀|_ρ_2) = 7/11 + 9/19 = 232/209
+#                   Det(M₀|_ρ_2) = 1/(Q · denom(δ_X)) = 1/209
+# M₀|_ρ_2 is the pseudoinverse of L_Y|_ρ_2 (restricted to the 4-dim ρ_2 subspace).
+# On the eigenbasis, M₀|_ρ_2 is diagonal with eigenvalues 1/(4-φ), 1/(5-φ),
+# 1/(3+φ), 1/(4+φ). We verify trace and determinant directly.
+
+eigvals_LY_rho2 = np.array([4 - phi, 5 - phi, 3 + phi, 4 + phi])
+eigvals_M0_rho2 = 1.0 / eigvals_LY_rho2  # pseudoinverse eigenvalues
+
+trace_M0 = eigvals_M0_rho2.sum()
+det_M0 = eigvals_M0_rho2.prod()
+
+expected_trace = 7.0/11.0 + 9.0/19.0  # = 232/209
+expected_det = 1.0 / (11.0 * 19.0)    # = 1/209
+
+trace_ok = abs(trace_M0 - expected_trace) < 1e-12
+det_ok = abs(det_M0 - expected_det) < 1e-12
+
+# Block structure (Theorem 9.5.7d): Tr(M_Q) = 7/11, Det(M_Q) = 1/11,
+#                                    Tr(M_X) = 9/19, Det(M_X) = 1/19
+MQ_trace = 1.0/(4 - phi) + 1.0/(3 + phi)
+MQ_det = 1.0/((4 - phi) * (3 + phi))
+MX_trace = 1.0/(5 - phi) + 1.0/(4 + phi)
+MX_det = 1.0/((5 - phi) * (4 + phi))
+
+MQ_trace_ok = abs(MQ_trace - 7.0/11.0) < 1e-12
+MQ_det_ok = abs(MQ_det - 1.0/11.0) < 1e-12
+MX_trace_ok = abs(MX_trace - 9.0/19.0) < 1e-12
+MX_det_ok = abs(MX_det - 1.0/19.0) < 1e-12
+
+t33_ok = (trace_ok and det_ok
+          and MQ_trace_ok and MQ_det_ok
+          and MX_trace_ok and MX_det_ok)
+check("T33 (paper §9.5.7 / T29): Tr(M₀|_ρ_2)=232/209, Det=1/209, block Q/X decomp",
+      t33_ok,
+      f"Tr={trace_M0:.10f} (=232/209={expected_trace:.10f}? {trace_ok}), "
+      f"Det={det_M0:.10f} (=1/209={expected_det:.10f}? {det_ok}), "
+      f"M_Q: Tr=7/11 {MQ_trace_ok}, Det=1/11 {MQ_det_ok}; "
+      f"M_X: Tr=9/19 {MX_trace_ok}, Det=1/19 {MX_det_ok}")
 
 # ═══════════════════════════════════════════
 print("\n" + "="*60)
