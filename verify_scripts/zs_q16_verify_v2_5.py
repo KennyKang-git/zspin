@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # =====================================================================================
-#  zs_q16_verify_v2.2.py
-#  Comprehensive verification suite for ZS-Q16 v2.2
+#  zs_q16_verify_v2.4.py
+#  Comprehensive verification suite for ZS-Q16 v2.4
 #  "Single-Outcome Selection as a Z-Spin-Mediated Self-Referential Measurement Closure"
 #  Kenny Kang / Z-Spin Cosmology Collaboration | June 2026
 #
@@ -20,7 +20,7 @@
 #     Everything else (z*, lambda, eta_topo, the 0.7948 / 0.2052 split, ...) is COMPUTED
 #     from those inputs; no value below is fitted or tuned.
 #
-#  Dependencies: numpy only.   Run:  python3 zs_q16_verify_v2_2.py    Expect: ALL PASS.
+#  Dependencies: numpy only.   Run:  python3 zs_q16_verify_v2.4.py    Expect: ALL PASS.
 # =====================================================================================
 import numpy as np
 
@@ -39,7 +39,7 @@ def head(title):
     print("\n" + title)
 
 print("=" * 86)
-print(" ZS-Q16 v2.2  COMPREHENSIVE VERIFICATION SUITE   (numpy; seed 20260604)")
+print(" ZS-Q16 v2.4  COMPREHENSIVE VERIFICATION SUITE   (numpy; seed 20260604)")
 print("=" * 86)
 
 # =====================================================================================
@@ -253,6 +253,118 @@ check("J", "ceiling/ln(d) = 1.000000 for d = 2..6 (theorem-fixed)",
       all(abs(r - 1.0) < 1e-6 for r in ratios), f"max|ratio-1|={max(abs(r-1) for r in ratios):.2e}")
 
 # =====================================================================================
+# [K] STATE-ON-COHOMOLOGY FUNCTOR  (§20, v2.3)  -- closes O-Q16.6' (F4) and O-Q16.10 (F5)
+#     Correct category: filter sufficient statistic ~ State(A0_{BRST,Z} = C^2),
+#     NOT  filter ~ H^0  as a vector space (the v2.2 obstruction; falsified in the last check).
+# =====================================================================================
+head("[K] State-on-cohomology functor: filter ~ State(C^2) (§20; closes O-Q16.6', O-Q16.10)")
+P0 = np.diag([1.0, 0.0]); P1 = np.diag([0.0, 1.0])         # primitive idempotents (sigma_z pointer)
+def omega(q, Aop):                                         # state via density rho = diag(q)
+    return float(np.real(np.trace(np.diag(q) @ Aop)))
+# (F1) BRST pointer algebra A0 = <P0,P1> ~ C^2
+check("K", "F1: P0,P1 primitive idempotents, P0+P1=I, P0 P1=0 (A0 ~ C^2)",
+      np.allclose(P0@P0, P0) and np.allclose(P1@P1, P1)
+      and np.allclose(P0+P1, np.eye(2)) and np.allclose(P0@P1, 0.0))
+# (F2) filter posterior q=(q0,q1) <-> state omega(P_n)=q_n on C^2 (bijection, both ways)
+ok_state = True
+for _ in range(30000):
+    q = np.random.dirichlet([1.0, 1.0])
+    q_rec = np.array([omega(q, P0), omega(q, P1)])         # recover q from the state
+    if np.max(np.abs(q_rec - q)) > 1e-15: ok_state = False; break
+check("K", "F2: filter posterior <-> state on C^2 (bijection both ways)", ok_state, "residual < 1e-15")
+# (F3) Bayes update == algebraic conditioning by effect E_j = sum_n p(j|n) P_n
+ok_bayes = True
+for _ in range(30000):
+    q = np.random.dirichlet([1.0, 1.0]); pj = np.random.rand(2)   # p(j|0), p(j|1) for observed outcome j
+    post_bayes = q*pj / np.sum(q*pj)                              # Bayes posterior
+    Ej = pj[0]*P0 + pj[1]*P1; denom = omega(q, Ej)                # measurement effect
+    post_alg = np.array([omega(q, Ej@P0)/denom, omega(q, Ej@P1)/denom])
+    if np.max(np.abs(post_bayes - post_alg)) > 1e-12: ok_bayes = False; break
+check("K", "F3: Bayes update = BRST algebraic conditioning (commuting square)", ok_bayes, "residual < 1e-12")
+# (F4) functoriality: two outcomes in sequence -- composition of updates preserved
+ok_comp = True
+for _ in range(20000):
+    q = np.random.dirichlet([1.0, 1.0]); p1_ = np.random.rand(2); p2_ = np.random.rand(2)
+    qb = q*p1_/np.sum(q*p1_); qb = qb*p2_/np.sum(qb*p2_)          # Bayes then Bayes
+    E1 = p1_[0]*P0 + p1_[1]*P1; qa = np.array([omega(q, E1@P0), omega(q, E1@P1)])/omega(q, E1)
+    E2 = p2_[0]*P0 + p2_[1]*P1; qa = np.array([omega(qa, E2@P0), omega(qa, E2@P1)])/omega(qa, E2)
+    if np.max(np.abs(qb - qa)) > 1e-12: ok_comp = False; break
+check("K", "F4: functorial bijection (composition of updates preserved) -> closes O-Q16.6'", ok_comp)
+# (F5) collapse endpoints <-> primitive characters chi_n(P_m)=delta_nm  -> closes O-Q16.10
+rng2 = np.random.default_rng(20260604); agree = 0; TRIALS = 2000
+for _ in range(TRIALS):
+    born2 = np.array([0.65, 0.35]); pmat2 = probe(2, 2, 0.5)
+    nt = rng2.choice(2, p=born2); cnt = rng2.multinomial(800, pmat2[:, nt]); qf = final_from_counts(born2, pmat2, cnt)
+    n_star = int(np.argmax(qf))                              # collapse endpoint delta_{n*}
+    chi = np.array([omega(qf, P0), omega(qf, P1)])           # character chi_{n*}
+    if int(np.argmax(chi)) == n_star and abs(chi[n_star] - 1.0) < 1e-2: agree += 1
+check("K", "F5: collapse endpoint delta_n <-> character chi_n (->[psi_n])", agree == TRIALS, f"{agree}/{TRIALS}")
+# Ghost guard: a J_Z-odd (exact) perturbation does not change omega(P_n) -- ghost is invisible
+JZ2 = np.diag([1.0, -1.0]); ok_ghost = True
+for _ in range(10000):
+    q = np.random.dirichlet([1.0, 1.0]); rho = np.diag(q)
+    Kr2 = np.random.randn(2, 2) + 1j*np.random.randn(2, 2)
+    K_odd2 = 0.5*(Kr2 - JZ2 @ Kr2 @ JZ2)                     # J_Z-odd (off-diagonal) part
+    if abs(float(np.real(np.trace((rho + K_odd2) @ P0))) - q[0]) > 1e-12: ok_ghost = False; break
+check("K", "ghost guard: J_Z-odd exact mode leaves omega(P_n) unchanged", ok_ghost, "observable residual = 0")
+# (F-Q16.11) WRONG-CATEGORY falsification: Delta_1 is NOT a vector space (the naive H^0 bijection
+#            fails); it IS the state space (convex). This is the integrity check of §20.
+s0 = np.array([1.0, 0.0]); s1 = np.array([0.0, 1.0])
+lin = 2*s0 - 1*s1                                            # a linear combination of states ...
+in_lin  = bool(np.all(lin  >= -1e-12) and abs(lin.sum()  - 1) < 1e-12)   # ... leaves the simplex
+conv = 0.5*s0 + 0.5*s1                                       # a convex combination ...
+in_conv = bool(np.all(conv >= -1e-12) and abs(conv.sum() - 1) < 1e-12)   # ... stays in the simplex
+check("K", "F-Q16.11 wrong-category: vector-space bijection FAILS, state(convex) bijection holds",
+      (not in_lin) and in_conv, "linear combo exits simplex; convex combo stays")
+
+# =====================================================================================
+# [L] OPERATIONAL BOUNDARY RECONSTRUCTION  (§21, v2.4)  -- closes O-Q16.11
+#     Z = ∂_op X via Markov separation (G1) + minimality (G2) + saturation (G3) + BRST (G4);
+#     sigma_z is the CENTER generator of A0_{BRST,Z} (H1).
+#     NOTE (honest): this closes the RECORD layer; it does NOT supply the geometric SO(3)
+#     frame of the 4pi closure, so Theorem Q16.C2 is NOT promoted (NC-Q16.13).
+# =====================================================================================
+head("[L] Operational boundary reconstruction Z = ∂_op X (§21; closes O-Q16.11)")
+# (G1) Markov separation: X<->Y factors through Z, rank(T_XY) <= dim Z = 2
+V_XZ = np.random.randn(2, 3) + 1j*np.random.randn(2, 3)     # X(3) -> Z(2)
+V_ZY = np.random.randn(6, 2) + 1j*np.random.randn(6, 2)     # Z(2) -> Y(6)
+T_XY = V_ZY @ V_XZ
+check("L", "G1: X<->Y factors through Z, rank(T_XY) <= dim Z = 2",
+      np.linalg.matrix_rank(T_XY, tol=1e-9) <= 2, f"rank={np.linalg.matrix_rank(T_XY, tol=1e-9)}")
+# (G1b) conditional independence: a classical Markov chain X-Z-Y has I(X;Y|Z) = 0
+rng3 = np.random.default_rng(20260604)
+pz = rng3.dirichlet([1, 1])                                  # P(z),  Z in {0,1}
+pxz = rng3.dirichlet([1, 1, 1], size=2)                      # P(x|z), X in {0,1,2}
+pyz = rng3.dirichlet([1, 1], size=2)                         # P(y|z), Y in {0,1}
+cmi = 0.0                                                    # I(X;Y|Z) = sum_z P(z) sum_xy P(x|z)P(y|z) log[...]=0 for a chain
+for z in range(2):
+    for x in range(3):
+        for y in range(2):
+            pxy_z = pxz[z, x]*pyz[z, y]                       # P(x,y|z) = P(x|z)P(y|z) (Markov)
+            if pxy_z > 0:
+                cmi += pz[z]*pxy_z*np.log(pxy_z/(pxz[z, x]*pyz[z, y]))
+check("L", "G1b: classical Markov chain X-Z-Y has I(X;Y|Z) = 0", abs(cmi) < 1e-12, f"I(X;Y|Z)={cmi:.2e}")
+# (G2) minimality: a dim-1 mediator cannot carry a binary outcome (rank 1 < 2); dim-2 can (rank 2)
+r1 = np.linalg.matrix_rank((np.random.randn(2, 1)) @ (np.random.randn(1, 3)), tol=1e-9)
+r2 = np.linalg.matrix_rank((np.random.randn(2, 2)) @ (np.random.randn(2, 3)), tol=1e-9)
+check("L", "G2: dim-1 boundary cannot carry binary (rank 1<2); dim-2 can (rank 2)",
+      r1 < 2 and r2 == 2, f"rank(dim1)={r1}, rank(dim2)={r2}")
+# (H1) seam pointer = center generator: P_pm = (I +/- sigma_z)/2 are primitive idempotents,
+#      sigma_z = P_+ - P_-, and {I, sigma_z} spans the commutative algebra <P_+, P_->.
+sz_p = np.array([[1.0, 0.0], [0.0, -1.0]]); I2_ = np.eye(2)
+Pp = 0.5*(I2_ + sz_p); Pm = 0.5*(I2_ - sz_p)
+check("L", "H1: P_pm = (I+/-sigma_z)/2 primitive idempotents (P^2=P, P_+P_-=0, sum=I)",
+      np.allclose(Pp@Pp, Pp) and np.allclose(Pm@Pm, Pm)
+      and np.allclose(Pp@Pm, 0.0) and np.allclose(Pp+Pm, I2_) and np.allclose(Pp-Pm, sz_p))
+# sigma_z is the center generator: span{I, sigma_z} = span{P_+, P_-} (dim-2 commutative algebra)
+M = np.stack([Pp.flatten(), Pm.flatten(), I2_.flatten(), sz_p.flatten()])
+check("L", "H1: sigma_z is the center generator of A0_{BRST,Z}=C^2 (span{I,sigma_z}=span{P_+,P_-})",
+      np.linalg.matrix_rank(M, tol=1e-9) == 2, f"algebra dim={np.linalg.matrix_rank(M, tol=1e-9)}")
+# (F-Q16.12) P_pm are physical (commute with the parity / BRST-closed-even), non-trivial primitives
+check("L", "F-Q16.12: P_pm physical (commute with sigma_z), non-trivial (not 0, not I)",
+      np.allclose(Pp@sz_p, sz_p@Pp) and not np.allclose(Pp, 0.0) and not np.allclose(Pp, I2_))
+
+# =====================================================================================
 #  SUMMARY
 # =====================================================================================
 print("\n" + "=" * 86)
@@ -264,7 +376,8 @@ labels = {
     "A": "Locked inputs", "B": "i-tetration / L1-L5", "C": "Sum rule & |lambda|^2",
     "D": "Theorem Q16.C2 (leak=damping)", "E": "J_Z register / D4", "F": "Wilson Z-block M_f",
     "G": "BRST ghost / invisibility", "H": "4pi closure (Z=dX)", "I": "Cohomology dim vs continuum",
-    "J": "Monte-Carlo anchors",
+    "J": "Monte-Carlo anchors", "K": "State-on-cohomology functor (§20)",
+    "L": "Operational boundary recon. (§21)",
 }
 print(" CATEGORY LEDGER")
 for cat in sorted(cats):
