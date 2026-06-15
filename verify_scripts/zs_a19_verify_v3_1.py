@@ -1,7 +1,13 @@
 #!/usr/bin/env python3
 # =============================================================================
-#  zs_a19_verify_v3_0.py
-#  Consolidated verification suite for ZS-A19 v3.0
+#  zs_a19_verify_v3_1.py
+#  Consolidated verification suite for ZS-A19 v3.1
+#  NOTE (v3.1): checks 17-18 verify the IDEALIZED substrate, not the corpus closure.
+#  Corpus closure is conditional on the three named conditions (a),(b),(c) of Appendix I:
+#    (a) C_ZY couples beta0 to a corpus-natural trivial combination (<r_Y|1_32> != 0);
+#    (b) the ZS-F0 boundary term S_dM does not mix BF/Maxwell sectors at degree 0->1;
+#    (c) S_ZS adds no block-dependent boundary energy (eps_c = eps_b).
+#  C1 = DERIVED-CONDITIONAL on (a)^(b);  C2 = DERIVED-CONDITIONAL on (c)+single source
 #  Reproduces every load-bearing computation in the paper:
 #    Appendix C  - corrected polyhedral / graph substrate            (checks 1-14)
 #    Appendix D  - degree-0 Hodge conditional core                   (check 15)
@@ -215,7 +221,7 @@ ncp, _ = csg.connected_components(Aphys)
 Lp = np.diag(Aphys.sum(1)) - Aphys
 rkp = np.linalg.matrix_rank(Lp, tol=1e-7)
 wp, Vp = np.linalg.eigh(Lp)
-check("17. C1-B kappa^2=A/Q=35/4807, k0!=0 -> actual W_bc all entries nonzero; physical graph connected, rank L_Gamma=37 (no cube rewiring)",
+check("17. [IDEALIZED substrate; corpus closure pending (a)] kappa^2=A/Q=35/4807, k0!=0 -> idealized W_bc all entries nonzero; physical graph connected, rank L_Gamma=37 (no cube rewiring)",
       KAP2 == Fraction(35, 4807) and abs(k0) > 0 and allnz and colpow_min > 0
       and ncp == 1 and rkp == 37 and np.allclose(Vp[:, 0], Vp[:, 0][0], atol=1e-6),
       f"kappa^2={float(KAP2):.3e}, k0={k0:.2f}, min Σ|W|^2={colpow_min:.2e}, components={ncp}, rank={rkp}")
@@ -225,7 +231,7 @@ dG_phys = signed_incidence(Aphys)
 qZ = 0.77
 Omega01 = qZ * dG_phys                            # cellular BF: BFV op = q_Z * coboundary
 rk_dG = np.linalg.matrix_rank(dG_phys, tol=1e-7)
-check("18. C1-C ||Omega^(0->1) - q_Z d_Gamma|| = 0; rank d_Gamma = 37, dim ker = 1",
+check("18. [DEFINED, not derived; corpus closure pending (b)] BF piece gives Omega^(0->1)=q_Z d_Gamma (Maxwell separate degree-1 Gauss); rank d_Gamma = 37, dim ker = 1",
       np.linalg.norm(Omega01 - qZ * dG_phys) == 0.0 and rk_dG == 37 and (38 - rk_dG) == 1,
       f"||diff||=0, rank d_G={rk_dG}")
 
@@ -239,7 +245,7 @@ rho = np.ones(38)
 eps_nodes = PT / (-rho)                            # node-wise normalization epsilon_a
 equal_norm = np.allclose(eps_nodes, eps_nodes[0])
 theta_id = np.allclose(Pc + Pb, np.eye(38))        # P_c+P_b=I => Theta_c+Theta_b=Theta_*
-check("19. C2-E node-uniform eps_c = eps_b (from P_T=-H_ZS); Theta_c+Theta_b=Theta_*",
+check("19. [conditional on (c): no block-dependent S_ZS] C2-E node-uniform eps_c = eps_b (from P_T=-H_ZS); Theta_c+Theta_b=Theta_*",
       equal_norm and theta_id, f"eps_a all = {eps_nodes[0]:.3f}; P_c+P_b=I: {theta_id}")
 
 # C2-A: single parent charge -> zeta_c = zeta_b, S_cb = 0 (and S_cgamma=0 on uniform-density slice)
@@ -277,10 +283,12 @@ n_tot = len(CHECKS)
 for name, ok in CHECKS:
     if not ok: print("   FAILED:", name)
 print(f"\n  {n_pass}/{n_tot} checks PASS")
-print("  C1 = C1-A ^ C1-B ^ C1-C : DERIVED  (narrowed C1', cube rewiring eliminated)")
-print("  C2 = C2-E ^ C2-A ^ C2-D : DERIVED-CONDITIONAL on a single source")
-print("  Theorem A19.ZHCS-Closure: 32:6 and omega_c=0.119112 DERIVED-CONDITIONAL on a single source")
-print("  Residuals: single-source/no-spectator at Sigma_* (C2-A); cellular-discretization exactness (C1-C).")
+print("  C1-A (Stuckelberg->BF dual): DERIVED")
+print("  C1 = C1-A ^ C1-B ^ C1-C : DERIVED-CONDITIONAL on (a) ^ (b)")
+print("  C2 = C2-E ^ C2-A ^ C2-D : DERIVED-CONDITIONAL on (c) + single source")
+print("  Theorem A19.ZHCS-Closure: 32:6 and omega_c=0.119112 DERIVED-CONDITIONAL on (a)^(b)^(c)+single source")
+print("  Checks 17-18 verify the IDEALIZED substrate, NOT the corpus closure (Appendix I).")
+print("  Open corpus conditions: (a) C_ZY trivial-family; (b) S_dM sector-non-mixing; (c) S_ZS block-independence.")
 print("  Locked: A=35/437, Q=11, (Z,X,Y)=(2,3,6).  Zero new fitted parameters.")
 import sys
 sys.exit(0 if n_pass == n_tot else 1)
