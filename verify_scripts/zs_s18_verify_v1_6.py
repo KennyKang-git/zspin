@@ -312,7 +312,7 @@ def make_theta(cycles, eidx, B2):
 # ============================================================================
 def main():
     print("=" * 78)
-    print("ZS-S18 v1.6 verifier -- fail-closed")
+    print("ZS-S18 v1.5 verifier -- fail-closed")
     print("LOCKED: A = 35/437 = %.9f | Q = %d | dim Z = %d | v = %.2f GeV"
           % (A_IMP, Q_REG, DIM_Z, V_HIGGS))
     print("=" * 78)
@@ -551,7 +551,7 @@ def main():
     check(25, "THEOREM S18.2, antisymmetric half: without basepoint averaging the raw "
               "map is NOT closed on the two-T1 space. Stated as the BASIS-INVARIANT "
               "trace ratio Tr(M P M^T)/Tr(M M^T) = 71.0350815252%, which is unchanged "
-              "under random O(3) rotations of the degenerate T1 eigenbasis. (v1.0-v1.6 "
+              "under random O(3) rotations of the degenerate T1 eigenbasis. (v1.0-v1.5 "
               "quoted 61.9257% for one index pair in one LAPACK eigenbasis; that "
               "number is basis-dependent -- random bases give 63.6%, 74.6%, 84.3% -- "
               "and is RETRACTED as a ledger value)",
