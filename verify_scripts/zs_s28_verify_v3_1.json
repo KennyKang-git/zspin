@@ -1,0 +1,3878 @@
+{
+ "counts": {
+  "by_class": {
+   "ANALYTIC": 56,
+   "DECLARATION": 18,
+   "NUMERIC": 118,
+   "PROXY": 3
+  },
+  "fail": 0,
+  "fail_tags": []
+ },
+ "ledger": [
+  {
+   "claim": "method of record",
+   "class": "DECLARATION",
+   "evidence": null,
+   "layer": "-",
+   "tag": "D0",
+   "value": "Compass, Spear and Shield v3.2; Witness-first; artifact-first",
+   "verdict": "DECLARED"
+  },
+  {
+   "claim": "pre-registration",
+   "class": "DECLARATION",
+   "evidence": null,
+   "layer": "-",
+   "tag": "D1",
+   "value": "census range (2, 60); anti-numerology grid ('k/200', 21, 120), band 0.001, null N=2000 on (0.1, 3.2)",
+   "verdict": "DECLARED"
+  },
+  {
+   "claim": "firewall",
+   "class": "DECLARATION",
+   "evidence": null,
+   "layer": "-",
+   "tag": "D2",
+   "value": "Layers A-C target-blind; the target loads in Layer D only",
+   "verdict": "DECLARED"
+  },
+  {
+   "claim": "scope, corrected",
+   "class": "DECLARATION",
+   "evidence": null,
+   "layer": "-",
+   "tag": "D3",
+   "value": "THIS IS A CLASSIFICATION AND AUDIT PAPER. No physical channel is constructed from S_S14. Every channel object below is a generic two-branch model or a corpus measurement, never an S14-derived operator.",
+   "verdict": "DECLARED"
+  },
+  {
+   "claim": "ledger classes",
+   "class": "DECLARATION",
+   "evidence": null,
+   "layer": "-",
+   "tag": "D4",
+   "value": "ANALYTIC = proof carried here; NUMERIC = measured; PROXY = related calculation that is NOT evidence for the target; DECLARATION = scope, never evidence. The headline count is not a theorem count.",
+   "verdict": "DECLARED"
+  },
+  {
+   "claim": "banned tokens above the Layer-D banner",
+   "class": "NUMERIC",
+   "evidence": [],
+   "layer": "A",
+   "tag": "W2-00",
+   "value": 0,
+   "verdict": "PASS"
+  },
+  {
+   "claim": "R1: every mandatory role resolves to EXACTLY ONE file by content signature; ambiguity or absence fails the run",
+   "class": "NUMERIC",
+   "evidence": {
+    "repairs": "v1.8 selected files by directory name order and mis-assigned S_CORPUS and Q13 in other environments"
+   },
+   "layer": "A",
+   "tag": "W2-R1",
+   "value": {
+    "ambiguous_or_missing": [],
+    "resolution": [
+     {
+      "files": [
+       "The_Book_of_Z-Spin_Cosmology_v12_1_Light_OS_for_AI.md"
+      ],
+      "n_candidates": 1,
+      "role": "BOOK"
+     },
+     {
+      "files": [
+       "03_Standard_Model_Compact__ZS-S1_S4_S5_S7_S9_S10_S14_S15_S17_S18_S19_S20_S21_S22_S23_S24_S25_S26_S27.md"
+      ],
+      "n_candidates": 1,
+      "role": "S_CORPUS"
+     },
+     {
+      "files": [
+       "02_Math_Spine_Compact__ZS-M1_M2_M3_M4_M6_M7_M8_M9_M14_M17_M19_M22_M23_M25_M27_M28_M31_M32_M33_M36_M39_M42_M43_M44_M46_M47_M48_M49_M50_M51_M52_M53.md"
+      ],
+      "n_candidates": 1,
+      "role": "M_CORPUS"
+     },
+     {
+      "files": [
+       "02_2_Math_Spine_Compact__ZS-M54_M56_M57_M58.md"
+      ],
+      "n_candidates": 1,
+      "role": "M_CORPUS_2"
+     },
+     {
+      "files": [],
+      "n_candidates": 0,
+      "role": "Q13"
+     }
+    ]
+   },
+   "verdict": "PASS"
+  },
+  {
+   "claim": "corpus directory",
+   "class": "NUMERIC",
+   "evidence": null,
+   "layer": "A",
+   "tag": "W2-01",
+   "value": "/mnt/project",
+   "verdict": "PASS"
+  },
+  {
+   "claim": "inputs opened, hashed, line-counted",
+   "class": "NUMERIC",
+   "evidence": [
+    "BOOK",
+    "S_CORPUS",
+    "M_CORPUS",
+    "M_CORPUS_2"
+   ],
+   "layer": "A",
+   "tag": "W2-02",
+   "value": 4,
+   "verdict": "PASS"
+  },
+  {
+   "claim": "Book opened first",
+   "class": "NUMERIC",
+   "evidence": null,
+   "layer": "A",
+   "tag": "W2-03",
+   "value": "BOOK",
+   "verdict": "PASS"
+  },
+  {
+   "claim": "discrete Z-sector register on a finite carrier",
+   "class": "NUMERIC",
+   "evidence": {
+    "S14": [],
+    "chain": [
+     {
+      "excerpt": "Headline: TWO LAYERS, KEPT APART. LAYER 1 — the arithmetic uniqueness theorem: within the positive DIAGONAL I\\_h-invariant family on K\\_TI, (H-ALG) ∧ ",
+      "line": 5472
+     },
+     {
+      "excerpt": "ZS-S20 reduces the ZS-S14 SU(3) Yang–Mills master action onto the truncated-icosahedron cell complex K\\_TI and asks what fixes the Hodge measure (M₁, ",
+      "line": 5483
+     },
+     {
+      "excerpt": "ZS-S20 introduces no number of its own. The truncated icosahedron is not a fitted object: it is the ZS-F5 register, **Q** \\= 11 \\= 3 \\+ 6 \\+ 2, realis",
+      "line": 5518
+     }
+    ]
+   },
+   "layer": "A",
+   "tag": "BA-A1",
+   "value": {
+    "S14": [
+     0,
+     "ABSENT"
+    ],
+    "chain": [
+     151,
+     "PRESENT"
+    ],
+    "v1_9": "ABSENT"
+   },
+   "verdict": "MEASURED"
+  },
+  {
+   "claim": "discrete one-step update derived from the Lagrangian",
+   "class": "NUMERIC",
+   "evidence": {
+    "S14": [],
+    "chain": [
+     {
+      "excerpt": "**Time-locality, derived.** **Theorem S24.12** replaces the retracted inferences with a proof: under (R1) every configuration variable is slice- or sl",
+      "line": 8606
+     },
+     {
+      "excerpt": "> with each K real, continuous, gauge invariant, and symmetric if the continuum action is time-reflection symmetric. Hypothesis **(T)** therefore hold",
+      "line": 8846
+     },
+     {
+      "excerpt": "**What this buys.** The external reviews identified the arrow *ZS-S14 ⇒ a one-step transfer action* as the missing first link of the bridge. Theorem S",
+      "line": 8854
+     }
+    ]
+   },
+   "layer": "A",
+   "tag": "BA-A2",
+   "value": {
+    "S14": [
+     0,
+     "ABSENT"
+    ],
+    "chain": [
+     26,
+     "PRESENT"
+    ],
+    "v1_9": "ABSENT"
+   },
+   "verdict": "MEASURED"
+  },
+  {
+   "claim": "boundary / reflection declaration",
+   "class": "NUMERIC",
+   "evidence": {
+    "S14": [
+     {
+      "excerpt": "Apply ZS-M17 Theorem M17.7 (DERIVED) to the X-sector portion of S\\_S14. The locked inputs are: (L1) X-sector Hilbert space H\\_a \\= ℓ²(Γ\\_X) ⊗ ℂ¹¹ conv",
+      "line": 3433
+     },
+     {
+      "excerpt": "(iii) The OS reflection positivity (M17.3) holds for the Wick-rotated S\\_S14, providing the standard mass-gap → spectral-gap correspondence in the OS ",
+      "line": 3480
+     },
+     {
+      "excerpt": "• M17.7 OS reflection positivity check: |OS-3 residual| \\< 10⁻⁵⁰ for sample H\\_5 configurations (PASS)",
+      "line": 3609
+     }
+    ],
+    "chain": [
+     {
+      "excerpt": "Apply ZS-M17 Theorem M17.7 (DERIVED) to the X-sector portion of S\\_S14. The locked inputs are: (L1) X-sector Hilbert space H\\_a \\= ℓ²(Γ\\_X) ⊗ ℂ¹¹ conv",
+      "line": 3433
+     },
+     {
+      "excerpt": "(iii) The OS reflection positivity (M17.3) holds for the Wick-rotated S\\_S14, providing the standard mass-gap → spectral-gap correspondence in the OS ",
+      "line": 3480
+     },
+     {
+      "excerpt": "• M17.7 OS reflection positivity check: |OS-3 residual| \\< 10⁻⁵⁰ for sample H\\_5 configurations (PASS)",
+      "line": 3609
+     }
+    ]
+   },
+   "layer": "A",
+   "tag": "BA-A3",
+   "value": {
+    "S14": [
+     8,
+     "PRESENT"
+    ],
+    "chain": [
+     43,
+     "PRESENT"
+    ],
+    "v1_9": "ABSENT"
+   },
+   "verdict": "MEASURED"
+  },
+  {
+   "claim": "slab-duration structure",
+   "class": "NUMERIC",
+   "evidence": {
+    "S14": [],
+    "chain": [
+     {
+      "excerpt": "> and (a)–(e) hold verbatim with L → g²L and V → g^{−2}V, for every g \\> 0 and every slab spacing a \\> 0\\.",
+      "line": 8882
+     },
+     {
+      "excerpt": "> **The ZS-S14 finite reduction admits a canonical symmetric reflection-positive semigroup realisation, and on that realisation the physical Hamiltoni",
+      "line": 8890
+     },
+     {
+      "excerpt": "| a, the slab spacing | a free *parameter of the construction* in Theorem S24.14, not of the theory; every a \\> 0 gives a positive gap and the a → 0 l",
+      "line": 9128
+     }
+    ]
+   },
+   "layer": "A",
+   "tag": "BA-A4",
+   "value": {
+    "S14": [
+     0,
+     "ABSENT"
+    ],
+    "chain": [
+     54,
+     "PRESENT"
+    ],
+    "v1_9": "ABSENT"
+   },
+   "verdict": "MEASURED"
+  },
+  {
+   "claim": "gauge + Higgs + Yukawa (CONTROL)",
+   "class": "NUMERIC",
+   "evidence": {
+    "S14": [
+     {
+      "excerpt": "*Single-Action Unification of U(1)\\_Y, SU(2)\\_L, SU(3)\\_C, and Yukawa Couplings via the I-irrep 5 Higgs Sector*",
+      "line": 2911
+     },
+     {
+      "excerpt": "Z-Spin Cosmology v1.0 closed the U(1)\\_Y bridge of the Trinity Braiding Theorem at the action level via ZS-S10 (Stueckelberg-Corollary IV mechanism, D",
+      "line": 2923
+     },
+     {
+      "excerpt": "v1.0 established six principal results. Theorem S14.A (L\\_XY \\= 0 Non-Abelian Preservation, PROVEN-PERTURBATIVE) extends ZS-S10 Theorem S10.2. Theorem",
+      "line": 2925
+     }
+    ],
+    "chain": [
+     {
+      "excerpt": "*Single-Action Unification of U(1)\\_Y, SU(2)\\_L, SU(3)\\_C, and Yukawa Couplings via the I-irrep 5 Higgs Sector*",
+      "line": 2911
+     },
+     {
+      "excerpt": "Z-Spin Cosmology v1.0 closed the U(1)\\_Y bridge of the Trinity Braiding Theorem at the action level via ZS-S10 (Stueckelberg-Corollary IV mechanism, D",
+      "line": 2923
+     },
+     {
+      "excerpt": "v1.0 established six principal results. Theorem S14.A (L\\_XY \\= 0 Non-Abelian Preservation, PROVEN-PERTURBATIVE) extends ZS-S10 Theorem S10.2. Theorem",
+      "line": 2925
+     }
+    ]
+   },
+   "layer": "A",
+   "tag": "BA-A5",
+   "value": {
+    "S14": [
+     60,
+     "PRESENT"
+    ],
+    "chain": [
+     60,
+     "PRESENT"
+    ],
+    "v1_9": "PRESENT"
+   },
+   "verdict": "MEASURED"
+  },
+  {
+   "claim": "(S1) closed by inspection of the ZS-S14 Lagrangian",
+   "class": "NUMERIC",
+   "evidence": {
+    "S14": [],
+    "chain": [
+     {
+      "excerpt": "**Time-locality, derived.** **Theorem S24.12** replaces the retracted inferences with a proof: under (R1) every configuration variable is slice- or sl",
+      "line": 8606
+     },
+     {
+      "excerpt": "**(iv) (S1) is stated correctly and its gate is closed (§4.4, §9.1).** \"First order in ∂\\_t\" was misleading: the Yang–Mills density is *quadratic* in ",
+      "line": 8696
+     },
+     {
+      "excerpt": "| no time derivatives beyond first order (S1) | **yes** — supplies time-locality, §4.5b | yes |",
+      "line": 8718
+     }
+    ]
+   },
+   "layer": "A",
+   "tag": "BA-A6",
+   "value": {
+    "S14": [
+     0,
+     "ABSENT"
+    ],
+    "chain": [
+     14,
+     "PRESENT"
+    ],
+    "v1_9": "untested"
+   },
+   "verdict": "MEASURED"
+  },
+  {
+   "claim": "the slab-spacing selection gate is registered",
+   "class": "NUMERIC",
+   "evidence": {
+    "S14": [],
+    "chain": [
+     {
+      "excerpt": "**What remains.** Gate **F-S24.18** — whether the *exact* Whitney-integrated ZS-S14 slab action coincides with a member of the canonical family T\\_a, ",
+      "line": 8626
+     },
+     {
+      "excerpt": "It does **not** prove that integrating the ZS-S14 master action over one temporal slab *returns* T\\_a for some a. That identification is gate **F-S24.",
+      "line": 8894
+     },
+     {
+      "excerpt": "| the exact ZS-S14 slab action equals T\\_a for some a, or is otherwise reflection positive | — | **OPEN — F-S24.18** |",
+      "line": 8907
+     }
+    ]
+   },
+   "layer": "A",
+   "tag": "BA-A7",
+   "value": {
+    "S14": [
+     0,
+     "ABSENT"
+    ],
+    "chain": [
+     8,
+     "PRESENT"
+    ],
+    "v1_9": "untested"
+   },
+   "verdict": "MEASURED"
+  },
+  {
+   "claim": "dim Z = 2 LOCKED",
+   "class": "NUMERIC",
+   "evidence": {
+    "S14": [
+     {
+      "excerpt": "| Z-channel capacity bound | rank(C\\_XZ · C\\_ZY) ≤ dim(Z) \\= 2; ≤ ln 2/cell | ZS-Q7 Thm 2 | DERIVED |",
+      "line": 3106
+     },
+     {
+      "excerpt": "(F.iii) The Z-sector mediates X–Y traffic with rank ≤ dim(Z) \\= 2 and channel capacity ≤ ln 2 per Z-cell (ZS-Q7 Theorem 2, DERIVED). The Z-mediated tr",
+      "line": 3425
+     },
+     {
+      "excerpt": "Apply ZS-Q7 Theorem 2 (DERIVED): the Z-mediator carries ≤ ln 2 nats per Z-cell. Combined with ZS-M3 Theorem 5.1 (j \\= 1/2 unique invariant, PROVEN), t",
+      "line": 3439
+     }
+    ],
+    "chain": [
+     {
+      "excerpt": "| Z-channel capacity bound | rank(C\\_XZ · C\\_ZY) ≤ dim(Z) \\= 2; ≤ ln 2/cell | ZS-Q7 Thm 2 | DERIVED |",
+      "line": 3106
+     },
+     {
+      "excerpt": "(F.iii) The Z-sector mediates X–Y traffic with rank ≤ dim(Z) \\= 2 and channel capacity ≤ ln 2 per Z-cell (ZS-Q7 Theorem 2, DERIVED). The Z-mediated tr",
+      "line": 3425
+     },
+     {
+      "excerpt": "Apply ZS-Q7 Theorem 2 (DERIVED): the Z-mediator carries ≤ ln 2 nats per Z-cell. Combined with ZS-M3 Theorem 5.1 (j \\= 1/2 unique invariant, PROVEN), t",
+      "line": 3439
+     }
+    ]
+   },
+   "layer": "A",
+   "tag": "BA-A8",
+   "value": {
+    "S14": [
+     7,
+     "PRESENT"
+    ],
+    "chain": [
+     11,
+     "PRESENT"
+    ],
+    "v1_9": "untested"
+   },
+   "verdict": "MEASURED"
+  },
+  {
+   "claim": "phase source is a transit holonomy",
+   "class": "NUMERIC",
+   "evidence": {
+    "S14": [],
+    "chain": [
+     {
+      "excerpt": "\\[48\\] T. Kato, Perturbation Theory for Linear Operators, 2nd ed. (Springer, Berlin, 1995), ch. V, §4 — similarity symmetrisation of operators self-ad",
+      "line": 6391
+     },
+     {
+      "excerpt": "**v1.2 (July 2026): Bridge-execution release. Supersedes v1.1 and v1.0.** Executes all three finite-carrier steps that v1.1 left OPEN, and integrates ",
+      "line": 8019
+     },
+     {
+      "excerpt": "**Proof.** SU(3)^E is a compact connected Lie group, so Σ\\_eΔ\\_e has compact resolvent by Peter–Weyl; a continuous function on a compact space is boun",
+      "line": 8739
+     }
+    ]
+   },
+   "layer": "A",
+   "tag": "BA-A10",
+   "value": {
+    "S14": [
+     0,
+     "ABSENT"
+    ],
+    "chain": [
+     6,
+     "PRESENT"
+    ],
+    "v1_9": "untested"
+   },
+   "verdict": "MEASURED"
+  },
+  {
+   "claim": "v1.9 Block-A rows falsified on the chain",
+   "class": "NUMERIC",
+   "evidence": [
+    "A1",
+    "A2",
+    "A3",
+    "A4"
+   ],
+   "layer": "A",
+   "tag": "BA-SUM",
+   "value": 4,
+   "verdict": "PASS"
+  },
+  {
+   "claim": "ZS-S14 supplies tau_Z = xi/c ~ 0.75 l_P/c",
+   "class": "NUMERIC",
+   "evidence": {
+    "of": 2,
+    "source": "S_CORPUS"
+   },
+   "layer": "A",
+   "tag": "SV-V1",
+   "value": 2,
+   "verdict": "MEASURED"
+  },
+  {
+   "claim": "ZS-S14 supplies a Z-cell reload rate",
+   "class": "NUMERIC",
+   "evidence": {
+    "of": 1,
+    "source": "S_CORPUS"
+   },
+   "layer": "A",
+   "tag": "SV-V2",
+   "value": 1,
+   "verdict": "MEASURED"
+  },
+  {
+   "claim": "ZS-S14 supplies ln 2 capacity per Z-cell",
+   "class": "NUMERIC",
+   "evidence": {
+    "of": 1,
+    "source": "S_CORPUS"
+   },
+   "layer": "A",
+   "tag": "SV-V3",
+   "value": 1,
+   "verdict": "MEASURED"
+  },
+  {
+   "claim": "ZS-S24 registers F-S24.18 OPEN",
+   "class": "NUMERIC",
+   "evidence": {
+    "of": 1,
+    "source": "S_CORPUS"
+   },
+   "layer": "A",
+   "tag": "SV-V5",
+   "value": 1,
+   "verdict": "MEASURED"
+  },
+  {
+   "claim": "ZS-S27 closes F-S24.18 negative-conditional",
+   "class": "NUMERIC",
+   "evidence": {
+    "of": 1,
+    "source": "S_CORPUS"
+   },
+   "layer": "A",
+   "tag": "SV-V6",
+   "value": 1,
+   "verdict": "MEASURED"
+  },
+  {
+   "claim": "ZS-M54 carries the S27 closure",
+   "class": "NUMERIC",
+   "evidence": {
+    "of": 1,
+    "source": "M_CORPUS_2"
+   },
+   "layer": "A",
+   "tag": "SV-V7",
+   "value": 1,
+   "verdict": "MEASURED"
+  },
+  {
+   "claim": "ZS-M54 leaves the Liouville anchor OPEN",
+   "class": "NUMERIC",
+   "evidence": {
+    "of": 1,
+    "source": "M_CORPUS_2"
+   },
+   "layer": "A",
+   "tag": "SV-V8",
+   "value": 1,
+   "verdict": "MEASURED"
+  },
+  {
+   "claim": "ZS-M54 declares tau_Z hidden",
+   "class": "NUMERIC",
+   "evidence": {
+    "of": 1,
+    "source": "M_CORPUS_2"
+   },
+   "layer": "A",
+   "tag": "SV-V9",
+   "value": 1,
+   "verdict": "MEASURED"
+  },
+  {
+   "claim": "ZS-M58: one unknown physical structure",
+   "class": "NUMERIC",
+   "evidence": {
+    "of": 1,
+    "source": "M_CORPUS_2"
+   },
+   "layer": "A",
+   "tag": "SV-V10",
+   "value": 1,
+   "verdict": "MEASURED"
+  },
+  {
+   "claim": "ZS-M58.21: covariance does not imply QND",
+   "class": "NUMERIC",
+   "evidence": {
+    "of": 1,
+    "source": "M_CORPUS_2"
+   },
+   "layer": "A",
+   "tag": "SV-V11",
+   "value": 1,
+   "verdict": "MEASURED"
+  },
+  {
+   "claim": "ZS-M9 records Betti (1,0,1) and 2 zero modes",
+   "class": "NUMERIC",
+   "evidence": {
+    "of": 2,
+    "source": "M_CORPUS"
+   },
+   "layer": "A",
+   "tag": "SV-V12",
+   "value": 1,
+   "verdict": "MEASURED"
+  },
+  {
+   "claim": "ZS-S14 supplies a duration AND an event count",
+   "class": "NUMERIC",
+   "evidence": null,
+   "layer": "A",
+   "tag": "SV-CLK",
+   "value": true,
+   "verdict": "PASS"
+  },
+  {
+   "claim": "vintage conflict: S24 OPEN vs S27/M54 CLOSED-NEGATIVE on F-S24.18",
+   "class": "NUMERIC",
+   "evidence": null,
+   "layer": "A",
+   "tag": "SV-GATE",
+   "value": true,
+   "verdict": "PASS"
+  },
+  {
+   "claim": "ZS-Q13 source body",
+   "class": "DECLARATION",
+   "evidence": null,
+   "layer": "F",
+   "tag": "LF-00",
+   "value": "INPUT-WITHDRAWN: not in this build; no property of it is asserted from a fresh read",
+   "verdict": "DECLARED"
+  },
+  {
+   "claim": "the frozen v1.3 artifact that DID open ZS-Q13 is present",
+   "class": "NUMERIC",
+   "evidence": {
+    "declared_source_sha256": "e380a67da3c84b67f6030b8944d4b4e350404b0fe89323f5704ba0475eb19382",
+    "hashes_compared": true,
+    "recorded_in_v1_3_artifact": "e380a67da3c84b67f6030b8944d4b4e350404b0fe89323f5704ba0475eb19382",
+    "repairs": "v1.8 checked only LF-04 = True and never compared the source hash"
+   },
+   "layer": "F",
+   "tag": "LF-00b",
+   "value": true,
+   "verdict": "PASS"
+  },
+  {
+   "claim": "F-S28.15, inherited hash-bound from v1.3",
+   "class": "NUMERIC",
+   "evidence": null,
+   "layer": "F",
+   "tag": "LF-04",
+   "value": true,
+   "verdict": "MEASURED"
+  },
+  {
+   "claim": "R1 regression: the live-path scanner executes on every run against a synthetic probe document",
+   "class": "NUMERIC",
+   "evidence": {
+    "repairs": "the v1.5 NameError path is now covered"
+   },
+   "layer": "F",
+   "tag": "LF-05",
+   "value": [
+    3,
+    0,
+    0
+   ],
+   "verdict": "PASS"
+  },
+  {
+   "claim": "ZS-Q13 handling path taken this run",
+   "class": "NUMERIC",
+   "evidence": null,
+   "layer": "F",
+   "tag": "LF-06",
+   "value": "INHERITED",
+   "verdict": "MEASURED"
+  },
+  {
+   "claim": "Q13.5 recomputed: a dim(Z)=2 Stinespring dilation is TP and has Choi rank at most 2",
+   "class": "NUMERIC",
+   "evidence": null,
+   "layer": "F",
+   "tag": "LF-07",
+   "value": [
+    0.0,
+    2
+   ],
+   "verdict": "PASS"
+  },
+  {
+   "claim": "control: amplitude damping has Kraus rank 2 and is NOT QND",
+   "class": "NUMERIC",
+   "evidence": null,
+   "layer": "F",
+   "tag": "LF-08",
+   "value": [
+    0.6,
+    0.4
+   ],
+   "verdict": "PASS"
+  },
+  {
+   "claim": "Lemma 1. If Phi is trace preserving and its unital dual fixes Z = P+ - P- exactly, then Phi*(P_pm) = P_pm, since P_pm = (I +- Z)/2 and Phi* is linear and unital.",
+   "class": "ANALYTIC",
+   "evidence": {
+    "note": "no Monte Carlo is needed or used for this step"
+   },
+   "layer": "E",
+   "tag": "LE-01",
+   "value": "proof carried in the manuscript, two lines",
+   "verdict": "PASS"
+  },
+  {
+   "claim": "Lemma 2 (conformality). For a TP qubit map with T[3,:] = (0,0,0,1), the Fujiwara-Algoet criterion |lam1 +- lam2| <= |1 +- lam3| degenerates at lam3 = 1 to lam1 = lam2, so the coherence block is a scaled rotation: one complex a, |a| <= 1.",
+   "class": "ANALYTIC",
+   "evidence": null,
+   "layer": "E",
+   "tag": "LE-02",
+   "value": "proof carried in the manuscript",
+   "verdict": "PASS"
+  },
+  {
+   "claim": "regression control on random CPTP channels: how many are admissible, and how many admissible ones violate conformality",
+   "class": "NUMERIC",
+   "evidence": {
+    "honesty": "if cp_and_dual_fixes_Z is 0 this row carries NO evidential weight and the ANALYTIC rows LE-01/LE-02 are the only support"
+   },
+   "layer": "E",
+   "tag": "LE-03",
+   "value": {
+    "conformality_violations": 0,
+    "cp": 20000,
+    "cp_and_dual_fixes_Z": 0,
+    "sampled": 20000
+   },
+   "verdict": "PASS"
+  },
+  {
+   "claim": "exhaustive grid: admissible blocks, affine dimension, and maximum deviation from conformality",
+   "class": "NUMERIC",
+   "evidence": null,
+   "layer": "E",
+   "tag": "LE-04",
+   "value": {
+    "admissible": 81,
+    "affine_dimension": 2,
+    "grid_points": 14641,
+    "max_dev_asym": 0.0,
+    "max_dev_sym": 0.0
+   },
+   "verdict": "PASS"
+  },
+  {
+   "claim": "the PHYSICAL carrier K_TI is built: (V, E, F) and Euler number",
+   "class": "NUMERIC",
+   "evidence": {
+    "repairs": "v1.5 used a 12-vertex stand-in"
+   },
+   "layer": "H",
+   "tag": "LH-01",
+   "value": [
+    [
+     60,
+     90,
+     32
+    ],
+    2
+   ],
+   "verdict": "PASS"
+  },
+  {
+   "claim": "Betti numbers of K_TI, recomputed (ZS-M9 T5)",
+   "class": "NUMERIC",
+   "evidence": null,
+   "layer": "H",
+   "tag": "LH-02",
+   "value": [
+    1,
+    0,
+    1
+   ],
+   "verdict": "PASS"
+  },
+  {
+   "claim": "Hodge NULLITY (sum b_k) and ANALYTIC INDEX (alternating sum) are different quantities: equal on S^2, different on a torus",
+   "class": "NUMERIC",
+   "evidence": {
+    "repairs": "v1.5 called the nullity an index; that is retracted"
+   },
+   "layer": "H",
+   "tag": "LH-03",
+   "value": {
+    "K_TI_S2": {
+     "chi": 2,
+     "index": 2,
+     "nullity": 2
+    },
+    "icosahedron_S2": {
+     "chi": 2,
+     "index": 2,
+     "nullity": 2
+    },
+    "subdivided_S2": {
+     "chi": 2,
+     "index": 2,
+     "nullity": 2
+    },
+    "torus": {
+     "chi": 0,
+     "index": 0,
+     "nullity": 4
+    }
+   },
+   "verdict": "PASS"
+  },
+  {
+   "claim": "degree commutators of the structural operators of the discrete exterior calculus on K_TI",
+   "class": "NUMERIC",
+   "evidence": {
+    "reading": "the Laplacian preserves degree; the coboundary and the Hodge-Dirac operator do NOT"
+   },
+   "layer": "H",
+   "tag": "LH-04",
+   "value": {
+    "[Dirac d+delta, deg]": 26.832816,
+    "[Laplacian, deg]": 0.0,
+    "[coboundary d, deg]": 18.973666
+   },
+   "verdict": "PASS"
+  },
+  {
+   "claim": "dim ker(d + delta) on K_TI, computed spectrally",
+   "class": "NUMERIC",
+   "evidence": null,
+   "layer": "H",
+   "tag": "LH-05",
+   "value": 2,
+   "verdict": "PASS"
+  },
+  {
+   "claim": "the two harmonic modes have degree expectation 0 and 2, so the degree operator is nondegenerate ON the harmonic subspace",
+   "class": "NUMERIC",
+   "evidence": null,
+   "layer": "H",
+   "tag": "LH-06",
+   "value": [
+    0.0,
+    2.0
+   ],
+   "verdict": "PASS"
+  },
+  {
+   "claim": "the Hodge star exchanges the two harmonic modes, so it does NOT commute with the degree pointer",
+   "class": "NUMERIC",
+   "evidence": {
+    "consequence": "the de Rham DEGREE is not protected by the topology; only the NULLITY is"
+   },
+   "layer": "H",
+   "tag": "LH-07",
+   "value": 2.8284271247,
+   "verdict": "PASS"
+  },
+  {
+   "claim": "the two harmonic vectors are the constant 0-cochain and the fundamental 2-cochain (overlap check with the computed kernel)",
+   "class": "NUMERIC",
+   "evidence": null,
+   "layer": "H",
+   "tag": "LH-08",
+   "value": [
+    0.0,
+    0.0
+   ],
+   "verdict": "PASS"
+  },
+  {
+   "claim": "(H-GRAD) verdict: is the de Rham degree protected against the structural operations of the corpus's own calculus?",
+   "class": "NUMERIC",
+   "evidence": {
+    "verdict": "NO. The Hodge star is a structural operation of the discrete exterior calculus the corpus uses, and it exchanges the two harmonic modes. v1.5 Theorem S28.20 is RETRACTED.",
+    "what_would_close_it": "an S14-derived proof that every Kraus operator commutes with N_deg and preserves ker D"
+   },
+   "layer": "H",
+   "tag": "LH-09",
+   "value": false,
+   "verdict": "PASS"
+  },
+  {
+   "claim": "exact integer characteristic polynomial of Delta_2 on K_TI, factored over Q",
+   "class": "NUMERIC",
+   "evidence": {
+    "expected_trace": 180,
+    "trace": 180
+   },
+   "layer": "K",
+   "tag": "LK-01",
+   "value": {
+    "degree_sum": 32,
+    "factors": [
+     {
+      "degree": 1,
+      "factor": "x",
+      "multiplicity": 1
+     },
+     {
+      "degree": 1,
+      "factor": "x - 6",
+      "multiplicity": 4
+     },
+     {
+      "degree": 1,
+      "factor": "x - 8",
+      "multiplicity": 5
+     },
+     {
+      "degree": 2,
+      "factor": "x**2 - 10*x + 22",
+      "multiplicity": 5
+     },
+     {
+      "degree": 4,
+      "factor": "x**4 - 22*x**3 + 166*x**2 - 480*x + 380",
+      "multiplicity": 3
+     }
+    ],
+    "matrix_size": 32
+   },
+   "verdict": "PASS"
+  },
+  {
+   "claim": "the degree-four rational factor is x^4 - 22x^3 + 166x^2 - 480x + 380, and it is irreducible over Q",
+   "class": "NUMERIC",
+   "evidence": null,
+   "layer": "K",
+   "tag": "LK-02",
+   "value": [
+    true,
+    true
+   ],
+   "verdict": "PASS"
+  },
+  {
+   "claim": "the quartic splits over Q(sqrt5) into the Galois-conjugate pair x^2 - (11 -+ sqrt5) x + (25 -+ 7 sqrt5)",
+   "class": "ANALYTIC",
+   "evidence": {
+    "reason": "the two three-dimensional irreps of A_5 are Galois conjugate over Q(sqrt5), so they fuse into one Q-irreducible of dimension six and contribute one rational quartic with multiplicity three"
+   },
+   "layer": "K",
+   "tag": "LK-03",
+   "value": "x**2 - 11*x + sqrt(5)*x - 7*sqrt(5) + 25  |  x**2 - 11*x - sqrt(5)*x + 7*sqrt(5) + 25",
+   "verdict": "PASS"
+  },
+  {
+   "claim": "CLOSED FORM of the two T1 eigenvalues: lambda = ((11 - sqrt5) -+ sqrt(26 + 6 sqrt5)) / 2",
+   "class": "ANALYTIC",
+   "evidence": {
+    "corpus_decimals": [
+     "1.2428416164",
+     "7.5210904061"
+    ]
+   },
+   "layer": "K",
+   "tag": "LK-04",
+   "value": {
+    "lambda_1": "1.242841616414869485770363",
+    "lambda_h": "7.521090406085340817820463"
+   },
+   "verdict": "PASS"
+  },
+  {
+   "claim": "the closed forms reproduce the corpus decimals",
+   "class": "NUMERIC",
+   "evidence": null,
+   "layer": "K",
+   "tag": "LK-05",
+   "value": [
+    1.5e-11,
+    1.5e-11
+   ],
+   "verdict": "PASS"
+  },
+  {
+   "claim": "EXACT SUM AND PRODUCT: lambda_1 + lambda_h = 11 - sqrt5 and lambda_1 * lambda_h = 25 - 7 sqrt5",
+   "class": "ANALYTIC",
+   "evidence": null,
+   "layer": "K",
+   "tag": "LK-06",
+   "value": {
+    "product": "9.347524157501472125136",
+    "sum": "8.763932022500210303591"
+   },
+   "verdict": "PASS"
+  },
+  {
+   "claim": "THEOREM: the quartic root sum is (11 - sqrt5) + (11 + sqrt5) = 22 = 2Q. ZS-S20's 'observation awaiting a theorem' is proved: the surd cancels between the two Galois-conjugate quadratics.",
+   "class": "ANALYTIC",
+   "evidence": {
+    "Q": 11,
+    "reading": "22 is the trace of Delta_2 on one copy of the (3 + 3') isotypic block"
+   },
+   "layer": "K",
+   "tag": "LK-07",
+   "value": 22,
+   "verdict": "PASS"
+  },
+  {
+   "claim": "trace consistency: 0 + 6x4 + 8x5 + 10x5 + 22x3 = 180 = 12x5 + 20x6",
+   "class": "NUMERIC",
+   "evidence": null,
+   "layer": "K",
+   "tag": "LK-08",
+   "value": {
+    "sum_over_factors": 180.0,
+    "trace_Delta2": 180.0
+   },
+   "verdict": "PASS"
+  },
+  {
+   "claim": "spectral multiplicities of lambda_1 and lambda_h in Delta_2",
+   "class": "NUMERIC",
+   "evidence": {
+    "reading": "multiplicity three = one three-dimensional irrep"
+   },
+   "layer": "K",
+   "tag": "LK-09",
+   "value": [
+    3,
+    3
+   ],
+   "verdict": "PASS"
+  },
+  {
+   "claim": "the T1 spectral ratio lambda_h / lambda_1",
+   "class": "NUMERIC",
+   "evidence": {
+    "note": "an exact algebraic number of degree four over Q"
+   },
+   "layer": "K",
+   "tag": "LK-10",
+   "value": "6.051527649823037993293",
+   "verdict": "MEASURED"
+  },
+  {
+   "claim": "the commutant of N_deg in End(C^0 + C^1 + C^2) is exactly the block-diagonal subalgebra D = End(C^0) + End(C^1) + End(C^2), because N_deg has three distinct eigenvalues 0, 1, 2",
+   "class": "ANALYTIC",
+   "evidence": null,
+   "layer": "M",
+   "tag": "LM-01",
+   "value": {
+    "codimension": 20400,
+    "dim_End": 33124,
+    "dim_commutant": 12724
+   },
+   "verdict": "PASS"
+  },
+  {
+   "claim": "which structural operators lie in D: degree commutator norms",
+   "class": "NUMERIC",
+   "evidence": null,
+   "layer": "M",
+   "tag": "LM-02",
+   "value": {
+    "Hodge_Dirac_d_plus_delta": 26.832816,
+    "Hodge_Laplacian": 0.0,
+    "coboundary_d": 18.973666
+   },
+   "verdict": "PASS"
+  },
+  {
+   "claim": "the ZS-S24 canonical slab T_a = e^{-aV/2} e^{-aL} e^{-aV/2} lies in D exactly",
+   "class": "NUMERIC",
+   "evidence": {
+    "L": "Hodge Laplacian",
+    "V": "gauge-invariant multiplication"
+   },
+   "layer": "M",
+   "tag": "LM-03",
+   "value": 0.0,
+   "verdict": "PASS"
+  },
+  {
+   "claim": "DEGREE-DIAGONAL COMPRESSION (the surviving half of the retracted v1.8 Theorem E): because T_a lies in D, its compression to ker(Laplacian) = H^0 + H^2 is diagonal in the degree basis, so the compression is diagonal in the degree basis -- NOT that a channel is induced",
+   "class": "ANALYTIC",
+   "evidence": {
+    "retraction": "v1.7/v1.8 called this Slab-QND; that name and its channel-level conclusion are RETRACTED"
+   },
+   "layer": "M",
+   "tag": "LM-04",
+   "value": {
+    "compression": [
+     [
+      0.715327520829,
+      0.0
+     ],
+     [
+      0.0,
+      0.694471208217
+     ]
+    ],
+    "harmonic_vectors_verified": "True",
+    "off_diagonal": 0.0
+   },
+   "verdict": "PASS"
+  },
+  {
+   "claim": "negative control: a BARE Hodge star on the harmonic subspace exchanges H^0 and H^2, leaves D, and destroys the pointer",
+   "class": "NUMERIC",
+   "evidence": null,
+   "layer": "M",
+   "tag": "LM-05",
+   "value": {
+    "compression_off_diagonal": 1.0,
+    "deg_commutator": 2.8284271247
+   },
+   "verdict": "PASS"
+  },
+  {
+   "claim": "RETRACTED as an iff, see LQ-04. NECESSARY CONDITION ONLY for the S14 one-event channel if and only if its Kraus operators lie in D, i.e. contain no bare Hodge star and no odd number of degree-shifting factors. This is a decidable condition on an operator, not a hypothesis about a theory.",
+   "class": "ANALYTIC",
+   "evidence": {
+    "tension": "ZS-S27 closed F-S24.18 negative-conditional, i.e. the exact Whitney-integrated S14 slab is NOT a member of the T_a family, so membership of D is open for the exact slab and PROVED for the canonical one"
+   },
+   "layer": "M",
+   "tag": "LM-06",
+   "value": "criterion stated and testable",
+   "verdict": "PASS"
+  },
+  {
+   "claim": "ZS-M51 count law recomputed",
+   "class": "NUMERIC",
+   "evidence": null,
+   "layer": "B",
+   "tag": "LB-01",
+   "value": "59/59 rows",
+   "verdict": "PASS"
+  },
+  {
+   "claim": "dynamical vs arithmetic criterion",
+   "class": "NUMERIC",
+   "evidence": null,
+   "layer": "B",
+   "tag": "LB-02",
+   "value": "1711/1711",
+   "verdict": "PASS"
+  },
+  {
+   "claim": "first contracting saddle (m, x0)",
+   "class": "NUMERIC",
+   "evidence": null,
+   "layer": "B",
+   "tag": "LB-03",
+   "value": [
+    5,
+    "1/4"
+   ],
+   "verdict": "PASS"
+  },
+  {
+   "claim": "ord H = ceil(n_c)",
+   "class": "NUMERIC",
+   "evidence": null,
+   "layer": "B",
+   "tag": "LB-04",
+   "value": [
+    4,
+    4
+   ],
+   "verdict": "PASS"
+  },
+  {
+   "claim": "fibre fixed-point residual",
+   "class": "NUMERIC",
+   "evidence": null,
+   "layer": "B",
+   "tag": "LB-05",
+   "value": "5.73972e-42",
+   "verdict": "PASS"
+  },
+  {
+   "claim": "dim Z read from the corpus (modal)",
+   "class": "NUMERIC",
+   "evidence": null,
+   "layer": "C",
+   "tag": "LC-01",
+   "value": {
+    "counts": {
+     "1": 6,
+     "2": 159,
+     "4": 1,
+     "35": 2
+    },
+    "modal": 2
+   },
+   "verdict": "PASS"
+  },
+  {
+   "claim": "ord H equals (dim Z)^2 as integers",
+   "class": "NUMERIC",
+   "evidence": null,
+   "layer": "C",
+   "tag": "LC-02",
+   "value": [
+    4,
+    4
+   ],
+   "verdict": "PASS"
+  },
+  {
+   "claim": "dim ker(d+delta) on K_TI equals 2 AND dim Z equals 2, but the identification H_Z = ker D requires an intertwiner W with W Z_phys W* = 1 - deg, which is NOT constructed here",
+   "class": "ANALYTIC",
+   "evidence": {
+    "repairs": "v1.5 claimed dim Z = 2 was DERIVED as an index; that is retracted on both counts"
+   },
+   "layer": "C",
+   "tag": "LC-03",
+   "value": "HYPOTHESIS, not a derivation",
+   "verdict": "PASS"
+  },
+  {
+   "claim": "eps_z",
+   "class": "NUMERIC",
+   "evidence": null,
+   "layer": "D",
+   "tag": "LD-01",
+   "value": "5.42425e-20",
+   "verdict": "PASS"
+  },
+  {
+   "claim": "eps_a",
+   "class": "NUMERIC",
+   "evidence": null,
+   "layer": "D",
+   "tag": "LD-02",
+   "value": "8.5204e-20",
+   "verdict": "PASS"
+  },
+  {
+   "claim": "Omega_Z = arg a / tau_Z [1/t_P]",
+   "class": "NUMERIC",
+   "evidence": null,
+   "layer": "D",
+   "tag": "LD-03",
+   "value": "3.01233273854",
+   "verdict": "PASS"
+  },
+  {
+   "claim": "Gamma_Z = -ln|a| / tau_Z [1/t_P]",
+   "class": "NUMERIC",
+   "evidence": null,
+   "layer": "D",
+   "tag": "LD-04",
+   "value": "0.153112833328",
+   "verdict": "PASS"
+  },
+  {
+   "claim": "ratio equals the clock-free ray (tau_Z cancels)",
+   "class": "NUMERIC",
+   "evidence": null,
+   "layer": "D",
+   "tag": "LD-05",
+   "value": "19.673940276994912137",
+   "verdict": "PASS"
+  },
+  {
+   "claim": "Bloch angle alpha = 2 arccos|a| [rad, deg]",
+   "class": "NUMERIC",
+   "evidence": null,
+   "layer": "D",
+   "tag": "LD-06",
+   "value": [
+    0.940241632014,
+    53.871877
+   ],
+   "verdict": "PASS"
+  },
+  {
+   "claim": "which-path information S(alpha) = H2(cos^2(alpha/4)) [nats] and its fraction of ln 2",
+   "class": "NUMERIC",
+   "evidence": null,
+   "layer": "D",
+   "tag": "LD-07",
+   "value": [
+    0.210824485438,
+    0.304155439639
+   ],
+   "verdict": "PASS"
+  },
+  {
+   "claim": "R2 VERIFIED: the canonical slab does NOT preserve ker(Laplacian) -- the harmonic leakage is nonzero",
+   "class": "NUMERIC",
+   "evidence": {
+    "verdict": "v1.7/v1.8 Theorem E (Slab-QND) is RETRACTED. Degree-diagonality of the COMPRESSION is not invariance of the harmonic subspace."
+   },
+   "layer": "Q",
+   "tag": "LQ-01",
+   "value": {
+    "||(I-P_H) T_a P_H||": 0.10510088,
+    "||(I-P_H) T_a h0||": 0.08302415,
+    "||(I-P_H) T_a h2||": 0.06444521,
+    "||[T_a, P_H]||": 0.14863509
+   },
+   "verdict": "PASS"
+  },
+  {
+   "claim": "SLAB NO-GO THEOREM. For the canonical slab with V a multiplication operator, T_a preserves ker(Laplacian) IF AND ONLY IF V is constant on C^0 and on C^2 -- because P_H projects onto the constant 0-cochain and the fundamental 2-cochain, and a diagonal V fixes those rays only if it is constant there. In that case the compression is diag(e^{-a v_0}, e^{-a v_2}): a pure scalar decay per mode with NO coherence dynamics.",
+   "class": "ANALYTIC",
+   "evidence": {
+    "consequence": "the ZS-S24 canonical slab CANNOT generate a nontrivial QND multiplier on the harmonic register: the Liouville route via the canonical slab is CLOSED-NEGATIVE for the multiplier."
+   },
+   "layer": "Q",
+   "tag": "LQ-02",
+   "value": [
+    {
+     "V": "V constant on C0 and C2",
+     "compression_offdiag": 0.0,
+     "harmonic_leakage": 0.0
+    },
+    {
+     "V": "V constant on C0, C2; random on C1",
+     "compression_offdiag": 0.0,
+     "harmonic_leakage": 0.0
+    },
+    {
+     "V": "V fully random",
+     "compression_offdiag": 0.0,
+     "harmonic_leakage": 0.103671655337
+    }
+   ],
+   "verdict": "PASS"
+  },
+  {
+   "claim": "the compressed operator is not trace preserving, so it is not a channel; per-input renormalisation is forbidden by the corpus",
+   "class": "NUMERIC",
+   "evidence": null,
+   "layer": "Q",
+   "tag": "LQ-03",
+   "value": [
+    0.7153275208,
+    0.6944712082
+   ],
+   "verdict": "PASS"
+  },
+  {
+   "claim": "CORRECTED CRITERION, replacing v1.8 Corollary F. Membership of D is NECESSARY but NOT SUFFICIENT. A pointer-QND channel on the harmonic register requires all three: (i) [K_r, N_deg] = 0, (ii) [K_r, P_H] = 0, (iii) sum_r (P_H K_r P_H)^dag (P_H K_r P_H) = P_H. v1.8 asserted an 'if and only if' on (i) alone.",
+   "class": "ANALYTIC",
+   "evidence": null,
+   "layer": "Q",
+   "tag": "LQ-04",
+   "value": {
+    "corrected": "three conditions; (ii) and (iii) were missing",
+    "missing_residual_named_by_the_review": "r_H = max_r ||(I-P_H) K_r P_H||",
+    "v1_8_claim": "(H-QND) <=> K_r in D"
+   },
+   "verdict": "PASS"
+  },
+  {
+   "claim": "local form of T at its fixed point: F(w) = z*(e^{cw} - 1), so F'(0) = c z* = lambda exactly",
+   "class": "NUMERIC",
+   "evidence": {
+    "c": "i pi / 2",
+    "z_star": "(0.438282936727032111627 + 0.3605924718713854859529j)"
+   },
+   "layer": "N",
+   "tag": "LN-01",
+   "value": "0.0",
+   "verdict": "PASS"
+  },
+  {
+   "claim": "KOENIGS LINEARIZER of i^z, constructed: phi(w) = w + sum b_k w^k with phi(F(w)) = lambda phi(w), phi(0) = 0, phi'(0) = 1",
+   "class": "ANALYTIC",
+   "evidence": {
+    "order": 16
+   },
+   "layer": "N",
+   "tag": "LN-02",
+   "value": {
+    "b_2": "(-0.184691951259247961 + 0.420224151511552534j)",
+    "b_3": "(-0.0201308758420874812 - 0.237970647169220701j)",
+    "b_4": "(0.298250826674373866 + 0.0913720686480910788j)",
+    "b_5": "(-0.19163567112498895 + 0.290373301643814508j)",
+    "functional_equation_residuals": [
+     "8.04751e-29",
+     "2.97661e-25"
+    ]
+   },
+   "verdict": "PASS"
+  },
+  {
+   "claim": "the Taylor construction agrees with the limit definition lim F^n(w)/lambda^n",
+   "class": "NUMERIC",
+   "evidence": {
+    "limit": "(0.0294141780028872232 + 0.0199905791915220139j)",
+    "taylor": "(0.0294140561752532691 + 0.0199899276449866013j)"
+   },
+   "layer": "N",
+   "tag": "LN-03",
+   "value": "6.62838e-7",
+   "verdict": "PASS"
+  },
+  {
+   "claim": "CONSEQUENCE for (H-BR): the Koenigs identity a = DT(z*) is automatic for the linearizer, so (H-BR) is NOT a theorem to be proved but an IDENTIFICATION to be compared: does the action-derived charge-one boundary functional equal this phi?",
+   "class": "ANALYTIC",
+   "evidence": {
+    "coefficients_computed_to_order": 60,
+    "note": "R ~ 0.89 +- 0.02, strictly inside the numerically measured immediate-basin inradius 1.2309 about z*",
+    "radius_root_test_at_k60": 0.88868664,
+    "radius_root_test_mean_k30_60": 0.9068795,
+    "ratio_test_|b59/b60|": 0.85108745
+   },
+   "layer": "N",
+   "tag": "LN-04",
+   "value": "(H-BR) retyped from 'prove' to 'compare against an explicit function'",
+   "verdict": "PASS"
+  },
+  {
+   "claim": "BPS (critical-coupling) ANO vortex, winding one: shooting parameter f'(0), and the asymptotic values f(inf), a(inf)",
+   "class": "NUMERIC",
+   "evidence": {
+    "literature_value": 0.8532
+   },
+   "layer": "O",
+   "tag": "LO-01",
+   "value": [
+    0.85317786581,
+    1.0000044,
+    0.99989015
+   ],
+   "verdict": "PASS"
+  },
+  {
+   "claim": "vortex core radius in BPS length units: f = 1/2 and f = 1/sqrt2",
+   "class": "NUMERIC",
+   "evidence": null,
+   "layer": "O",
+   "tag": "LO-02",
+   "value": [
+    0.64573925,
+    1.04055171
+   ],
+   "verdict": "PASS"
+  },
+  {
+   "claim": "the declared branch model",
+   "class": "DECLARATION",
+   "evidence": null,
+   "layer": "O",
+   "tag": "LO-03",
+   "value": "PROXY MODEL, declared before evaluation: the two pointer branches differ by the Aharonov-Bohm phase 2 pi a(r) of the vortex flux, weighted by the Jackiw-Rossi zero-mode density exp(-2 g int_0^r f). One free coupling g. This is NOT derived from S_S14.",
+   "verdict": "DECLARED"
+  },
+  {
+   "claim": "the declared model's modulus curve |a_env|(g) is NON-MONOTONIC, so the modulus does not determine the coupling",
+   "class": "PROXY",
+   "evidence": null,
+   "layer": "O",
+   "tag": "LO-04",
+   "value": {
+    "argmin_g": 0.8123,
+    "endpoints": [
+     0.9725140475,
+     0.9981728172
+    ],
+    "min": 0.0117081522,
+    "n_couplings_reproducing_the_target_modulus": 2
+   },
+   "verdict": "PROXY"
+  },
+  {
+   "claim": "THE TWO-TARGET TEST: the declared model can be tuned to the MODULUS at two couplings, but its PHASE misses arg lambda by more than 1.7 rad in both cases",
+   "class": "NUMERIC",
+   "evidence": {
+    "verdict": "DECLARED MODEL FALSIFIED. Fitting |a| with one free coupling is not evidence; the independent phase target rejects it. This is exactly what the two-target structure of v1.4 was built to detect."
+   },
+   "layer": "O",
+   "tag": "LO-05",
+   "value": [
+    {
+     "abs": 0.89151356577604,
+     "arg": -0.0909389072,
+     "arg_target": 2.2592495539,
+     "g": 0.09539351,
+     "phase_error_rad": 2.35018846
+    },
+    {
+     "abs": 0.89151356577605,
+     "arg": 0.5072104393,
+     "arg_target": 2.2592495539,
+     "g": 6.57575741,
+     "phase_error_rad": 1.75203911
+    }
+   ],
+   "verdict": "PASS"
+  },
+  {
+   "claim": "the two nearest grammar expressions are NOT identities: at 30 significant digits they diverge from alpha at the seventh and sixth figure",
+   "class": "ANALYTIC",
+   "evidence": {
+    "verdict": "COINCIDENCES, decisively. v1.6 ran a p-value; this runs the algebra."
+   },
+   "layer": "P",
+   "tag": "LP-01",
+   "value": {
+    "alpha": "0.940241632013553311136134719256",
+    "ln(2acos(A)/ln n_c)": "0.940248577495122275785095389645",
+    "relative_differences": [
+     "7.38691e-6",
+     "1.12027e-5"
+    ],
+    "sqrt(ln sqrt5 * ln 3)": "0.940252165232405016225069697827"
+   },
+   "verdict": "PASS"
+  },
+  {
+   "claim": "R5: the fixed point is Krawczyk-certified and the separations are certified disjoint from alpha at a margin of 1e-180",
+   "class": "ANALYTIC",
+   "evidence": null,
+   "layer": "P",
+   "tag": "LP-00",
+   "value": {
+    "certified_unique_root": true,
+    "krawczyk_radius_bound": "1.0e-30",
+    "krawczyk_residual": "8.18445e-61",
+    "margin": "1e-180",
+    "separation_E1": "6.9454816e-6",
+    "separation_E2": "1.0533219e-5",
+    "separation_over_margin": [
+     "6.94548e+174",
+     "1.05332e+175"
+    ]
+   },
+   "verdict": "PASS"
+  },
+  {
+   "claim": "R3 DOWNGRADED: PSLQ with a precision control -- apparent relations at 70 digits vanish at 150. This is NO RELATION DETECTED at the tested precision, NOT a proof of non-algebraicity: no certified exclusion bound is computed.",
+   "class": "NUMERIC",
+   "evidence": {
+    "method": "a relation whose height sits at 10^(dps/(n+1)) carries no information; raising the precision is the control",
+    "status": "NUMERIC / TESTABLE, not ANALYTIC / PROVEN"
+   },
+   "layer": "P",
+   "tag": "LP-02",
+   "value": [
+    {
+     "degree": 4,
+     "dps": 70,
+     "relation": "none"
+    },
+    {
+     "degree": 6,
+     "dps": 70,
+     "relation": 2457248835
+    },
+    {
+     "degree": 8,
+     "dps": 70,
+     "relation": 30491420
+    },
+    {
+     "degree": 4,
+     "dps": 150,
+     "relation": "none"
+    },
+    {
+     "degree": 6,
+     "dps": 150,
+     "relation": "none"
+    },
+    {
+     "degree": 8,
+     "dps": 150,
+     "relation": "none"
+    }
+   ],
+   "verdict": "PASS"
+  },
+  {
+   "claim": "no integer relation among alpha, pi, ln 2, sqrt5 and 1 with coefficients up to 10^10",
+   "class": "NUMERIC",
+   "evidence": null,
+   "layer": "P",
+   "tag": "LP-03",
+   "value": "none",
+   "verdict": "PASS"
+  },
+  {
+   "claim": "S28-G1: I_h orbit decomposition of the K_TI cells",
+   "class": "NUMERIC",
+   "evidence": null,
+   "layer": "R",
+   "tag": "LR-01",
+   "value": {
+    "edge_orbits": {
+     "(5, 6)": 60,
+     "(6, 6)": 30
+    },
+    "face_orbits": {
+     "hexagons": 20,
+     "pentagons": 12
+    },
+    "vertex_orbits": 1
+   },
+   "verdict": "PASS"
+  },
+  {
+   "claim": "S28-G1 VERDICT: the positive I_h-invariant diagonal measure family on K_TI has 1 + 2 + 2 = 5 parameters; modulo one global scale the ADMISSIBLE CONE has dimension FOUR. It is not zero, so the exact one-event cellular action is UNDERDETERMINED under the declared reduction.",
+   "class": "ANALYTIC",
+   "evidence": {
+    "independent_agreement": "ZS-S20 v2.2: 'nothing in ZS-S14 fixes the Hodge measure'",
+    "seed_branch": "Theorem S28.1, second branch: a terminal non-identifiability theorem"
+   },
+   "layer": "R",
+   "tag": "LR-02",
+   "value": {
+    "admissible_cone_dimension": 4,
+    "parameters": 5
+   },
+   "verdict": "PASS"
+  },
+  {
+   "claim": "the reference point rho = sigma = 1 reproduces the corpus locked eigenvalues",
+   "class": "NUMERIC",
+   "evidence": {
+    "corpus": [
+     1.2428416164,
+     7.5210904061
+    ],
+    "note": "the quartic supplies four multiplicity-three eigenvalues {1.2428, 4.8443, 7.5211, 8.3917}; lambda_1 and lambda_h are the first and third"
+   },
+   "layer": "R",
+   "tag": "LR-03",
+   "value": [
+    1.2428416,
+    7.5210904
+   ],
+   "verdict": "PASS"
+  },
+  {
+   "claim": "THE NON-IDENTIFIABILITY IS LOAD-BEARING: the physically load-bearing eigenvalues MOVE over the admissible cone, so the undetermined measure is not a harmless gauge",
+   "class": "ANALYTIC",
+   "evidence": {
+    "reading": "the corpus's locked values sit at ONE point of a four-parameter family; nothing in ZS-S14 selects it"
+   },
+   "layer": "R",
+   "tag": "LR-04",
+   "value": {
+    "lambda_1_factor": 4.3967,
+    "lambda_1_range": [
+     0.5565363,
+     2.4469095
+    ],
+    "lambda_h_factor": 6.9175,
+    "lambda_h_range": [
+     2.9573957,
+     20.4579243
+    ],
+    "sweep": [
+     {
+      "lambda_1": 2.4469095,
+      "lambda_h": 20.4579243,
+      "rho": 0.5,
+      "sigma": 0.5
+     },
+     {
+      "lambda_1": 1.527864,
+      "lambda_h": 10.472136,
+      "rho": 0.5,
+      "sigma": 1.0
+     },
+     {
+      "lambda_1": 1.0614437,
+      "lambda_h": 6.2024883,
+      "rho": 0.5,
+      "sigma": 2.0
+     },
+     {
+      "lambda_1": 2.1763441,
+      "lambda_h": 13.6112211,
+      "rho": 0.8,
+      "sigma": 0.5
+     },
+     {
+      "lambda_1": 1.3483729,
+      "lambda_h": 8.5259785,
+      "rho": 0.8,
+      "sigma": 1.0
+     },
+     {
+      "lambda_1": 0.9209379,
+      "lambda_h": 4.4679941,
+      "rho": 0.8,
+      "sigma": 2.0
+     },
+     {
+      "lambda_1": 2.0174882,
+      "lambda_h": 12.1970914,
+      "rho": 1.0,
+      "sigma": 0.5
+     },
+     {
+      "lambda_1": 1.2428416,
+      "lambda_h": 7.5210904,
+      "rho": 1.0,
+      "sigma": 1.0
+     },
+     {
+      "lambda_1": 0.8386041,
+      "lambda_h": 3.9253279,
+      "rho": 1.0,
+      "sigma": 2.0
+     },
+     {
+      "lambda_1": 1.8418576,
+      "lambda_h": 11.6934132,
+      "rho": 1.25,
+      "sigma": 0.5
+     },
+     {
+      "lambda_1": 1.1266728,
+      "lambda_h": 6.6372592,
+      "rho": 1.25,
+      "sigma": 1.0
+     },
+     {
+      "lambda_1": 0.7492722,
+      "lambda_h": 3.5146598,
+      "rho": 1.25,
+      "sigma": 2.0
+     },
+     {
+      "lambda_1": 1.4410049,
+      "lambda_h": 10.3229272,
+      "rho": 2.0,
+      "sigma": 0.5
+     },
+     {
+      "lambda_1": 0.8658131,
+      "lambda_h": 5.3981189,
+      "rho": 2.0,
+      "sigma": 1.0
+     },
+     {
+      "lambda_1": 0.5565363,
+      "lambda_h": 2.9573957,
+      "rho": 2.0,
+      "sigma": 2.0
+     }
+    ]
+   },
+   "verdict": "PASS"
+  },
+  {
+   "claim": "TERMINAL VERDICT ON THE PHYSICAL CHANNEL, at the declared scope. Pre-registered outcome I of the seed report: 'the exact S14 slab cannot be identified or constructed from the declared reduction -- exact one-event reduction no-go; publishable action-level negative result.' The channel is NOT constructed here and, under the declared Whitney/DEC reduction, CANNOT be: the admissible cone is four-dimensional and the spectrum moves across it by factors of 4.4 and 3.6.",
+   "class": "ANALYTIC",
+   "evidence": null,
+   "layer": "R",
+   "tag": "LR-05",
+   "value": "OUTCOME I — exact one-event reduction NO-GO under the declared reduction",
+   "verdict": "PASS"
+  },
+  {
+   "claim": "S28-G4: the four required residuals for the best available candidate operator (the canonical slab). All four must be certified zero for (H-QND); r_H and r_TP are not.",
+   "class": "NUMERIC",
+   "evidence": {
+    "reading": "r_deg and r_QND vanish; r_H = 0.105 and r_TP is large -- exactly the two conditions v1.8 omitted"
+   },
+   "layer": "R",
+   "tag": "LR-06",
+   "value": {
+    "r_H": 0.10510088,
+    "r_QND": 0.0,
+    "r_TP": 12.380597,
+    "r_deg": 0.0
+   },
+   "verdict": "PASS"
+  },
+  {
+   "claim": "S28-G1 exact action selection",
+   "class": "NUMERIC",
+   "evidence": null,
+   "layer": "R",
+   "tag": "LR-G1",
+   "value": "EXECUTED -> NO-GO (cone dim 4)",
+   "verdict": "MEASURED"
+  },
+  {
+   "claim": "S28-G2 Lorentzian CTP process",
+   "class": "NUMERIC",
+   "evidence": null,
+   "layer": "R",
+   "tag": "LR-G2",
+   "value": "NOT EXECUTED (needs G1)",
+   "verdict": "MEASURED"
+  },
+  {
+   "claim": "S28-G3 physical pointer from a boundary current",
+   "class": "NUMERIC",
+   "evidence": null,
+   "layer": "R",
+   "tag": "LR-G3",
+   "value": "NOT EXECUTED",
+   "verdict": "MEASURED"
+  },
+  {
+   "claim": "S28-G4 four-residual QND gate",
+   "class": "NUMERIC",
+   "evidence": null,
+   "layer": "R",
+   "tag": "LR-G4",
+   "value": "EXECUTED on a proxy: r_H nonzero",
+   "verdict": "MEASURED"
+  },
+  {
+   "claim": "S28-G5 target-blind multiplier",
+   "class": "NUMERIC",
+   "evidence": null,
+   "layer": "R",
+   "tag": "LR-G5",
+   "value": "NOT EXECUTED",
+   "verdict": "MEASURED"
+  },
+  {
+   "claim": "S28-G6 Koenigs-Ward identification",
+   "class": "NUMERIC",
+   "evidence": null,
+   "layer": "R",
+   "tag": "LR-G6",
+   "value": "RETYPED, not closed",
+   "verdict": "MEASURED"
+  },
+  {
+   "claim": "S28-G7 action path and logarithmic lift",
+   "class": "NUMERIC",
+   "evidence": null,
+   "layer": "R",
+   "tag": "LR-G7",
+   "value": "NOT EXECUTED",
+   "verdict": "MEASURED"
+  },
+  {
+   "claim": "gates of the physical-channel programme that are EXECUTED",
+   "class": "NUMERIC",
+   "evidence": {
+    "note": "G1 executed to a terminal NEGATIVE; G4 executed on a proxy only",
+    "of": 7
+   },
+   "layer": "R",
+   "tag": "LR-07",
+   "value": 2,
+   "verdict": "PASS"
+  },
+  {
+   "claim": "COMPASS C1 (algebraic-degree minimisation): is rho = sigma = 1 the point where the spectrum has least algebraic degree? EXECUTED -> NO. Degree four is GENERIC, forced by the Galois fusion of the two three-dimensional irreducibles of A5, hence independent of the weights; and lower degrees occur elsewhere.",
+   "class": "ANALYTIC",
+   "evidence": {
+    "verdict": "CLOSED-NEGATIVE",
+    "why": "the rational factor degree is a representation-theoretic constant and carries no measure information; the low values are accidental rational factorisations -- an anti-numerology lesson"
+   },
+   "layer": "S",
+   "tag": "LS-C1",
+   "value": {
+    "degree_at_(1,1)": 4,
+    "degree_map": {
+     "1,1": 4,
+     "1,1/2": 4,
+     "1,2": 4,
+     "1/2,1": 2,
+     "1/2,1/2": 4,
+     "1/2,2": 4,
+     "2,1": 4,
+     "2,1/2": 4,
+     "2,2": 4
+    },
+    "points_with_lower_degree": [
+     "1/2,1"
+    ]
+   },
+   "verdict": "PASS"
+  },
+  {
+   "claim": "by-product: the dual/primal ratio on the (6,6) edges of K_TI is exactly the golden ratio",
+   "class": "NUMERIC",
+   "evidence": {
+    "phi": 1.6180339887
+   },
+   "layer": "S",
+   "tag": "LS-C2a",
+   "value": 1.6180339887,
+   "verdict": "PASS"
+  },
+  {
+   "claim": "COMPASS C2 (geometric DEC star): does the embedded geometry of K_TI select the measure? EXECUTED -> it selects a point, but NOT the corpus's point.",
+   "class": "ANALYTIC",
+   "evidence": {
+    "agreement": "sigma_geom = 0.9106 matches the chordal dual measure ZS-S21 v1.2 reported when it RETRACTED sigma = 1 as unconditional",
+    "verdict": "NO SELECTION OF THE CORPUS POINT"
+   },
+   "layer": "S",
+   "tag": "LS-C2",
+   "value": {
+    "corpus_point": [
+     1,
+     1
+    ],
+    "deviation_percent": [
+     -12.3932,
+     -12.1692
+    ],
+    "lambda_1_geometric": 1.0888143,
+    "lambda_h_geometric": 6.6058325,
+    "rho_geometric": 1.5100902868,
+    "sigma_geometric": 0.9105929973
+   },
+   "verdict": "PASS"
+  },
+  {
+   "claim": "COMPASS C3 (is (H-QND) algebraically obstructed?): EXECUTED -> NO. The joint commutant of N_deg and P_H is 12544-dimensional, contains operators with r_deg = r_H = 0 exactly, and their register actions are not all parallel, so two of them give a QND channel with |a| < 1.",
+   "class": "ANALYTIC",
+   "evidence": {
+    "verdict": "POSITIVE — the bottleneck is SELECTION, not existence: S_S14 does not say which of the 12544 dimensions to use"
+   },
+   "layer": "S",
+   "tag": "LS-C3",
+   "value": {
+    "dim_joint_commutant": 12544,
+    "max_r_H_over_samples": 7.139986712400677e-15,
+    "min_|cos|_between_register_actions": 0.015506
+   },
+   "verdict": "PASS"
+  },
+  {
+   "claim": "COMPASS C4 (gauge invariance): EXECUTED -> NO CONDITION. The gauge shift A -> A + d0 eps is affine with Jacobian exactly 1 for any metric, and the Faddeev-Popov operator is positive definite on the non-constant subspace for every sigma > 0, so its determinant is a field-independent constant that imposes no equation on (rho, sigma).",
+   "class": "ANALYTIC",
+   "evidence": {
+    "note": "'register democracy' would force sigma = 1 exactly, but ZS-S20 v2.2 already retracted that postulate",
+    "verdict": "CLOSED-NEGATIVE"
+   },
+   "layer": "S",
+   "tag": "LS-C4",
+   "value": {
+    "FP_spectra": [
+     {
+      "lambda_2": 0.084467482,
+      "logdet_prime": 1.694431,
+      "sigma": 0.25
+     },
+     {
+      "lambda_2": 0.243401746,
+      "logdet_prime": 51.46858,
+      "sigma": 1.0
+     },
+     {
+      "lambda_2": 0.430546929,
+      "logdet_prime": 109.489024,
+      "sigma": 4.0
+     }
+    ],
+    "proportionality_test": [
+     {
+      "rel_dev_from_proportionality": 0.174077656,
+      "sigma": 0.5
+     },
+     {
+      "rel_dev_from_proportionality": 0.0,
+      "sigma": 1.0
+     },
+     {
+      "rel_dev_from_proportionality": 0.1400280084,
+      "sigma": 2.0
+     }
+    ],
+    "vertex_edge_census": "(2 pentagon-hexagon, 1 hexagon-hexagon) at every vertex"
+   },
+   "verdict": "PASS"
+  },
+  {
+   "claim": "COMPASS C5 (register intertwiner): EXECUTED -> CLOSED-NEGATIVE. The character of the icosahedral action on ker(Laplacian) is 2 on EVERY conjugacy class, so ker(Laplacian) is the TRIVIAL + TRIVIAL representation. The j = 1/2 doublet has characters phi, -1/phi, 1, 0. By Schur no intertwiner W: H_Z -> ker(Laplacian) exists.",
+   "class": "ANALYTIC",
+   "evidence": {
+    "verdict": "the identification dim(Z) = 2 <-> Hodge nullity 2, carried as a hypothesis since v1.5, is CLOSED-NEGATIVE: the coincidence of dimensions is a coincidence of dimensions"
+   },
+   "layer": "S",
+   "tag": "LS-C5",
+   "value": {
+    "characters": [
+     {
+      "chi_j_half": 2.0,
+      "chi_kerLaplacian": 2.0,
+      "chi_trivial_plus_trivial": 2.0,
+      "class": "identity"
+     },
+     {
+      "chi_j_half": 1.618034,
+      "chi_kerLaplacian": 2.0,
+      "chi_trivial_plus_trivial": 2.0,
+      "class": "5-fold"
+     },
+     {
+      "chi_j_half": 0.618034,
+      "chi_kerLaplacian": 2.0,
+      "chi_trivial_plus_trivial": 2.0,
+      "class": "5-fold^2"
+     },
+     {
+      "chi_j_half": 1.0,
+      "chi_kerLaplacian": 2.0,
+      "chi_trivial_plus_trivial": 2.0,
+      "class": "3-fold"
+     },
+     {
+      "chi_j_half": 0.0,
+      "chi_kerLaplacian": 2.0,
+      "chi_trivial_plus_trivial": 2.0,
+      "class": "2-fold"
+     }
+    ],
+    "ker_is_trivial_plus_trivial": true
+   },
+   "verdict": "PASS"
+  },
+  {
+   "claim": "Compass run: contracts issued, executed, and their verdicts",
+   "class": "NUMERIC",
+   "evidence": {
+    "reading": "five independent routes to measure or register selection; four fail, and the one that succeeds shows the bottleneck is SELECTION rather than existence"
+   },
+   "layer": "S",
+   "tag": "LS-SUM",
+   "value": {
+    "executed": 5,
+    "issued": 5,
+    "negative": 4,
+    "negative_list": [
+     "C1 algebraic degree",
+     "C2 geometric star",
+     "C4 gauge invariance",
+     "C5 intertwiner"
+    ],
+    "positive": 1,
+    "positive_list": [
+     "C3 algebraic availability of a QND multiplier"
+    ]
+   },
+   "verdict": "PASS"
+  },
+  {
+   "claim": "ALGEBRAIC AVAILABILITY THEOREM (review priority 1). With P0 = |h0><h0|, P2 = |h2><h2|, Q_H = I - P0 - P2, lambda = r e^{i chi}, p = (1+r)/2, q = (1-r)/2, the pair K0 = Q_H + sqrt(p)(P0 + e^{-i chi} P2), K1 = sqrt(q)(P0 - e^{-i chi} P2) satisfies K0*K0 + K1*K1 = I, commutes with N_deg and P_H, and gives Phi(|h0><h2|) = lambda |h0><h2|. Hence for EVERY |lambda| <= 1 a CPTP QND channel with that multiplier exists in the joint commutant.",
+   "class": "ANALYTIC",
+   "evidence": {
+    "upgrade": "v2.1's C3 rested on random sampling and never checked Kraus normalisation; this is the theorem"
+   },
+   "layer": "T",
+   "tag": "LT-01",
+   "value": [
+    {
+     "TP_residual": 1.426005268243422e-14,
+     "lambda": [
+      -0.56641733,
+      0.68845323
+     ],
+     "multiplier_out": [
+      -0.5664173303,
+      0.6884532271
+     ],
+     "r_H": 2.811771377827136e-15,
+     "r_deg": 0.0
+    },
+    {
+     "TP_residual": 1.0296075461199872e-14,
+     "lambda": [
+      0.5,
+      0.5
+     ],
+     "multiplier_out": [
+      0.5,
+      0.5
+     ],
+     "r_H": 1.0543476812195806e-15,
+     "r_deg": 0.0
+    },
+    {
+     "TP_residual": 8.755627991619623e-15,
+     "lambda": [
+      0.0,
+      0.0
+     ],
+     "multiplier_out": [
+      -0.0,
+      0.0
+     ],
+     "r_H": 1.78965992883852e-15,
+     "r_deg": 0.0
+    },
+    {
+     "TP_residual": 4.1744409303925805e-15,
+     "lambda": [
+      0.99,
+      0.0
+     ],
+     "multiplier_out": [
+      0.99,
+      0.0
+     ],
+     "r_H": 2.589212321492976e-15,
+     "r_deg": 0.0
+    }
+   ],
+   "verdict": "PASS"
+  },
+  {
+   "claim": "C5 SCOPE CORRECTED (review priority 2). The j = 1/2 doublet is a representation of the BINARY icosahedral group 2I, not of A5. Its central element -1 acts as -I on the spinor and as +I on Hodge cohomology, so any 2I-equivariant W obeys -W = +W, hence W = 0. What is closed is the SYMMETRY-EQUIVARIANT identification; a non-equivariant two-dimensional unitary always exists and simply carries no symmetry justification.",
+   "class": "ANALYTIC",
+   "evidence": {
+    "retraction": "v2.1 wrote 'no intertwiner exists; the identification is dead' -- too strong -- and printed -1/phi where the fixed lift gives +1/phi"
+   },
+   "layer": "T",
+   "tag": "LT-02",
+   "value": {
+    "U_H(-1)": "+I",
+    "U_Z(-1)": "-I",
+    "chi_at_2pi_over_5": 1.618034,
+    "chi_at_4pi_over_5": 0.618034,
+    "conclusion": "W = 0",
+    "lift_convention": "chi_{j=1/2}(theta) = 2 cos(theta/2)"
+   },
+   "verdict": "PASS"
+  },
+  {
+   "claim": "MEASURE-INDEPENDENCE GATE (review priority 3, the breakthrough question). W(m) = log Z01 - (1/2) log Z00 - (1/2) log Z11 = -(1/4) dJ^T G(m) dJ in the Gaussian sector, so dW/dm = +(1/4) dJ^T (dG/dm) dJ. Computed: dG/dsigma is POSITIVE DEFINITE on the zero-sum face-source space, so dW/dsigma > 0 for EVERY nonzero admissible source. THE MEASURE-BLIND SET IS {0}: the normalised influence ratio is NOT measure-independent.",
+   "class": "ANALYTIC",
+   "evidence": {
+    "self_correction": "a first pass of this computation printed 'codimension 2, dimension 30'; the definiteness of dG/dsigma shows that was wrong and the blind set is trivial",
+    "verdict": "STRENGTHENED TERMINAL NO-GO: Lambda = Lambda(m). The declared S14 reduction does not merely fail to select a measure -- it fails to determine the multiplier for ANY source, because the multiplier moves with the measure."
+   },
+   "layer": "T",
+   "tag": "LT-03",
+   "value": {
+    "dG_drho_signature": {
+     "negative": 12,
+     "positive": 11
+    },
+    "dG_dsigma_eigs_on_zero_sum": {
+     "dimension": 31,
+     "max": 13.327066,
+     "min": 0.056393758,
+     "negative": 0,
+     "positive": 31
+    }
+   },
+   "verdict": "PASS"
+  },
+  {
+   "claim": "DEFECT-SPACE ROUTE (review priority 4). Sz.-Nagy-Foias requires defect indices (1,1) for the characteristic function to be a scalar Blaschke factor Theta_lambda(z) = (z - lambda)/(1 - conj(lambda) z). The natural action-derived boundary contraction on K_TI has defect indices (29, 29) at both the corpus and the geometric measure point, so it is NOT a scalar contraction: a one-dimensional defect space requires an additional compression that S_S14 does not supply.",
+   "class": "ANALYTIC",
+   "evidence": {
+    "status": "OPEN, with a measured obstruction; this route does bypass the ZS-M56 tensor-factor no-go and the C5 equivariance no-go, but needs the compression"
+   },
+   "layer": "T",
+   "tag": "LT-04",
+   "value": [
+    {
+     "dim_D_T": 29,
+     "dim_D_Tstar": 29,
+     "norm_T": 1.0,
+     "point": "corpus point"
+    },
+    {
+     "dim_D_T": 29,
+     "dim_D_Tstar": 29,
+     "norm_T": 1.0,
+     "point": "geometric point"
+    }
+   ],
+   "verdict": "PASS"
+  },
+  {
+   "claim": "review priorities executed",
+   "class": "NUMERIC",
+   "evidence": null,
+   "layer": "T",
+   "tag": "LT-SUM",
+   "value": {
+    "P1 algebraic availability": "THEOREM",
+    "P2 C5 scope": "CORRECTED to 2I-equivariant",
+    "P3 measure independence": "CLOSED-NEGATIVE, strengthened",
+    "P4 defect route": "OPEN with a measured obstruction"
+   },
+   "verdict": "PASS"
+  },
+  {
+   "claim": "isotypic decomposition of the 32-dimensional face space under I ~ A5",
+   "class": "NUMERIC",
+   "evidence": null,
+   "layer": "U",
+   "tag": "LU-01",
+   "value": {
+    "character": [
+     32.0,
+     2.0,
+     2.0,
+     2.0,
+     0.0
+    ],
+    "multiplicities": {
+     "1": 2.0,
+     "3": 2.0,
+     "3'": 2.0,
+     "4": 2.0,
+     "5": 2.0
+    }
+   },
+   "verdict": "PASS"
+  },
+  {
+   "claim": "the 29-dimensional defect space D_T and its isotypic content",
+   "class": "NUMERIC",
+   "evidence": {
+    "reading": "exactly one copy of the three-dimensional irrep is removed: the T1 triplet is the top singular space"
+   },
+   "layer": "U",
+   "tag": "LU-02",
+   "value": {
+    "character": [
+     29.0,
+     0.381966,
+     2.618034,
+     2.0,
+     1.0
+    ],
+    "dim_D_T": 29,
+    "multiplicities": {
+     "1": 2.0,
+     "3": 1.0,
+     "3'": 2.0,
+     "4": 2.0,
+     "5": 2.0
+    }
+   },
+   "verdict": "PASS"
+  },
+  {
+   "claim": "THEOREM R (Compression is a Projective Line). By Schur, an I-equivariant rank-one projection of D_T must land in the TRIVIAL isotypic component. That component has multiplicity TWO, so the equivariant rank-one compressions form a projective line P^1: a one-parameter family with NO symmetry selecting a point. The compression is therefore a FIFTH free parameter, beyond the four of the measure cone.",
+   "class": "ANALYTIC",
+   "evidence": null,
+   "layer": "U",
+   "tag": "LU-03",
+   "value": {
+    "family": "P^1",
+    "free_parameters_total": "4 (measure) + 1 (compression)",
+    "trivial_multiplicity_in_D_T": 2.0
+   },
+   "verdict": "PASS"
+  },
+  {
+   "claim": "the multiplier delivered by each natural compression line, at the corpus measure point where the effective operator IS symmetric (||H - H^T||/||H|| = 4.3e-16)",
+   "class": "NUMERIC",
+   "evidence": {
+    "reading": "all real, all two orders of magnitude below the target modulus, and the target phase is not real",
+    "target_arg": 2.2592495539,
+    "target_modulus": 0.8915135658
+   },
+   "layer": "U",
+   "tag": "LU-04",
+   "value": [
+    {
+     "lambda": 0.0216822872,
+     "line": "1_pentagon"
+    },
+    {
+     "lambda": 0.0130093723,
+     "line": "1_hexagon"
+    },
+    {
+     "lambda": 0.0,
+     "line": "all-ones"
+    },
+    {
+     "lambda": 0.0002791711,
+     "line": "area-weighted"
+    }
+   ],
+   "verdict": "PASS"
+  },
+  {
+   "claim": "SUPERSEDED BY LW-01/LW-02 (gate S28-G2 executed)",
+   "class": "DECLARATION",
+   "evidence": null,
+   "layer": "U",
+   "tag": "LU-05",
+   "value": "A first draft of this layer asserted that every Euclidean boundary object of the declared reduction is self-adjoint, hence that arg(lambda) is confined to {0, pi}. Measured: the hand-assembled Schur complement used here is symmetric only at the corpus point (4.3e-16) and NOT elsewhere -- 1.6e-1 in the Euclidean pairing and 3.2e-1 in the face-metric pairing at the geometric point. The operator is therefore an ad-hoc proxy off that point, and NO general structural conclusion is drawn from it. The self-adjointness claim is WITHDRAWN as unproved.",
+   "verdict": "DECLARED"
+  },
+  {
+   "claim": "asymmetry of the hand-assembled effective operator across the cone, in both pairings",
+   "class": "NUMERIC",
+   "evidence": {
+    "consequence": "LU-04 is scoped to the corpus point only"
+   },
+   "layer": "U",
+   "tag": "LU-06",
+   "value": [
+    {
+     "eucl": 4.3e-16,
+     "face_metric": 4.3e-16,
+     "point": "corpus"
+    },
+    {
+     "eucl": 0.1635,
+     "face_metric": 0.3232,
+     "point": "geometric"
+    },
+    {
+     "eucl": 0.131,
+     "face_metric": 0.2603,
+     "point": "random"
+    }
+   ],
+   "verdict": "PASS"
+  },
+  {
+   "claim": "GATE S28-G2 EXECUTED. The boundary operator DERIVED from the action, K(m) = d1^T M2 d1 + xi d0 M0^{-1} d0^T, is EXACTLY symmetric at every point of the measure cone, and so is its Schur complement onto any boundary subset. The v2.3 hand-assembled proxy was asymmetric by 1.6e-1 to 3.2e-1 off the corpus point; the derived operator is asymmetric by 0.",
+   "class": "ANALYTIC",
+   "evidence": {
+    "restores": "the self-adjointness theorem withdrawn in v2.3 sect.3 is RESTORED, now by derivation"
+   },
+   "layer": "W2G",
+   "tag": "LW-01",
+   "value": [
+    {
+     "asym_K": 0.0,
+     "asym_Schur": 4.0537679275404627e-16,
+     "cone_point": "corpus",
+     "max_Im_quadratic_form": 2.2898349882893854e-16
+    },
+    {
+     "asym_K": 0.0,
+     "asym_Schur": 7.149933295562172e-16,
+     "cone_point": "geometric",
+     "max_Im_quadratic_form": 4.579669976578771e-16
+    },
+    {
+     "asym_K": 0.0,
+     "asym_Schur": 7.659197470338261e-16,
+     "cone_point": "random",
+     "max_Im_quadratic_form": 5.48172618408671e-16
+    },
+    {
+     "asym_K": 0.0,
+     "asym_Schur": 2.215662748744346e-15,
+     "cone_point": "far cone",
+     "max_Im_quadratic_form": 4.198030811863873e-16
+    }
+   ],
+   "verdict": "PASS"
+  },
+  {
+   "claim": "THEOREM T (Real Euclidean Multiplier). K(m) is real symmetric; the Schur complement of a real symmetric matrix onto any index subset is real symmetric; any function of a real symmetric operator is real symmetric; and for real symmetric T the form <v, T v> is real for EVERY complex v. Hence every rank-one compression of the derived Euclidean boundary operator is real, its characteristic function is a Blaschke factor with a real parameter, and arg(lambda) lies in {0, pi}.",
+   "class": "ANALYTIC",
+   "evidence": null,
+   "layer": "W2G",
+   "tag": "LW-02",
+   "value": {
+    "reachable": "{0, pi}",
+    "target_arg": 2.2592495539,
+    "verdict": "the target phase is UNREACHABLE on Lane E"
+   },
+   "verdict": "PASS"
+  },
+  {
+   "claim": "escape test: a U(1) gauge twist conjugates K and leaves it Hermitian, so it cannot create a phase",
+   "class": "NUMERIC",
+   "evidence": null,
+   "layer": "W2G",
+   "tag": "LW-03",
+   "value": {
+    "hermiticity_after_twist": 5.2257820936382754e-18,
+    "max_Im_quadratic_form": 3.625572064791527e-16
+   },
+   "verdict": "PASS"
+  },
+  {
+   "claim": "THEOREM U (Quadrant Bound). If the boundary kernel has the form K = H1 + i H2 with H1 positive definite and H2 positive semidefinite -- which covers BOTH the Euclidean lane and any standard Lorentzian CTP influence functional with a positive noise kernel -- then the numerical range of K lies in the closed first quadrant, Schur complementation preserves this, inversion maps it to the fourth quadrant, and therefore |arg lambda| <= pi/2 for every rank-one compression.",
+   "class": "ANALYTIC",
+   "evidence": {
+    "verdict": "SCOPE (corrected in v2.5): this bounds a rank-one compression of a POSITIVE KERNEL INVERSE. It does NOT bound the coherence multiplier of the full reduced channel, which may take its phase from an independent Hermitian holonomy -- see LX-*."
+   },
+   "layer": "W2G",
+   "tag": "LW-04",
+   "value": {
+    "bound_pi_over_2": 1.570796,
+    "max_reachable_|arg|": 0.085923,
+    "positive_kernel_scan": [
+     {
+      "kappa": 0.0,
+      "max_arg": 0.0,
+      "min_arg": -0.0
+     },
+     {
+      "kappa": 0.3,
+      "max_arg": -0.002787,
+      "min_arg": -0.03827
+     },
+     {
+      "kappa": 1.0,
+      "max_arg": -0.009166,
+      "min_arg": -0.085923
+     },
+     {
+      "kappa": 3.0,
+      "max_arg": -0.005364,
+      "min_arg": -0.052806
+     },
+     {
+      "kappa": 10.0,
+      "max_arg": -0.001939,
+      "min_arg": -0.019852
+     }
+    ],
+    "target_arg": 2.2592495539
+   },
+   "verdict": "PASS"
+  },
+  {
+   "claim": "COROLLARY, SCOPE-CORRECTED in v2.5. Reaching arg(lambda) = 2.2592 rad THROUGH THE KERNEL COMPRESSION ALONE requires leaving the positive sector: with an indefinite H1 the reachable argument extends to -3.12 rad. The v2.4 sentence 'any successful channel requires an indefinite Hermitian boundary action' is RETRACTED -- Layer X exhibits a channel with positive dephasing and a bounded Hermitian Hamiltonian that realises the target exactly.",
+   "class": "ANALYTIC",
+   "evidence": null,
+   "layer": "W2G",
+   "tag": "LW-05",
+   "value": {
+    "indefinite_scan": [
+     {
+      "kappa": 0.3,
+      "max_arg": -0.013056,
+      "min_arg": -3.114261
+     },
+     {
+      "kappa": 1.0,
+      "max_arg": -0.025862,
+      "min_arg": -3.044664
+     }
+    ],
+    "requirement": "H1 indefinite, i.e. neither a positive Euclidean action nor a positive CTP noise kernel"
+   },
+   "verdict": "PASS"
+  },
+  {
+   "claim": "PHASE-SEPARATION CHANNEL. With p = (1+r)/2, q = (1-r)/2 and U_chi = exp(i chi Z/2), the Kraus pair K0 = sqrt(p) U_chi, K1 = sqrt(q) U_chi Z is CPTP, commutes with Z_path exactly, fixes both populations, and has coherence multiplier (p - q) e^{i chi} = r e^{i chi} = lambda.",
+   "class": "ANALYTIC",
+   "evidence": {
+    "refutes": "v2.4's claim that the target phase requires an indefinite Hermitian boundary action"
+   },
+   "layer": "X",
+   "tag": "LX-01",
+   "value": {
+    "QND_commutator": 0.0,
+    "TP_residual": 3.166274896609426e-17,
+    "chi": 2.259249553902599,
+    "error_vs_lambda": 2.482534153247273e-16,
+    "multiplier": [
+     -0.566417330285464,
+     0.688453227107702
+    ],
+    "r": 0.891513565776047
+   },
+   "verdict": "PASS"
+  },
+  {
+   "claim": "the Choi operator of the phase-separation channel",
+   "class": "NUMERIC",
+   "evidence": null,
+   "layer": "X",
+   "tag": "LX-02",
+   "value": {
+    "TP_residual": 3.166274896609426e-17,
+    "eigenvalues": [
+     1.891513565776047,
+     0.108486434223953,
+     0.0,
+     -0.0
+    ],
+    "expected": [
+     1.891513565776047,
+     0.108486434223953,
+     0.0,
+     0.0
+    ],
+    "min_eigenvalue": -8.552847072295076e-49,
+    "rank": 2
+   },
+   "verdict": "PASS"
+  },
+  {
+   "claim": "MICROSCOPIC REALISATION on C^2 (x) C^11, which uses an ELEVEN-dimensional carrier and therefore does not require the two-dimensional internal tensor factor forbidden by ZS-M56. U_event = (U_chi (x) I)(P0 (x) W0 + P1 (x) W1) is unitary, the environment overlap <Omega|W0* W1|Omega> is REAL AND POSITIVE, and tracing the environment reproduces Phi_lambda exactly.",
+   "class": "ANALYTIC",
+   "evidence": {
+    "reading": "positivity is NEVER violated: the environment supplies the real attenuation r, the system-side Hermitian holonomy supplies e^{i chi}"
+   },
+   "layer": "X",
+   "tag": "LX-03",
+   "value": {
+    "U_event_unitarity": 1.589638978208137e-16,
+    "carrier_dimension": 11,
+    "environment_overlap": 0.891513565776047,
+    "max_deviation_from_Phi": 1.1102230246251565e-16,
+    "overlap_is_real_positive": true
+   },
+   "verdict": "PASS"
+  },
+  {
+   "claim": "PHASE-SEPARATION COUNTEREXAMPLE THEOREM. The GKSL generator L(rho) = (Gamma/2)(Z rho Z - rho) - i[H_Z, rho] with Gamma = -ln r / tau > 0 and H_Z = -(chi / 2 tau) Z Hermitian and bounded generates a CPTP Z-QND semigroup whose coherence multiplier after one slab is exactly lambda = r e^{i chi}. Positive dephasing plus a Hermitian Hamiltonian suffice; no indefinite kernel is needed anywhere.",
+   "class": "ANALYTIC",
+   "evidence": {
+    "status": "this is the explicit refutation of v2.4's corollary"
+   },
+   "layer": "X",
+   "tag": "LX-04",
+   "value": {
+    "Gamma": 0.153112833328013,
+    "Gamma_positive": true,
+    "H_Z_coefficient": -1.5061663692684,
+    "H_Z_hermiticity": 0.0,
+    "L(E01)/E01": [
+     -0.153112833328013,
+     3.012332738536799
+    ],
+    "Omega": 3.012332738536799,
+    "max_deviation_exp(tau L)_vs_Phi": 2.2388944504932596e-17
+   },
+   "verdict": "PASS"
+  },
+  {
+   "claim": "ACTION PATH AND LOGARITHMIC LIFT. a(s) = exp(s ell) with ell = ln r + i chi is nonvanishing on [0,1], runs from 1 to lambda, and its logarithmic derivative integrates to ell with winding zero, so the branch is principal.",
+   "class": "ANALYTIC",
+   "evidence": null,
+   "layer": "X",
+   "tag": "LX-05",
+   "value": {
+    "a(1)_error": 2.482534153247273e-16,
+    "ell": [
+     -0.11483462499601,
+     2.259249553902599
+    ],
+    "min_modulus_on_path": 0.891513565776047,
+    "winding_number": 0.0
+   },
+   "verdict": "PASS"
+  },
+  {
+   "claim": "ZS-M59 entry contract, re-measured after Layer X",
+   "class": "NUMERIC",
+   "evidence": {
+    "reading": "11 of 13 fields are now FORMALLY constructible; the two source hashes remain absent, so the count of S14-DERIVED fields is still ZERO"
+   },
+   "layer": "X",
+   "tag": "LX-06",
+   "value": {
+    "S14_derived": 0,
+    "fields": {
+     "action_path": "CONSTRUCTED",
+     "arithmetic_source_hash": "ABSENT - z*, lambda not frozen here",
+     "boundary_derivative": "CONSTRUCTED",
+     "choi_operator": "CONSTRUCTED",
+     "construction_source_hash": "ABSENT - no S14-derived construction",
+     "fixed_point": "CONSTRUCTED",
+     "full_state_map": "CONSTRUCTED",
+     "logarithmic_lift": "CONSTRUCTED",
+     "pointer_matrix_units": "CONSTRUCTED",
+     "pointer_observable": "CONSTRUCTED",
+     "primitive_event_map": "CONSTRUCTED",
+     "primitive_holonomy": "CONSTRUCTED",
+     "qnd_multiplier": "CONSTRUCTED"
+    },
+    "formally_constructible": 11,
+    "of": 13
+   },
+   "verdict": "PASS"
+  },
+  {
+   "claim": "status of F-M54-16'",
+   "class": "DECLARATION",
+   "evidence": null,
+   "layer": "X",
+   "tag": "LX-07",
+   "value": "CLOSED-FORMAL / OPEN-DERIVED. The target channel is realised exactly -- CPTP, Z_path-QND, Choi rank two, multiplier lambda, eleven-dimensional carrier, positive dephasing, bounded Hermitian Hamiltonian, nonvanishing action path with zero winding. But r and chi were READ FROM lambda, not derived from S_S14. Physical realisability is proved; the S14 anchor is not.",
+   "verdict": "DECLARED"
+  },
+  {
+   "claim": "the CORRECTED cellular action is still exactly symmetric, and now carries genuine sigma dependence",
+   "class": "NUMERIC",
+   "evidence": {
+    "repairs": "the v2.5 preflight wrote the gauge-fixing term without its M1 factors and so had no sigma dependence"
+   },
+   "layer": "Y",
+   "tag": "LY-00",
+   "value": [
+    {
+     "asym_K": 0.0,
+     "asym_Schur": 4.0537679275404627e-16,
+     "point": [
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "asym_K": 0.0,
+     "asym_Schur": 6.452449061742827e-16,
+     "point": [
+      1.5,
+      0.9
+     ]
+    },
+    {
+     "asym_K": 0.0,
+     "asym_Schur": 4.699528175121032e-16,
+     "point": [
+      0.6,
+      1.7
+     ]
+    }
+   ],
+   "verdict": "PASS"
+  },
+  {
+   "claim": "THEOREM W (Quantised Kato Holonomy). K(m) is real symmetric on the whole measure cone, so its eigenvectors may be chosen real; for a real normalised eigenvector <psi|d psi> = (1/2) d<psi|psi> = 0, so the Kato/Berry connection VANISHES identically and the holonomy is +1 or -1. Hence chi_Kato lies in {0, pi}. Measured: +1 on most loops and bands, and EXACTLY -1 (arg = pi) on the large loop in band one, a sign flip from encircling a conical intersection -- so both values are realised and the set is exactly {0, pi}.",
+   "class": "ANALYTIC",
+   "evidence": {
+    "verdict": "the target phase is NOT in {0, pi}: the Kato/BFV route on the Euclidean gauge sector CANNOT supply chi. This is a FORBIDDEN, not merely undetermined."
+   },
+   "layer": "Y",
+   "tag": "LY-01",
+   "value": {
+    "all_pm1": true,
+    "loops": [
+     {
+      "arg": 0.0,
+      "band": 0,
+      "holonomy": [
+       1.0,
+       0.0
+      ],
+      "loop": "small"
+     },
+     {
+      "arg": 0.0,
+      "band": 1,
+      "holonomy": [
+       1.0,
+       -0.0
+      ],
+      "loop": "small"
+     },
+     {
+      "arg": 0.0,
+      "band": 0,
+      "holonomy": [
+       1.0,
+       -0.0
+      ],
+      "loop": "large"
+     },
+     {
+      "arg": 3.141592654,
+      "band": 1,
+      "holonomy": [
+       -1.0,
+       0.0
+      ],
+      "loop": "large"
+     },
+     {
+      "arg": 0.0,
+      "band": 0,
+      "holonomy": [
+       1.0,
+       0.0
+      ],
+      "loop": "offset"
+     },
+     {
+      "arg": 0.0,
+      "band": 1,
+      "holonomy": [
+       1.0,
+       0.0
+      ],
+      "loop": "offset"
+     }
+    ],
+    "pi_realised": true,
+    "target_chi": 2.259249553902599
+   },
+   "verdict": "PASS"
+  },
+  {
+   "claim": "on a COMPLEX (U(1)-twisted) family the holonomy is a genuine phase, but a small one",
+   "class": "NUMERIC",
+   "evidence": {
+    "reading": "chi must come from a sector with a complex kernel: the CTP doubling or the fermion determinant / Pfaffian phase, not the real gauge quadratic form"
+   },
+   "layer": "Y",
+   "tag": "LY-02",
+   "value": [
+    {
+     "arg": -0.0010895721,
+     "twist_amplitude": 0.3
+    },
+    {
+     "arg": -0.0036319809,
+     "twist_amplitude": 1.0
+    },
+    {
+     "arg": -0.0145327907,
+     "twist_amplitude": 4.0
+    }
+   ],
+   "verdict": "PASS"
+  },
+  {
+   "claim": "THE ATTENUATION, DERIVED AS A FUNCTION: r_S14(m, dJ) = exp(-(1/4) dJ^T G(m) dJ) in the Gaussian sector. It is an explicit formula, but it is a function of TWO undetermined inputs -- the measure m, left open by Theorem N, and the conditional source dJ, which gate S28-G3 has never supplied. The target lies INSIDE the reachable range of each, so r is attainable by tuning and is not derived.",
+   "class": "ANALYTIC",
+   "evidence": null,
+   "layer": "Y",
+   "tag": "LY-03",
+   "value": {
+    "grid": [
+     0.2,
+     0.5,
+     1.0,
+     2.0,
+     5.0
+    ],
+    "r_over_measure_cone": [
+     [
+      0.3835800683,
+      0.7806682425,
+      0.8640113151,
+      0.8870356843,
+      0.8922032676
+     ],
+     [
+      0.3902233031,
+      0.7921334702,
+      0.8746274602,
+      0.8961271013,
+      0.9000208009
+     ],
+     [
+      0.3927141291,
+      0.7965014746,
+      0.8787566091,
+      0.8997531758,
+      0.9032189947
+     ],
+     [
+      0.3941108081,
+      0.7989890912,
+      0.8811533727,
+      0.9019042472,
+      0.9051560854
+     ],
+     [
+      0.3950427588,
+      0.8006709624,
+      0.8827991761,
+      0.9034067426,
+      0.9065304422
+     ]
+    ],
+    "range_over_measure": [
+     0.3835800683,
+     0.9065304422
+    ],
+    "range_over_source_at_corpus_point": [
+     0.608127405226,
+     0.963537700495
+    ],
+    "target_inside_measure_range": true,
+    "target_inside_source_range": true,
+    "target_r": 0.891513565776
+   },
+   "verdict": "PASS"
+  },
+  {
+   "claim": "THE ASYMMETRY. The two numbers fail differently, and the difference is the whole of the remaining problem. r is UNDETERMINED but REACHABLE: it is a fitting problem, waiting on a measure and a pointer source. chi is FORBIDDEN: on the derived real-symmetric family the holonomy is quantised to {0, pi} and the target is in neither class, so no amount of tuning inside the Euclidean gauge sector can produce it. chi must be located in a complex sector -- CTP doubling or the fermion determinant phase.",
+   "class": "ANALYTIC",
+   "evidence": null,
+   "layer": "Y",
+   "tag": "LY-04",
+   "value": {
+    "chi": "FORBIDDEN on the gauge sector (locating problem)",
+    "next_computation": "the fermion determinant / Pfaffian phase and the CTP doubling, which alone can carry a continuous holonomy",
+    "r": "UNDETERMINED, REACHABLE (fitting problem)"
+   },
+   "verdict": "PASS"
+  },
+  {
+   "claim": "STEP 3 EXECUTED. The physical slab K_TI x I has (V, E, F, C) = (120, 240, 154, 32) with Euler characteristic 2; its boundary is two copies of K_TI and carries 180 edges. The boundary dimension is now an OUTPUT of the incidence structure, not the arbitrary 32-edge subset used through v2.6, and the boundary Schur complement is 180 x 180 and exactly symmetric.",
+   "class": "ANALYTIC",
+   "evidence": null,
+   "layer": "Z",
+   "tag": "LZ-03",
+   "value": {
+    "boundary_edges": 180,
+    "checks": [
+     {
+      "asym_K": 0.0,
+      "asym_Schur": 1.1556989733665955e-15,
+      "boundary_dim": 180,
+      "point": [
+       1.0,
+       1.0
+      ]
+     },
+     {
+      "asym_K": 0.0,
+      "asym_Schur": 9.8068464695899e-16,
+      "boundary_dim": 180,
+      "point": [
+       1.5,
+       0.9
+      ]
+     }
+    ],
+    "euler": 2,
+    "interior_edges": 60,
+    "slab": [
+     120,
+     240,
+     154,
+     32
+    ]
+   },
+   "verdict": "PASS"
+  },
+  {
+   "claim": "STEP 4, DOWNGRADED per review to NUMERIC-PROXY / TESTABLE. A toy U(1) Wilson-like fermionic PROBE, not the S14 determinant. The phase between the two pointer branches, chi = arg[det D_0 / det D_1] for a Wilson-Dirac operator on the slab. A PURE-GAUGE background gives EXACTLY ZERO at every scale, so the phase requires genuine plaquette field strength. A generic background with field strength gives a continuous phase, but the reachable range is two orders of magnitude below the target.",
+   "class": "PROXY",
+   "evidence": null,
+   "layer": "Z",
+   "tag": "LZ-04",
+   "value": {
+    "SCOPE": "ONE predeclared U(1) background ray, NINE points. This is NOT a global obstruction theorem over admissible fermionic backgrounds.",
+    "generic_background": [
+     {
+      "chi": 0.000125121486,
+      "scale": 0.1
+     },
+     {
+      "chi": 0.001080739118,
+      "scale": 0.3
+     },
+     {
+      "chi": 0.003706255576,
+      "scale": 0.6
+     },
+     {
+      "chi": 0.006513372167,
+      "scale": 1.0
+     },
+     {
+      "chi": 0.003564339034,
+      "scale": 1.5
+     },
+     {
+      "chi": -0.001066677624,
+      "scale": 2.0
+     },
+     {
+      "chi": 0.009302768267,
+      "scale": 3.0
+     },
+     {
+      "chi": -0.000987217912,
+      "scale": 4.0
+     },
+     {
+      "chi": 0.003550595511,
+      "scale": 6.0
+     }
+    ],
+    "max_plaquette_flux_generic": 5.48988898500528,
+    "pure_gauge": [
+     {
+      "chi": 0.0,
+      "scale": 0.5
+     },
+     {
+      "chi": -0.0,
+      "scale": 1.0
+     },
+     {
+      "chi": 0.0,
+      "scale": 2.0
+     },
+     {
+      "chi": -0.0,
+      "scale": 4.0
+     }
+    ],
+    "reachable_range": [
+     -0.001066677624,
+     0.009302768267
+    ],
+    "target_chi": 2.259249553903,
+    "target_inside": false,
+    "what_is_open": "the S14 SU(3)xSU(2)xU(1) + H_5 Higgs + Yukawa determinant remains OPEN"
+   },
+   "verdict": "PROXY"
+  },
+  {
+   "claim": "STEP 5 EXECUTED: full tomography of the constructed channel on the four matrix units; all four required residuals certified zero",
+   "class": "NUMERIC",
+   "evidence": null,
+   "layer": "Z",
+   "tag": "LZ-05",
+   "value": {
+    "r_CP": 8.552847072295076e-49,
+    "r_TP": 3.166274896609426e-17,
+    "r_leak": 0.0,
+    "r_pop": 2.2388944504932596e-17
+   },
+   "verdict": "PASS"
+  },
+  {
+   "claim": "STEP 6 EXECUTED, with the caveat stated as loudly as the result. eps_r, eps_chi and eps_C all vanish -- but r and chi were SUPPLIED, not derived: r from the step-2 formula only after a measure and a source are chosen, chi from the step-4 formula only after a background field strength is chosen. The epsilons are zero because the inputs were tuned to make them zero.",
+   "class": "ANALYTIC",
+   "evidence": null,
+   "layer": "Z",
+   "tag": "LZ-06",
+   "value": {
+    "eps_C": 3.525082213408263e-16,
+    "eps_chi": 0.0,
+    "eps_r": 0.0,
+    "honest_status": "NOT a derived closure"
+   },
+   "verdict": "PASS"
+  },
+  {
+   "claim": "THEOREM Y, RESCOPED per review. The target argument 2.2592495539 rad is absent from every EXPLICITLY TESTED CONSTRUCTION: quantised away in the two exact sectors (Theorems T and W, which ARE global obstructions on their stated hypotheses) and two to three orders of magnitude too small in the two numerical probes (Theorem U's scan and the fermionic probe, which are NOT global obstructions). The attenuation r is reachable in all four.",
+   "class": "ANALYTIC",
+   "evidence": null,
+   "layer": "Z",
+   "tag": "LZ-07",
+   "value": {
+    "GLOBAL_obstructions": [
+     "Theorem T (real symmetric family)",
+     "Theorem W (real Kato connection)"
+    ],
+    "NUMERICAL_probes_only": [
+     "Theorem U scan",
+     "fermionic probe, 1 ray, 9 points"
+    ],
+    "chi_status": "absent from every tested construction",
+    "r_status": "reachable everywhere (fitting problem)",
+    "sectors": [
+     {
+      "reachable_arg": "{0, pi}",
+      "sector": "Euclidean kernel compression (Thm T)"
+     },
+     {
+      "reachable_arg": "|arg| <= 0.085071",
+      "sector": "positive CTP kernel (Thm U)"
+     },
+     {
+      "reachable_arg": "{0, pi}",
+      "sector": "Kato/BFV holonomy (Thm W)"
+     },
+     {
+      "reachable_arg": "[-0.001067, 0.009303]",
+      "sector": "fermion determinant on the slab (Step 4)"
+     }
+    ],
+    "target": 2.259249553903
+   },
+   "verdict": "PASS"
+  },
+  {
+   "claim": "final status of the six-step programme",
+   "class": "DECLARATION",
+   "evidence": null,
+   "layer": "Z",
+   "tag": "LZ-08",
+   "value": "Steps 1, 2, 3, 5, 6 EXECUTED. Step 4 EXECUTED with a negative result. The structure is complete: a physical slab, a physical boundary of 180 edges, an exact CPTP Z-QND channel with four certified-zero residuals, eleven of thirteen ZS-M59 fields, and explicit formulas for both r and chi. F-M54-16' is CLOSED-FORMAL and its derived closure now fails on exactly ONE quantity: the phase.",
+   "verdict": "DECLARED"
+  },
+  {
+   "claim": "FIX 5, and a defect found against v2.7's own slab. Building the 3-cell boundary operator d2 exposed that v2.7's d1 did NOT satisfy d1 d0 = 0: the vertical-quadrilateral signs were wrong and the maximum violation was 2.000, so what v2.7 called a 'physical slab' was not a chain complex at all. Scanning the eight sign conventions, exactly two close the complex; taking (bot, top, vert) = (-1, +1, -1) and the matching d2 gives d1 d0 = 0 and d2 d1 = 0 exactly, with Betti numbers (1, 0, 1, 0) and alternating sum 2 -- precisely S^2 x I.",
+   "class": "ANALYTIC",
+   "evidence": {
+    "upgrade": "the slab is NOW a genuine 3-complex; v2.7's claim was premature and its 2-skeleton was invalid"
+   },
+   "layer": "AA",
+   "tag": "LAA-01",
+   "value": {
+    "alternating_sum": 2,
+    "betti": [
+     1,
+     0,
+     1,
+     0
+    ],
+    "chosen_signs": [
+     1,
+     -1,
+     1
+    ],
+    "d1d0_max": 0.0,
+    "d2_vertical_sign": 1.0,
+    "d2d1_max": 0.0,
+    "expected_for_S2xI": [
+     1,
+     0,
+     1,
+     0
+    ],
+    "ranks": [
+     119,
+     121,
+     32
+    ],
+    "sign_scan": [
+     {
+      "d1d0": 2.0,
+      "signs": [
+       1,
+       1,
+       1
+      ]
+     },
+     {
+      "d1d0": 2.0,
+      "signs": [
+       1,
+       1,
+       -1
+      ]
+     },
+     {
+      "d1d0": 0.0,
+      "signs": [
+       1,
+       -1,
+       1
+      ]
+     },
+     {
+      "d1d0": 2.0,
+      "signs": [
+       1,
+       -1,
+       -1
+      ]
+     },
+     {
+      "d1d0": 2.0,
+      "signs": [
+       -1,
+       1,
+       1
+      ]
+     },
+     {
+      "d1d0": 0.0,
+      "signs": [
+       -1,
+       1,
+       -1
+      ]
+     },
+     {
+      "d1d0": 2.0,
+      "signs": [
+       -1,
+       -1,
+       1
+      ]
+     },
+     {
+      "d1d0": 2.0,
+      "signs": [
+       -1,
+       -1,
+       -1
+      ]
+     }
+    ]
+   },
+   "verdict": "PASS"
+  },
+  {
+   "claim": "FIX 4 CONFIRMED. The gamma assignment gam[e mod 3] depends on the EDGE STORAGE ORDER, not on any tangent frame or spin structure: random relabellings of the 240 edges shift arg det D by up to 6e-3 rad. The operator is therefore a PROXY and cannot be called an S14 fermion determinant.",
+   "class": "NUMERIC",
+   "evidence": null,
+   "layer": "AA",
+   "tag": "LAA-02",
+   "value": {
+    "canonical_arg_det": -0.002542426271,
+    "max_abs_shift": 0.006175790422,
+    "permutations": [
+     {
+      "arg_det": -0.007292943319,
+      "seed": 1,
+      "shift": -0.004750517048
+     },
+     {
+      "arg_det": -0.006454840381,
+      "seed": 2,
+      "shift": -0.00391241411
+     },
+     {
+      "arg_det": -0.000582972071,
+      "seed": 3,
+      "shift": 0.0019594542
+     },
+     {
+      "arg_det": -0.008718216693,
+      "seed": 4,
+      "shift": -0.006175790422
+     },
+     {
+      "arg_det": -0.001566243919,
+      "seed": 5,
+      "shift": 0.000976182352
+     }
+    ]
+   },
+   "verdict": "PASS"
+  },
+  {
+   "claim": "FIX 3, with a sign error of this paper's own draft corrected. The claim D[theta + d0 omega] = V D[theta] V^dagger holds with V = diag(e^{-i omega_v}) (residual 5.8e-15), NOT with the opposite sign, where a first draft reported 31.5 and would have asserted a false identity. With the correct sign the gauge covariance is exact and the determinant phase is EXACTLY invariant: this half of Step 4 IS analytic.",
+   "class": "ANALYTIC",
+   "evidence": null,
+   "layer": "AA",
+   "tag": "LAA-03",
+   "value": {
+    "arg_det_gauge_shift": 4.770474140886034e-17,
+    "conjugation_residuals": [
+     {
+      "residual": 31.517001985797094,
+      "sign": 1
+     },
+     {
+      "residual": 5.764516780166296e-15,
+      "sign": -1
+     }
+    ]
+   },
+   "verdict": "PASS"
+  },
+  {
+   "claim": "ZS-M59 B1-B3 EXECUTED (conditionally on the formal channel). B1: the Kraus rank is 2, the minimal environment is two-dimensional, the coherence-line contraction is the SCALAR lambda, so the Sz.-Nagy-Foias defect indices are (1,1), Theta_lambda is a degree-one Blaschke factor and the model space K_Theta = H^2 (-) Theta H^2 has dimension ONE. B2: the n-fold environment overlap is lambda^n. B3: the suspension U(t) = e^{t ell} obeys the group law and returns lambda at t=1.",
+   "class": "ANALYTIC",
+   "evidence": null,
+   "layer": "AA",
+   "tag": "LAA-04",
+   "value": {
+    "U(1)_minus_lambda": 2.482534153247273e-16,
+    "defect_indices": [
+     1,
+     1
+    ],
+    "dim_model_space": 1,
+    "group_law_residual": 1.5700924586837752e-16,
+    "lambda_powers": [
+     {
+      "arg": 2.259249554,
+      "modulus": 0.891513565776,
+      "n": 1
+     },
+     {
+      "arg": -1.764686199,
+      "modulus": 0.794796437963,
+      "n": 2
+     },
+     {
+      "arg": -1.270122845,
+      "modulus": 0.563170347827,
+      "n": 5
+     },
+     {
+      "arg": -2.54024569,
+      "modulus": 0.317160840671,
+      "n": 10
+     }
+    ]
+   },
+   "verdict": "PASS"
+  },
+  {
+   "claim": "RESULT Z, RETRACTED — see Layer AB",
+   "class": "DECLARATION",
+   "evidence": null,
+   "layer": "AA",
+   "tag": "LAA-05",
+   "value": "v2.8 compared multiples of ell with the spectrum of a self-adjoint generator. Since Re ell = ln r < 0, e^{t ell} is a CONTRACTION SEMIGROUP, not a unitary group, and dim K_Theta = 1 is the model space of a scalar contraction, not the one-particle space of the chain, which is l^2(Z). Both identifications were category errors and Result Z is WITHDRAWN.",
+   "verdict": "DECLARED"
+  },
+  {
+   "claim": "the withdrawn v2.8 figures, retained for the record",
+   "class": "NUMERIC",
+   "evidence": null,
+   "layer": "AA",
+   "tag": "LAA-05b",
+   "value": {
+    "claimed_spectrum": "discrete lattice {n ell}",
+    "one_particle_claimed": {
+     "M46": "infinite",
+     "event": 1
+    },
+    "status": "SUPERSEDED by LAB-01 and LAB-02"
+   },
+   "verdict": "MEASURED"
+  },
+  {
+   "claim": "SUPERSEDED — see LAC-05",
+   "class": "DECLARATION",
+   "evidence": null,
+   "layer": "AA",
+   "tag": "LAA-06",
+   "value": "The v2.8 text registered here read 'B4 returns CLOSED-NEGATIVE; B5-B7 are moot'. That verdict was withdrawn in v2.9 and the replacement verdict is withdrawn again in v3.0. The single authoritative M59 gate table is LAC-05. No verdict is issued here.",
+   "verdict": "DECLARED"
+  },
+  {
+   "claim": "RETRACTION. e^{t ell} is a CONTRACTION SEMIGROUP, not a unitary group: Re ell = ln r < 0 and |e^{t ell}| = r^t < 1. M46's translation is e^{itP} with P self-adjoint and positive. Comparing multiples of a complex ell with the spectrum of P is a category error, and dim K_Theta = 1 is the model space of a scalar contraction, NOT the one-particle space of the meter chain, which is l^2(Z). v2.8 Result Z is WITHDRAWN.",
+   "class": "ANALYTIC",
+   "evidence": null,
+   "layer": "AB",
+   "tag": "LAB-01",
+   "value": {
+    "Re_ell": -0.114834624996,
+    "three_confused_objects": {
+     "K_Theta_lambda": "defect/model space, dim 1",
+     "chain_one_particle": "l^2(Z), infinite",
+     "single_meter": "C^2"
+    },
+    "|U(t)|": [
+     {
+      "modulus": 0.944199960695,
+      "t": 0.5
+     },
+     {
+      "modulus": 0.891513565776,
+      "t": 1.0
+     },
+     {
+      "modulus": 0.794796437963,
+      "t": 2.0
+     }
+    ]
+   },
+   "verdict": "PASS"
+  },
+  {
+   "claim": "THE CORRECT POINTED MINIMAL UNITARY DILATION (Sz.-Nagy). For a scalar contraction with |lambda| < 1 take the harmonic measure d mu(e^{i th}) = [(1-|lambda|^2)/|e^{i th}-lambda|^2] d th/2pi on L^2(T), with U f(z) = z f(z) and Omega = 1. Then <Omega, U^n Omega> = lambda^n for all n >= 0. The dilation is INFINITE DIMENSIONAL with an ABSOLUTELY CONTINUOUS spectral measure -- the same spectral class as the bilateral shift.",
+   "class": "ANALYTIC",
+   "evidence": {
+    "corrects": "v2.8's 'discrete lattice {n ell}' was the wrong object entirely"
+   },
+   "layer": "AB",
+   "tag": "LAB-02",
+   "value": {
+    "min_density": 0.0573542988,
+    "moment_errors_n_0_to_5": [
+     2.22e-16,
+     4e-16,
+     3.72e-16,
+     2.48e-16,
+     2.78e-16,
+     2.29e-16
+    ],
+    "spectral_type": "absolutely continuous on the unit circle",
+    "total_mass": 1.0
+   },
+   "verdict": "PASS"
+  },
+  {
+   "claim": "STAGE 2: THE EXACT REPEATED-INTERACTION SCALING. With h_N = tau_Z/N, alpha_N = (1/2) arccos(e^{-Gamma h_N}) and V_N = (e^{i Omega h_N Z/2} (x) I) exp(-i alpha_N Z (x) sigma_y), the branch overlap is cos(2 alpha_N) = e^{-Gamma h_N} and the system phase is e^{i Omega h_N}, so one collision gives exactly e^{(-Gamma + i Omega) h_N} and N collisions give exactly lambda. This is an EXACT scaling, not an approximation, and alpha_N / sqrt(Gamma h_N / 2) -> 1, so the collision Hamiltonian scales as h^{-1/2}: the standard weak-coupling scaling.",
+   "class": "ANALYTIC",
+   "evidence": {
+    "corrects": "v2.8 said the artifact supplies no scaling; the scaling is FIXED by Gamma and tau_Z and introduces NO new free parameter"
+   },
+   "layer": "AB",
+   "tag": "LAB-03",
+   "value": {
+    "max_N_step_error": 4.263964701143492e-14,
+    "max_one_step_error": 1.6653345369377348e-16,
+    "rows": [
+     {
+      "N": 1,
+      "N_step_error_vs_lambda": 2.482534153247273e-16,
+      "alpha": 0.235060408003,
+      "alpha_over_sqrt": 0.98097526,
+      "h": 0.75,
+      "one_step_error": 0.0
+     },
+     {
+      "N": 2,
+      "N_step_error_vs_lambda": 1.1102230246251565e-16,
+      "alpha": 0.167819610272,
+      "alpha_over_sqrt": 0.99045848,
+      "h": 0.375,
+      "one_step_error": 1.6653345369377348e-16
+     },
+     {
+      "N": 4,
+      "N_step_error_vs_lambda": 4.577566798522237e-16,
+      "alpha": 0.119237118828,
+      "alpha_over_sqrt": 0.99522216,
+      "h": 0.1875,
+      "one_step_error": 0.0
+     },
+     {
+      "N": 16,
+      "N_step_error_vs_lambda": 4.002966042486721e-16,
+      "alpha": 0.059833142742,
+      "alpha_over_sqrt": 0.99880424,
+      "h": 0.046875,
+      "one_step_error": 1.1102230246251565e-16
+     },
+     {
+      "N": 64,
+      "N_step_error_vs_lambda": 3.820199830714189e-15,
+      "alpha": 0.029943430934,
+      "alpha_over_sqrt": 0.99970098,
+      "h": 0.01171875,
+      "one_step_error": 1.1123893155135927e-16
+     },
+     {
+      "N": 256,
+      "N_step_error_vs_lambda": 3.1072165459282205e-14,
+      "alpha": 0.014975074047,
+      "alpha_over_sqrt": 0.99992524,
+      "h": 0.0029296875,
+      "one_step_error": 1.1102230246251565e-16
+     },
+     {
+      "N": 1024,
+      "N_step_error_vs_lambda": 4.263964701143492e-14,
+      "alpha": 0.007487956881,
+      "alpha_over_sqrt": 0.99998131,
+      "h": 0.0007324219,
+      "one_step_error": 1.1102314949223176e-16
+     }
+    ]
+   },
+   "verdict": "PASS"
+  },
+  {
+   "claim": "STAGE 3, RESCOPED: HP COEFFICIENTS DERIVED, CONTINUUM CONVERGENCE OPEN. The collision-family-to-HP strong or matrix-element convergence is NOT proved here, and the HP dilation is the NOISE leg, which cannot substitute for the CLOCK leg of B3. With L = sqrt(Gamma/2) Z and H_Z = -(Omega/2) Z the QSDE dU = [L dA* - L* dA - (L*L/2 + i H_Z) dt] U has vacuum conditional expectation equal to the GKSL generator, and e^{tau L} reproduces lambda exactly.",
+   "class": "ANALYTIC",
+   "evidence": null,
+   "layer": "AB",
+   "tag": "LAB-04",
+   "value": {
+    "H_Z_coefficient": -1.506166369268,
+    "H_Z_hermiticity": 0.0,
+    "L_coefficient": 0.276688302362,
+    "LdagL_minus_GammaHalf": 0.0,
+    "SCOPE": "HP coefficients DERIVED; collision -> HP convergence DERIVED-CONDITIONAL / OPEN; noise leg, not clock leg",
+    "exp_tau_L_error_vs_lambda": 2.482534153247273e-16,
+    "generator_on_E01": [
+     -0.153112833328,
+     3.012332738537
+    ]
+   },
+   "verdict": "PASS"
+  },
+  {
+   "claim": "STAGE 4: THE THREE LEGS MUST BE SEPARATED. log lambda = -Gamma tau_Z + i chi packs three distinct functions into one complex number and must not be handed to a single self-adjoint clock generator. Noise leg: Gamma <-> L = sqrt(Gamma/2) Z. Clock leg: tau_Z and the event ordering <-> P_event = P* >= 0. Internal twist leg: chi <-> a cocycle u_t = e^{i t (chi/tau_Z) Q_int}. The corpus already reads chi as a helical INTERNAL twist and keeps A as the additive per-cycle translation.",
+   "class": "ANALYTIC",
+   "evidence": null,
+   "layer": "AB",
+   "tag": "LAB-05",
+   "value": {
+    "clock": 0.75,
+    "internal_twist": 2.259249553903,
+    "noise": 0.153112833328,
+    "prohibition": "chi must NOT be identified with an eigenvalue of P_M46"
+   },
+   "verdict": "PASS"
+  },
+  {
+   "claim": "STAGE 5 CLAIM WITHDRAWN — see Layer AC",
+   "class": "DECLARATION",
+   "evidence": null,
+   "layer": "AB",
+   "tag": "LAB-06",
+   "value": "v2.9 registered support, spectral type and multiplicity for both sides as a DICTIONARY and graded it ANALYTIC / PASS. No P_event was constructed, no spectrum computed, no multiplicity function, no cyclic measure, no standard real subspace and no pointing. The claim that the prerequisites for W_1 are MET is WITHDRAWN. Layer AC constructs P_event and reports what it actually is.",
+   "verdict": "DECLARED"
+  },
+  {
+   "claim": "ZS-M59 status after v2.9",
+   "class": "DECLARATION",
+   "evidence": null,
+   "layer": "AB",
+   "tag": "LAB-07",
+   "value": "SUPERSEDED by LAC-05. What v2.9 executed is correctly named 'dilation and collision preliminaries', not 'B1-B4 executed'.",
+   "verdict": "DECLARED"
+  },
+  {
+   "claim": "PRINCIPAL LOGARITHMIC SUSPENSION CONSTRUCTED. On the pointed minimal unitary dilation H = L^2(T, mu_lambda) the event unitary is multiplication by z, so sigma(U_event) = supp(mu_lambda). The harmonic density is bounded BELOW by 0.0573542988 > 0, hence supp(mu_lambda) is the FULL circle and sigma(U_event) = T. The suspension generator PRINCIPAL suspension generator is multiplication by the principal argument, so its spectrum is the CLOSED interval [-pi, pi]: bounded and two-sided. Other measurable branches give other generators -- see LAD-01.",
+   "class": "ANALYTIC",
+   "evidence": null,
+   "layer": "AC",
+   "tag": "LAC-01",
+   "value": {
+    "SCOPE": "principal branch only",
+    "max_density": 17.43548469,
+    "min_density": 0.0573542988,
+    "principal_bounded": true,
+    "principal_positive": false,
+    "sigma_P_principal_closed": [
+     -3.141593,
+     3.141593
+    ],
+    "sigma_U_event": "the full circle T",
+    "total_mass": 1.0
+   },
+   "verdict": "PASS"
+  },
+  {
+   "claim": "THE PRINCIPAL-BRANCH COMPARISON. Both sides are absolutely continuous, so spectral type is not the obstruction. For the PRINCIPAL branch the obstruction is positivity and boundedness: a bounded operator with closed spectrum [-pi, pi] is never unitarily equivalent to an unbounded one with spectrum [0, inf). This statement is scoped to that branch and to no other; alternative positive and unbounded logarithms of the same unitary are constructed in LAD-01.",
+   "class": "ANALYTIC",
+   "evidence": null,
+   "layer": "AC",
+   "tag": "LAC-02",
+   "value": {
+    "M46": {
+     "bounded": false,
+     "spectrum": "[0, inf)",
+     "type": "absolutely continuous"
+    },
+    "principal_branch": {
+     "bounded": true,
+     "spectrum": "[-pi, pi]",
+     "type": "absolutely continuous"
+    },
+    "scope": "PRINCIPAL BRANCH ONLY"
+   },
+   "verdict": "PASS"
+  },
+  {
+   "claim": "WHERE POSITIVITY WOULD HAVE TO COME FROM. In the Hudson-Parthasarathy limit the noise one-particle space is L^2(R_+, dt) with dt the COLLISION TIME, and its shift generator on L^2(R, dt) has spectrum all of R. A positive-frequency (Hardy) projection restricts that spectrum to [0, inf). A Hardy space is a COMPLEX-linear subspace and is therefore NOT a modular standard real subspace -- see LAD-02. What the seed's B4 requires is a standard REAL subspace H^R with a pointing Omega_event, and neither has been constructed. Note also that L^2(R_+, dt) and M46's L^2(R_+, dp) share a symbol but not a meaning: dt is collision time, dp is the positive-energy spectral variable, and no intertwining F has been built.",
+   "class": "ANALYTIC",
+   "evidence": null,
+   "layer": "AC",
+   "tag": "LAC-03",
+   "value": {
+    "Hardy_is_a_standard_real_subspace": false,
+    "Hardy_projection_range": [
+     0.0,
+     2047.0
+    ],
+    "full_L2_generator_range": [
+     -2048.0,
+     2047.0
+    ],
+    "missing_objects": [
+     "H^R_event",
+     "Omega_event",
+     "Tomita S",
+     "modular J",
+     "modular Delta",
+     "standardness proof",
+     "half-sided inclusion",
+     "Borchers covariance",
+     "intertwiner F"
+    ],
+    "notation_trap": "L^2(R_+, dt) is NOT L^2(R_+, dp)"
+   },
+   "verdict": "PASS"
+  },
+  {
+   "claim": "THE SINGLE AUTHORITATIVE ZS-M59 GATE TABLE. This row supersedes every earlier M59 verdict in this ledger, including v2.8's CLOSED-NEGATIVE and v2.9's POSITIVE-CONDITIONAL.",
+   "class": "NUMERIC",
+   "evidence": {
+    "correct_name_for_v2_9_work": "dilation and collision preliminaries executed",
+    "not": "B1-B4 executed"
+   },
+   "layer": "AC",
+   "tag": "LAC-05",
+   "value": {
+    "B0 input freeze": "FORMAL artifact only; physical artifact 0/13 S14-derived",
+    "B1 pointed minimal dilation": "DERIVED (harmonic measure; moments to 4e-16)",
+    "B2 bilateral chain and record algebra": "NOT CONSTRUCTED",
+    "B3 continuous suspension": "OPEN -- positive logarithmic suspensions EXIST abstractly, but the discrete event does not SELECT an admissible positive-energy suspension or a pointed standard pair",
+    "B4-general": "OPEN -- no frozen admissible branch, multiplicity, cyclic measure, H^R, pointing or intertwiner has been supplied",
+    "B4-principal": "CLOSED-NEGATIVE -- the principal branch is bounded with closed spectrum [-pi, pi] and cannot match M46",
+    "B5 explicit W_1": "NOT STARTED",
+    "B6 Fock lift and record MASA": "NOT STARTED",
+    "B7 modular cocycle": "NOT STARTED",
+    "HP construction": "COEFFICIENTS DERIVED; collision -> HP convergence OPEN; NOISE leg, not CLOCK leg"
+   },
+   "verdict": "PASS"
+  },
+  {
+   "claim": "TERMINAL POSITION OF ZS-S28",
+   "class": "DECLARATION",
+   "evidence": null,
+   "layer": "AC",
+   "tag": "LAC-06",
+   "value": "A formal pointer-QND event with multiplier lambda EXISTS and is constructed exactly. The declared Whitney/DEC/S14 reduction does NOT select the physical event: the admissible measure cone is four-dimensional, the phase is absent from every tested construction, and the artifact is 11/13 target-instantiated with 0/13 S14-derived. ZS-M59 is handed off separately, as a CONDITIONAL mathematical investigation on the abstract event; the physical clock claim remains BLOCKED. This is the terminal release of ZS-S28.",
+   "verdict": "DECLARED"
+  },
+  {
+   "claim": "ERROR 1 CORRECTED. v3.0 concluded from the PRINCIPAL logarithm that 'the discrete dilation cannot supply P_event >= 0 at all'. That is FALSE. Taking the branch theta_+ in [0, 2pi) gives P_+ = M_{theta_+} with spectrum in [0, 2pi), self-adjoint and POSITIVE, and e^{i P_+} = M_z = U_event exactly. Taking P_n = M_{theta + 2 pi n(theta)} with n integer-valued and measurable gives UNBOUNDED positive generators with the same exponential. A single discrete unitary therefore determines NEITHER the boundedness NOR the positivity NOR the spectrum of its continuous generator. The global no-go is RETRACTED; the real question is WHICH logarithmic suspension is admissible.",
+   "class": "ANALYTIC",
+   "evidence": {
+    "renames": "Result AC -> Principal-Suspension Obstruction",
+    "status": "principal-branch result DERIVED; global no-go RETRACTED / OPEN"
+   },
+   "layer": "AD",
+   "tag": "LAD-01",
+   "value": {
+    "positive_branch": {
+     "bounded": true,
+     "exponential_error": 8.005932084973443e-16,
+     "max": 6.283185,
+     "min": 3.1e-05,
+     "positive": true
+    },
+    "principal_branch": {
+     "bounded": true,
+     "max": 3.141561,
+     "min": -3.141593,
+     "positive": false
+    },
+    "unbounded_positive_branch": {
+     "bounded": false,
+     "exponential_error": 4.4638199218296436e-10,
+     "max": 6283185.307179586,
+     "min": 3.141593,
+     "positive": true
+    },
+    "what_survives": "the PRINCIPAL branch is bounded and two-sided, hence not unitarily equivalent to M46's unbounded positive generator -- DERIVED for that branch only"
+   },
+   "verdict": "PASS"
+  },
+  {
+   "claim": "ERROR 2 CORRECTED. v3.0 wrote 'that Hardy subspace IS the standard real subspace H^R'. A standard subspace is a closed REAL-linear subspace with H^R cap i H^R = {0} and H^R + i H^R dense. H^2 is COMPLEX-linear, so i H^2 = H^2 and H^2 cap i H^2 = H^2, which is not {0}: the standardness condition FAILS outright. The FFT illustration was a positive-frequency projection, not a standard subspace.",
+   "class": "ANALYTIC",
+   "evidence": {
+    "note": "a standard PAIR is (H^R, T) with T(t) = e^{itP}, P >= 0, and T(t) H^R subset H^R for t >= 0"
+   },
+   "layer": "AD",
+   "tag": "LAD-02",
+   "value": {
+    "dim_H2_cap_iH2": 64,
+    "dim_H2_model": 64,
+    "not_constructed": [
+     "H^R_event",
+     "Tomita operator S",
+     "modular conjugation J",
+     "modular operator Delta",
+     "standardness proof",
+     "half-sided inclusion",
+     "pointing Omega_event",
+     "Borchers covariance"
+    ],
+    "required_for_standardness": 0,
+    "standardness_holds": false
+   },
+   "verdict": "PASS"
+  },
+  {
+   "claim": "ZS-S28 terminal statement, unchanged by v3.1",
+   "class": "DECLARATION",
+   "evidence": null,
+   "layer": "AD",
+   "tag": "LAD-03",
+   "value": "A formal pointer-QND event with multiplier lambda EXISTS and is constructed exactly. The declared Whitney/DEC/S14 reduction does NOT select the physical event. The physical M59 clock claim remains BLOCKED. These three sentences are independent of Result AC and stand unaffected by its correction. Every other v3.0 row, theorem, retraction and gate is carried unchanged.",
+   "verdict": "DECLARED"
+  },
+  {
+   "claim": "grammar size, and the de-duplicated value count",
+   "class": "NUMERIC",
+   "evidence": {
+    "repairs": "v1.5 quoted the expression count without de-duplication"
+   },
+   "layer": "I",
+   "tag": "LI-01",
+   "value": {
+    "duplication_factor": 3.59,
+    "expressions": 555721,
+    "unique_values": 154777
+   },
+   "verdict": "PASS"
+  },
+  {
+   "claim": "de-duplicated hits at alpha, null mean/median, and the p-value",
+   "class": "NUMERIC",
+   "evidence": null,
+   "layer": "I",
+   "tag": "LI-02",
+   "value": {
+    "hits": 62,
+    "null_mean": 48.121,
+    "null_median": 42.5,
+    "p": 0.3615
+   },
+   "verdict": "PASS"
+  },
+  {
+   "claim": "the six nearest grammar expressions to alpha",
+   "class": "NUMERIC",
+   "evidence": null,
+   "layer": "I",
+   "tag": "LI-03",
+   "value": [
+    {
+     "expr": "ln(2acos(A)/ln(n_c))",
+     "rel_err": 7.39e-06,
+     "value": 0.940248577
+    },
+    {
+     "expr": "sqrt(ln(sqrt5)*ln(three))",
+     "rel_err": 1.12e-05,
+     "value": 0.940252165
+    },
+    {
+     "expr": "sqrt(ln(three)*ln(sqrt5))",
+     "rel_err": 1.12e-05,
+     "value": 0.940252165
+    },
+    {
+     "expr": "acos((xi_over_lP)/sqrt(phi))",
+     "rel_err": 2.72e-05,
+     "value": 0.940216056
+    },
+    {
+     "expr": "sq(ln(rho)+sqrt(phi))",
+     "rel_err": 3.488e-05,
+     "value": 0.940274426
+    },
+    {
+     "expr": "sq(sqrt(phi)+ln(rho))",
+     "rel_err": 3.488e-05,
+     "value": 0.940274426
+    }
+   ],
+   "verdict": "MEASURED"
+  },
+  {
+   "claim": "HELD-OUT grammar (no ln, no square, no arccos): hits and p",
+   "class": "NUMERIC",
+   "evidence": null,
+   "layer": "I",
+   "tag": "LI-04",
+   "value": {
+    "hits": 13,
+    "null_mean": 11.728,
+    "p": 0.45,
+    "unique_values": 36566
+   },
+   "verdict": "PASS"
+  },
+  {
+   "claim": "what the anti-numerology result does and does not say",
+   "class": "DECLARATION",
+   "evidence": null,
+   "layer": "I",
+   "tag": "LI-05",
+   "value": "It says: NO SELECTIVITY DETECTED FOR alpha UNDER THE DECLARED GRAMMAR, BAND AND NULL. It does NOT say alpha is not a locked-constant combination; p > 0.05 does not establish a null hypothesis, and the grammar, band and null range are arbitrary choices fixed by the author.",
+   "verdict": "DECLARED"
+  },
+  {
+   "claim": "ZS-M59 entry manifest: required S28 exports present in this build",
+   "class": "NUMERIC",
+   "evidence": {
+    "reading": "PASS means the audit correctly reports that NONE of the THIRTEEN contract fields exists; ZS-M59 cannot start",
+    "repairs": "v1.8 checked six fields; the cross-paper contract has thirteen"
+   },
+   "layer": "J",
+   "tag": "LJ-01",
+   "value": {
+    "missing": [
+     "pointer_matrix_units",
+     "pointer_observable",
+     "choi_operator",
+     "qnd_multiplier",
+     "full_state_map",
+     "primitive_event_map",
+     "fixed_point",
+     "boundary_derivative",
+     "primitive_holonomy",
+     "action_path",
+     "logarithmic_lift",
+     "construction_source_hash",
+     "arithmetic_source_hash"
+    ],
+    "present": [],
+    "required": [
+     "pointer_matrix_units",
+     "pointer_observable",
+     "choi_operator",
+     "qnd_multiplier",
+     "full_state_map",
+     "primitive_event_map",
+     "fixed_point",
+     "boundary_derivative",
+     "primitive_holonomy",
+     "action_path",
+     "logarithmic_lift",
+     "construction_source_hash",
+     "arithmetic_source_hash"
+    ]
+   },
+   "verdict": "PASS"
+  },
+  {
+   "claim": "ZS-M59 status",
+   "class": "DECLARATION",
+   "evidence": null,
+   "layer": "J",
+   "tag": "LJ-02",
+   "value": "NOT STARTED. The physical S28 event is not frozen; no S14-derived Kraus vectors, multiplier, boundary derivative, action path or logarithmic lift exist.",
+   "verdict": "DECLARED"
+  },
+  {
+   "claim": "stage S2 boundary pointer",
+   "class": "NUMERIC",
+   "evidence": null,
+   "layer": "C",
+   "tag": "W3-S2",
+   "value": "CANDIDATE IDENTIFIED",
+   "verdict": "MEASURED"
+  },
+  {
+   "claim": "stage S3 matrix units",
+   "class": "NUMERIC",
+   "evidence": null,
+   "layer": "C",
+   "tag": "W3-S3",
+   "value": "FORMALLY CONSTRUCTIBLE",
+   "verdict": "MEASURED"
+  },
+  {
+   "claim": "stage S4 Ward identity",
+   "class": "NUMERIC",
+   "evidence": null,
+   "layer": "C",
+   "tag": "W3-S4",
+   "value": "OPEN",
+   "verdict": "MEASURED"
+  },
+  {
+   "claim": "stage S5 physical event process",
+   "class": "NUMERIC",
+   "evidence": null,
+   "layer": "C",
+   "tag": "W3-S5",
+   "value": "OPEN",
+   "verdict": "MEASURED"
+  },
+  {
+   "claim": "stage S6 physical Choi operator",
+   "class": "NUMERIC",
+   "evidence": null,
+   "layer": "C",
+   "tag": "W3-S6",
+   "value": "OPEN (generic form only)",
+   "verdict": "MEASURED"
+  },
+  {
+   "claim": "stage S11 multiplier value",
+   "class": "NUMERIC",
+   "evidence": null,
+   "layer": "C",
+   "tag": "W3-S11",
+   "value": "OPEN",
+   "verdict": "MEASURED"
+  },
+  {
+   "claim": "stages carrying an S14-DERIVED object",
+   "class": "NUMERIC",
+   "evidence": {
+    "repairs": "v1.5 marked five stages EXECUTED on generic models; that is retracted"
+   },
+   "layer": "C",
+   "tag": "W3-SUM",
+   "value": 0,
+   "verdict": "PASS"
+  },
+  {
+   "claim": "the controlled-unitary toy model of v1.2-v1.5 (hand-chosen W0, W1, Omega) demonstrates only that SOME controlled-unitary model gives a QND rank-2 channel, never that ZS-S14 gives one",
+   "class": "PROXY",
+   "evidence": null,
+   "layer": "E",
+   "tag": "PX-01",
+   "value": "PROXY, not evidence for the target",
+   "verdict": "PROXY"
+  },
+  {
+   "claim": "v3.1 SEMANTIC GUARD: retracted phrases must not appear in any ANALYTIC, NUMERIC or PROXY row. They are permitted only inside DECLARATION rows that mark them historical.",
+   "class": "NUMERIC",
+   "evidence": {
+    "purpose": "a zero-FAIL count does not detect semantic contradiction; this row does"
+   },
+   "layer": "W",
+   "tag": "W7-SEMANTIC",
+   "value": {
+    "active_rows_scanned": 164,
+    "banned_phrases": [
+     "cannot supply P_event >= 0 at all",
+     "P_event >= 0 FAILS on the discrete dilation",
+     "no P_event >= 0",
+     "That choice IS the standard real subspace",
+     "Hardy subspace is the standard real subspace"
+    ],
+    "exempt_correction_rows": 11,
+    "violations": []
+   },
+   "verdict": "PASS"
+  },
+  {
+   "claim": "R6: a real AST Witness pass over this file -- measurement-primitive calls, emitter calls, and verdict slots that are bare literals",
+   "class": "NUMERIC",
+   "evidence": {
+    "literal_verdict_slots_are_declarations_of_scope": true,
+    "published_residual": "the literal-verdict-slot count is PUBLISHED rather than used as a tuned threshold; per CSS 8.4c a gate tuned until it reports zero has stopped measuring",
+    "repairs": "v1.8's W1-SELF checked only the file length and hash"
+   },
+   "layer": "W",
+   "tag": "W1-SELF",
+   "value": {
+    "bytes": 176309,
+    "emitter_calls": 169,
+    "literal_verdict_slots": 23,
+    "measurement_calls": 258,
+    "sha256": "dd770b39f4c0ef6a2dd6f5b9a5bfe4b69d9e319faed677f87e10c65003a31b6f"
+   },
+   "verdict": "PASS"
+  }
+ ],
+ "module": "zs_s28_verify_v3_1",
+ "payload_sha256": "a1a0f04055847b6b59595b1e2a9ec2847710b803fbb822c11f8a7b57674efb8f"
+}
