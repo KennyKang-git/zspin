@@ -1,8 +1,18 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-ZS-M62 v1.4.1 - deterministic verification suite  (zs_m62_verify_v1_4_1.py)
+ZS-M62 v1.4.2 - deterministic verification suite  (zs_m62_verify_v1_4_2.py)
 ===========================================================================
+v1.4.2 is a RELEASE-PACKAGE patch on v1.4.1, SELF-DETECTED, with no audit in between.
+  E-M62-23  the artifact manifest quotes sha256(script), and NO ROW CHECKED IT.  It went stale
+            the moment v1.4.1's own repair edited the script after the hash had been written
+            into the manuscript, and the whole 90-row suite passed with a wrong hash on the
+            page.  M8 certifies the manuscript against itself; nothing certified the
+            manuscript's claim ABOUT ANOTHER ARTIFACT.  New row M10 recomputes the running
+            script's SHA-256 and requires the manuscript to declare it.  The ledger hash cannot
+            be checked the same way -- the ledger records the outcome of the check, so a row
+            verifying it has no fixed point -- and that limit is now stated rather than left to
+            be discovered.  Gate F-M62.30.
 v1.4.1 is a RELEASE-PACKAGE patch on v1.4 after a fifth independent audit.  The mathematics is
 untouched -- not one theorem, proof, constant, extremiser or Z-Spin number differs from v1.4.
   E-M62-22  the fifth audit ran this artifact pair against its own copy of the manuscript and
@@ -43,9 +53,9 @@ finding was an ARTIFACT SYNCHRONISATION defect in the release package:
             of the manuscript; the row fails unless every verdict agrees and the digest is
             unchanged.  M9 caught a real defect in E-M62-18's own repair: normalise() undid one
             level of escaping where two were present.
-  Usage     python3 zs_m62_verify_v1_4_1.py                 FULL, the only quotable profile
-            python3 zs_m62_verify_v1_4_1.py --quick         smoke test, certificate=false
-            python3 zs_m62_verify_v1_4_1.py --identify [md] identity only, sub-second, exit 1
+  Usage     python3 zs_m62_verify_v1_4_2.py                 FULL, the only quotable profile
+            python3 zs_m62_verify_v1_4_2.py --quick         smoke test, certificate=false
+            python3 zs_m62_verify_v1_4_2.py --identify [md] identity only, sub-second, exit 1
                                                             on any digest mismatch
 v1.3 incorporates the third independent audit (verdict on v1.2: AUDIT-CORRECTION-REQUIRED,
 not release-blocking for the architecture but blocking for external submission):
@@ -117,7 +127,7 @@ def _find_manuscript():
     import glob
     for a in sys.argv[1:]:
         if a.endswith(".md") and os.path.exists(a): return os.path.abspath(a)
-    pats = ["ZS-M62_v1_4_1.md", "ZS*M62*v1*4*1*.md", "ZS*M62*v1*4*.md",
+    pats = ["ZS-M62_v1_4_2.md", "ZS*M62*v1*4*2*.md", "ZS*M62*v1*4*.md",
             "ZS*M62*.md", "*M62*.md"]
     for pat in pats:
         hits = sorted(glob.glob(os.path.join(HERE, pat)))
@@ -133,7 +143,7 @@ def NQ(full_n, quick_n):
     """sample count selector; the quick profile is a smoke test, never a certificate"""
     return quick_n if QUICK else full_n
 
-EXPECTED_ROWS = 90                      # fail-closed row-count guard
+EXPECTED_ROWS = 91                      # fail-closed row-count guard
 
 # ---------------------------------------------------------------------------
 # TRANSPORT-INVARIANT TEXT NORMALISATION AND MANUSCRIPT IDENTITY  (E-M62-18, E-M62-22)
@@ -1650,6 +1660,21 @@ def manuscript_checks(raw_text):
                            "digest deliberately ignores the lines that NAME the release, this row "
                            "also requires every version label in the manuscript to agree",
                 ok, det))
+
+    # ---- M10 : the manuscript's claim about the OTHER artifact ------------------------------
+    # E-M62-23.  Everything above certifies the manuscript against itself.  The manifest also
+    # makes a claim about a DIFFERENT file -- sha256(script) -- and through v1.4.1 nothing
+    # checked it, so it went stale as soon as the script was edited after the hash was written,
+    # and a full 90-row pass was obtained with a wrong hash on the page.
+    real_script = hashlib.sha256(open(SELF, encoding="utf-8").read().encode("utf-8")).hexdigest()
+    m = re.search(r"(?m)^sha256\(script\)\s*:\s*([0-9a-f]{64})", tn)
+    decl_script = m.group(1) if m else ""
+    out.append(("M10", "G", "E-M62-23 cross-artifact guard: the sha256(script) quoted in the "
+                            "artifact manifest is the SHA-256 of the script that is running.  "
+                            "The ledger hash is deliberately NOT checked here: the ledger records "
+                            "this row's outcome, so a row verifying it would have no fixed point",
+                bool(decl_script) and decl_script == real_script,
+                f"declared = {decl_script or '<absent>'}, actual = {real_script}"))
     return out
 
 def escape_transport(t):
@@ -1679,7 +1704,7 @@ if MANUSCRIPT and os.path.exists(MANUSCRIPT):
         f"{len(res_plain)} guards re-run on the escaped copy; verdict disagreements = {disagree}; "
         f"digest invariant = {dig_ok}")
 else:
-    for i in range(1, 10):
+    for i in list(range(1, 11)):
         row(f"M{i}", "G", "manuscript file not found next to the script (fail-closed)", False,
             "no file matching ZS*M62*.md in the script directory and no .md argument given")
 
@@ -1734,7 +1759,7 @@ print(f"manuscript = {os.path.basename(MANUSCRIPT) if MANUSCRIPT else 'NOT FOUND
 print(f"manuscript sha256 = {msha if MANUSCRIPT and os.path.exists(MANUSCRIPT) else 'n/a'}")
 print(f"runtime {time.time()-T_START:.1f}s   python {sys.version.split()[0]}   numpy {np.__version__}")
 
-out = dict(suite=BASE, profile=PROFILE, certificate=((not QUICK) and len(fails) == 0), paper="ZS-M62 v1.4.1",
+out = dict(suite=BASE, profile=PROFILE, certificate=((not QUICK) and len(fails) == 0), paper="ZS-M62 v1.4.2",
            convention="d_TV(P,Q) = sup_A|P(A)-Q(A)| = (1/2)||P-Q||_var in [0,1]",
            mp_dps=mp.dps, expected_rows=EXPECTED_ROWS, n_rows=len(ROWS),
            n_fail=len(fails), census=dict(cen),
